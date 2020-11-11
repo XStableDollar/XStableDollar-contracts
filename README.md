@@ -1,1 +1,1 @@
-# XStableDollar-contracts
+# XStable Dollar Contract
