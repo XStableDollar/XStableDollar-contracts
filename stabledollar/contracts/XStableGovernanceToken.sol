@@ -115,9 +115,9 @@ contract XStableGovernanceToken is ERC20("XStableGovernanceToken", "XSGT"), Owna
         );
 
         address signatory = ecrecover(digest, v, r, s);
-        require(signatory != address(0), "SUSHI::delegateBySig: invalid signature");
-        require(nonce == nonces[signatory]++, "SUSHI::delegateBySig: invalid nonce");
-        require(now <= expiry, "SUSHI::delegateBySig: signature expired");
+        require(signatory != address(0), "XSGT::delegateBySig: invalid signature");
+        require(nonce == nonces[signatory]++, "XSGT::delegateBySig: invalid nonce");
+        require(now <= expiry, "XSGT::delegateBySig: signature expired");
         return _delegate(signatory, delegatee);
     }
 
@@ -147,7 +147,7 @@ contract XStableGovernanceToken is ERC20("XStableGovernanceToken", "XSGT"), Owna
         view
         returns (uint256)
     {
-        require(blockNumber < block.number, "SUSHI::getPriorVotes: not yet determined");
+        require(blockNumber < block.number, "XSGT::getPriorVotes: not yet determined");
 
         uint32 nCheckpoints = numCheckpoints[account];
         if (nCheckpoints == 0) {
@@ -184,7 +184,7 @@ contract XStableGovernanceToken is ERC20("XStableGovernanceToken", "XSGT"), Owna
         internal
     {
         address currentDelegate = _delegates[delegator];
-        uint256 delegatorBalance = balanceOf(delegator); // balance of underlying SUSHIs (not scaled);
+        uint256 delegatorBalance = balanceOf(delegator); // balance of underlying XSGTs (not scaled);
         _delegates[delegator] = delegatee;
 
         emit DelegateChanged(delegator, currentDelegate, delegatee);
@@ -220,7 +220,7 @@ contract XStableGovernanceToken is ERC20("XStableGovernanceToken", "XSGT"), Owna
     )
         internal
     {
-        uint32 blockNumber = safe32(block.number, "SUSHI::_writeCheckpoint: block number exceeds 32 bits");
+        uint32 blockNumber = safe32(block.number, "XSGT::_writeCheckpoint: block number exceeds 32 bits");
 
         if (nCheckpoints > 0 && checkpoints[delegatee][nCheckpoints - 1].fromBlock == blockNumber) {
             checkpoints[delegatee][nCheckpoints - 1].votes = newVotes;
