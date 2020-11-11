@@ -87,6 +87,10 @@ contract XSGTReward is Ownable {
         startBlock = _startBlock;
     }
 
+    function setXSDTAddress(IERC20 _xsdt) public onlyOwner {
+        xsdt = _xsdt;
+    }
+
     function poolLength() external view returns (uint256) {
         return poolInfo.length;
     }
@@ -134,7 +138,8 @@ contract XSGTReward is Ownable {
         PoolInfo storage pool = poolInfo[_pid];
         UserInfo storage user = userInfo[_pid][_user];
         uint256 accXSGTPerShare = pool.accXSGTPerShare;
-        uint256 lpSupply = pool.lpToken.balanceOf(address(this));
+        // uint256 lpSupply = pool.lpToken.balanceOf(address(this));
+        uint256 lpSupply = pool.lpTokenAmount;
         if (block.number > pool.lastRewardBlock && lpSupply != 0) {
             uint256 multiplier = getMultiplier(pool.lastRewardBlock, block.number);
             uint256 xsgtReward = multiplier.mul(xsgtPerBlock).mul(pool.allocPoint).div(totalAllocPoint);
@@ -157,7 +162,8 @@ contract XSGTReward is Ownable {
         if (block.number <= pool.lastRewardBlock) {
             return;
         }
-        uint256 lpSupply = pool.lpToken.balanceOf(address(this));
+        // uint256 lpSupply = pool.lpToken.balanceOf(address(this));
+        uint256 lpSupply = pool.lpTokenAmount;
         if (lpSupply == 0) {
             pool.lastRewardBlock = block.number;
             return;
@@ -181,6 +187,7 @@ contract XSGTReward is Ownable {
         }
         // we do not need to transfer the real XSDT
         // pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount);
+        pool.lpTokenAmount = pool.lpTokenAmount.add(_amount);
         user.amount = user.amount.add(_amount);
         user.rewardDebt = user.amount.mul(pool.accXSGTPerShare).div(1e12);
         emit Deposit(msg.sender, _pid, _amount);
@@ -197,6 +204,7 @@ contract XSGTReward is Ownable {
         user.amount = user.amount.sub(_amount);
         user.rewardDebt = user.amount.mul(pool.accXSGTPerShare).div(1e12);
         // pool.lpToken.safeTransfer(address(msg.sender), _amount);
+        pool.lpTokenAmount = pool.lpTokenAmount.sub(_amount);
         emit Withdraw(msg.sender, _pid, _amount);
     }
 
@@ -205,6 +213,7 @@ contract XSGTReward is Ownable {
         PoolInfo storage pool = poolInfo[_pid];
         UserInfo storage user = userInfo[_pid][msg.sender];
         // pool.lpToken.safeTransfer(address(msg.sender), user.amount);
+        pool.lpTokenAmount = 0;
         emit EmergencyWithdraw(msg.sender, _pid, user.amount);
         user.amount = 0;
         user.rewardDebt = 0;
@@ -227,6 +236,6 @@ contract XSGTReward is Ownable {
     }
 
     modifier onlyXSDT {
-        require(msg.sender == xs);
+        require(msg.sender == xsdt);
     }
 }
