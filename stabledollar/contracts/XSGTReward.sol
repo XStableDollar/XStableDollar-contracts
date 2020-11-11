@@ -9,14 +9,14 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "./XStableGovernanceToken.sol";
 
 
-// MasterChef is the master of Sushi. He can make Sushi and he is a fair guy.
+// XSGTReward is the master of XSGT. He can make XSGT and he is a fair guy.
 //
 // Note that it's ownable and the owner wields tremendous power. The ownership
-// will be transferred to a governance smart contract once SUSHI is sufficiently
+// will be transferred to a governance smart contract once XSGT is sufficiently
 // distributed and the community can show to govern itself.
 //
 // Have fun reading it. Hopefully it's bug-free. God bless.
-contract MasterChef is Ownable {
+contract XSGTReward is Ownable {
     using SafeMath for uint256;
     using SafeERC20 for IERC20;
 
@@ -25,13 +25,13 @@ contract MasterChef is Ownable {
         uint256 amount;     // How many LP tokens the user has provided.
         uint256 rewardDebt; // Reward debt. See explanation below.
         //
-        // We do some fancy math here. Basically, any point in time, the amount of SUSHIs
+        // We do some fancy math here. Basically, any point in time, the amount of XSGTs
         // entitled to a user but is pending to be distributed is:
         //
-        //   pending reward = (user.amount * pool.accSushiPerShare) - user.rewardDebt
+        //   pending reward = (user.amount * pool.accXSGTPerShare) - user.rewardDebt
         //
         // Whenever a user deposits or withdraws LP tokens to a pool. Here's what happens:
-        //   1. The pool's `accSushiPerShare` (and `lastRewardBlock`) gets updated.
+        //   1. The pool's `accXSGTPerShare` (and `lastRewardBlock`) gets updated.
         //   2. User receives the pending reward sent to his/her address.
         //   3. User's `amount` gets updated.
         //   4. User's `rewardDebt` gets updated.
@@ -40,18 +40,21 @@ contract MasterChef is Ownable {
     // Info of each pool.
     struct PoolInfo {
         IERC20 lpToken;           // Address of LP token contract.
-        uint256 allocPoint;       // How many allocation points assigned to this pool. SUSHIs to distribute per block.
-        uint256 lastRewardBlock;  // Last block number that SUSHIs distribution occurs.
-        uint256 accSushiPerShare; // Accumulated SUSHIs per share, times 1e12. See below.
+        uint256 lpTokenAmount;
+        uint256 allocPoint;       // How many allocation points assigned to this pool. XSGTs to distribute per block.
+        uint256 lastRewardBlock;  // Last block number that XSGTs distribution occurs.
+        uint256 accXSGTPerShare; // Accumulated XSGTs per share, times 1e12. See below.
     }
 
-    // The SUSHI TOKEN!
+    // The XSGT TOKEN!
     XStableGovernanceToken public xsgt;
+    // The XSDT TOKEN!
+    IERC20 public xsdt;
     // Dev address.
     address public devaddr;
-    // Block number when bonus SUSHI period ends.
+    // Block number when bonus XSGT period ends.
     uint256 public bonusEndBlock;
-    // SUSHI tokens created per block.
+    // XSGT tokens created per block.
     uint256 public xsgtPerBlock;
     // Bonus muliplier for early xsgt makers.
     uint256 public constant BONUS_MULTIPLIER = 10;
@@ -61,7 +64,7 @@ contract MasterChef is Ownable {
     mapping (uint256 => mapping (address => UserInfo)) public userInfo;
     // Total allocation poitns. Must be the sum of all allocation points in all pools.
     uint256 public totalAllocPoint = 0;
-    // The block number when SUSHI mining starts.
+    // The block number when XSGT mining starts.
     uint256 public startBlock;
 
     event Deposit(address indexed user, uint256 indexed pid, uint256 amount);
@@ -69,12 +72,14 @@ contract MasterChef is Ownable {
     event EmergencyWithdraw(address indexed user, uint256 indexed pid, uint256 amount);
 
     constructor(
+        IERC20 _xsdt,
         XStableGovernanceToken _xsgt,
         address _devaddr,
         uint256 _xsgtPerBlock,
         uint256 _startBlock,
         uint256 _bonusEndBlock
     ) public {
+        _xsdt = __xsdt;
         xsgt = _xsgt;
         devaddr = _devaddr;
         xsgtPerBlock = _xsgtPerBlock;
@@ -98,11 +103,11 @@ contract MasterChef is Ownable {
             lpToken: _lpToken,
             allocPoint: _allocPoint,
             lastRewardBlock: lastRewardBlock,
-            accSushiPerShare: 0
+            accXSGTPerShare: 0
         }));
     }
 
-    // Update the given pool's SUSHI allocation point. Can only be called by the owner.
+    // Update the given pool's XSGT allocation point. Can only be called by the owner.
     function set(uint256 _pid, uint256 _allocPoint, bool _withUpdate) public onlyOwner {
         if (_withUpdate) {
             massUpdatePools();
@@ -124,18 +129,18 @@ contract MasterChef is Ownable {
         }
     }
 
-    // View function to see pending SUSHIs on frontend.
-    function pendingSushi(uint256 _pid, address _user) external view returns (uint256) {
+    // View function to see pending XSGTs on frontend.
+    function pendingXSGT(uint256 _pid, address _user) external view returns (uint256) {
         PoolInfo storage pool = poolInfo[_pid];
         UserInfo storage user = userInfo[_pid][_user];
-        uint256 accSushiPerShare = pool.accSushiPerShare;
+        uint256 accXSGTPerShare = pool.accXSGTPerShare;
         uint256 lpSupply = pool.lpToken.balanceOf(address(this));
         if (block.number > pool.lastRewardBlock && lpSupply != 0) {
             uint256 multiplier = getMultiplier(pool.lastRewardBlock, block.number);
             uint256 xsgtReward = multiplier.mul(xsgtPerBlock).mul(pool.allocPoint).div(totalAllocPoint);
-            accSushiPerShare = accSushiPerShare.add(xsgtReward.mul(1e12).div(lpSupply));
+            accXSGTPerShare = accXSGTPerShare.add(xsgtReward.mul(1e12).div(lpSupply));
         }
-        return user.amount.mul(accSushiPerShare).div(1e12).sub(user.rewardDebt);
+        return user.amount.mul(accXSGTPerShare).div(1e12).sub(user.rewardDebt);
     }
 
     // Update reward vairables for all pools. Be careful of gas spending!
@@ -161,51 +166,52 @@ contract MasterChef is Ownable {
         uint256 xsgtReward = multiplier.mul(xsgtPerBlock).mul(pool.allocPoint).div(totalAllocPoint);
         xsgt.mint(devaddr, xsgtReward.div(10));
         xsgt.mint(address(this), xsgtReward);
-        pool.accSushiPerShare = pool.accSushiPerShare.add(xsgtReward.mul(1e12).div(lpSupply));
+        pool.accXSGTPerShare = pool.accXSGTPerShare.add(xsgtReward.mul(1e12).div(lpSupply));
         pool.lastRewardBlock = block.number;
     }
 
-    // Deposit LP tokens to MasterChef for SUSHI allocation.
-    function deposit(uint256 _pid, uint256 _amount) public {
+    // Deposit LP tokens to XSGTReward for XSGT allocation.
+    function deposit(uint256 _pid, uint256 _amount) public onlyXSDT {
         PoolInfo storage pool = poolInfo[_pid];
         UserInfo storage user = userInfo[_pid][msg.sender];
         updatePool(_pid);
         if (user.amount > 0) {
-            uint256 pending = user.amount.mul(pool.accSushiPerShare).div(1e12).sub(user.rewardDebt);
-            safeSushiTransfer(msg.sender, pending);
+            uint256 pending = user.amount.mul(pool.accXSGTPerShare).div(1e12).sub(user.rewardDebt);
+            safeXSGTTransfer(msg.sender, pending);
         }
-        pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount);
+        // we do not need to transfer the real XSDT
+        // pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount);
         user.amount = user.amount.add(_amount);
-        user.rewardDebt = user.amount.mul(pool.accSushiPerShare).div(1e12);
+        user.rewardDebt = user.amount.mul(pool.accXSGTPerShare).div(1e12);
         emit Deposit(msg.sender, _pid, _amount);
     }
 
-    // Withdraw LP tokens from MasterChef.
-    function withdraw(uint256 _pid, uint256 _amount) public {
+    // Withdraw LP tokens from XSGTReward.
+    function withdraw(uint256 _pid, uint256 _amount) public onlyXSDT {
         PoolInfo storage pool = poolInfo[_pid];
         UserInfo storage user = userInfo[_pid][msg.sender];
         require(user.amount >= _amount, "withdraw: not good");
         updatePool(_pid);
-        uint256 pending = user.amount.mul(pool.accSushiPerShare).div(1e12).sub(user.rewardDebt);
-        safeSushiTransfer(msg.sender, pending);
+        uint256 pending = user.amount.mul(pool.accXSGTPerShare).div(1e12).sub(user.rewardDebt);
+        safeXSGTTransfer(msg.sender, pending);
         user.amount = user.amount.sub(_amount);
-        user.rewardDebt = user.amount.mul(pool.accSushiPerShare).div(1e12);
-        pool.lpToken.safeTransfer(address(msg.sender), _amount);
+        user.rewardDebt = user.amount.mul(pool.accXSGTPerShare).div(1e12);
+        // pool.lpToken.safeTransfer(address(msg.sender), _amount);
         emit Withdraw(msg.sender, _pid, _amount);
     }
 
     // Withdraw without caring about rewards. EMERGENCY ONLY.
-    function emergencyWithdraw(uint256 _pid) public {
+    function emergencyWithdraw(uint256 _pid) public onlyXSDT {
         PoolInfo storage pool = poolInfo[_pid];
         UserInfo storage user = userInfo[_pid][msg.sender];
-        pool.lpToken.safeTransfer(address(msg.sender), user.amount);
+        // pool.lpToken.safeTransfer(address(msg.sender), user.amount);
         emit EmergencyWithdraw(msg.sender, _pid, user.amount);
         user.amount = 0;
         user.rewardDebt = 0;
     }
 
-    // Safe xsgt transfer function, just in case if rounding error causes pool to not have enough SUSHIs.
-    function safeSushiTransfer(address _to, uint256 _amount) internal {
+    // Safe xsgt transfer function, just in case if rounding error causes pool to not have enough XSGTs.
+    function safeXSGTTransfer(address _to, uint256 _amount) internal {
         uint256 xsgtBal = xsgt.balanceOf(address(this));
         if (_amount > xsgtBal) {
             xsgt.transfer(_to, xsgtBal);
@@ -218,5 +224,9 @@ contract MasterChef is Ownable {
     function dev(address _devaddr) public {
         require(msg.sender == devaddr, "dev: wut?");
         devaddr = _devaddr;
+    }
+
+    modifier onlyXSDT {
+        require(msg.sender == xs);
     }
 }
