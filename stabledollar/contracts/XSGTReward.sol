@@ -95,7 +95,7 @@ contract XSGTReward is Ownable {
         xsgt = _xsgt;
     }
 
-    function setBonusPerBlock(uint256 _bonusEndBlock) public onlyOwner {
+    function setBonusPerBlock(uint256 _xsgtPerBlock) public onlyOwner {
         xsgtPerBlock = _xsgtPerBlock;
     }
 
