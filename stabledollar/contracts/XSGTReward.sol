@@ -79,7 +79,7 @@ contract XSGTReward is Ownable {
         uint256 _startBlock,
         uint256 _bonusEndBlock
     ) public {
-        _xsdt = __xsdt;
+        xsdt = _xsdt;
         xsgt = _xsgt;
         devaddr = _devaddr;
         xsgtPerBlock = _xsgtPerBlock;
@@ -105,6 +105,7 @@ contract XSGTReward is Ownable {
         totalAllocPoint = totalAllocPoint.add(_allocPoint);
         poolInfo.push(PoolInfo({
             lpToken: _lpToken,
+            lpTokenAmount: 0,
             allocPoint: _allocPoint,
             lastRewardBlock: lastRewardBlock,
             accXSGTPerShare: 0
@@ -134,7 +135,8 @@ contract XSGTReward is Ownable {
     }
 
     // View function to see pending XSGTs on frontend.
-    function pendingXSGT(uint256 _pid, address _user) external view returns (uint256) {
+    function pendingReward(address _user) external view returns (uint256) {
+        uint256 _pid = 0;
         PoolInfo storage pool = poolInfo[_pid];
         UserInfo storage user = userInfo[_pid][_user];
         uint256 accXSGTPerShare = pool.accXSGTPerShare;
@@ -177,35 +179,53 @@ contract XSGTReward is Ownable {
     }
 
     // Deposit LP tokens to XSGTReward for XSGT allocation.
-    function deposit(uint256 _pid, uint256 _amount) public onlyXSDT {
+    function deposit(address _account, uint256 _amount) public onlyXSDT {
+        uint256 _pid = 0;
         PoolInfo storage pool = poolInfo[_pid];
-        UserInfo storage user = userInfo[_pid][msg.sender];
+        UserInfo storage user = userInfo[_pid][_account];
         updatePool(_pid);
         if (user.amount > 0) {
             uint256 pending = user.amount.mul(pool.accXSGTPerShare).div(1e12).sub(user.rewardDebt);
-            safeXSGTTransfer(msg.sender, pending);
+            safeXSGTTransfer(_account, pending);
         }
         // we do not need to transfer the real XSDT
-        // pool.lpToken.safeTransferFrom(address(msg.sender), address(this), _amount);
+        // pool.lpToken.safeTransferFrom(address(_account), address(this), _amount);
         pool.lpTokenAmount = pool.lpTokenAmount.add(_amount);
         user.amount = user.amount.add(_amount);
         user.rewardDebt = user.amount.mul(pool.accXSGTPerShare).div(1e12);
-        emit Deposit(msg.sender, _pid, _amount);
+        emit Deposit(_account, _pid, _amount);
     }
 
     // Withdraw LP tokens from XSGTReward.
-    function withdraw(uint256 _pid, uint256 _amount) public onlyXSDT {
+    function withdraw(uint256 _amount) public {
+        uint256 _pid = 0;
         PoolInfo storage pool = poolInfo[_pid];
         UserInfo storage user = userInfo[_pid][msg.sender];
-        require(user.amount >= _amount, "withdraw: not good");
         updatePool(_pid);
         uint256 pending = user.amount.mul(pool.accXSGTPerShare).div(1e12).sub(user.rewardDebt);
+        require(pending >= _amount, "withdraw: not good");
         safeXSGTTransfer(msg.sender, pending);
-        user.amount = user.amount.sub(_amount);
+        // user.amount = user.amount.sub(_amount);
         user.rewardDebt = user.amount.mul(pool.accXSGTPerShare).div(1e12);
         // pool.lpToken.safeTransfer(address(msg.sender), _amount);
-        pool.lpTokenAmount = pool.lpTokenAmount.sub(_amount);
+        // pool.lpTokenAmount = pool.lpTokenAmount.sub(_amount);
         emit Withdraw(msg.sender, _pid, _amount);
+    }
+
+    // Withdraw LP tokens from XSGTReward.
+    function burn(address _account, uint256 _amount) public onlyXSDT {
+        uint256 _pid = 0;
+        PoolInfo storage pool = poolInfo[_pid];
+        UserInfo storage user = userInfo[_pid][_account];
+        require(user.amount >= _amount, "burn: not good");
+        updatePool(_pid);
+        uint256 pending = user.amount.mul(pool.accXSGTPerShare).div(1e12).sub(user.rewardDebt);
+        safeXSGTTransfer(_account, pending);
+        user.amount = user.amount.sub(_amount);
+        user.rewardDebt = user.amount.mul(pool.accXSGTPerShare).div(1e12);
+        // pool.lpToken.safeTransfer(address(_account), _amount);
+        pool.lpTokenAmount = pool.lpTokenAmount.sub(_amount);
+        emit Withdraw(_account, _pid, _amount);
     }
 
     // Withdraw without caring about rewards. EMERGENCY ONLY.
@@ -236,6 +256,7 @@ contract XSGTReward is Ownable {
     }
 
     modifier onlyXSDT {
-        require(msg.sender == xsdt);
+        require(msg.sender == address(xsdt));
+        _;
     }
 }
