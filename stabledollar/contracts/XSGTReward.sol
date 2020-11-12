@@ -91,6 +91,26 @@ contract XSGTReward is Ownable {
         xsdt = _xsdt;
     }
 
+    function setXSGTAddress(XStableGovernanceToken _xsgt) public onlyOwner {
+        xsgt = _xsgt;
+    }
+
+    function setBonusPerBlock(uint256 _bonusEndBlock) public onlyOwner {
+        bonusEndBlock = _bonusEndBlock;
+    }
+
+    function setBonusStartBlock(uint256 _startBlock) public onlyOwner {
+        startBlock = _startBlock;
+    }
+
+    function setBonusEndBlock(uint256 _bonusEndBlock) public onlyOwner {
+        bonusEndBlock = _bonusEndBlock;
+    }
+
+    function setDevAddr(address _devaddr) public onlyOwner {
+        devaddr = _devaddr;
+    }
+
     function poolLength() external view returns (uint256) {
         return poolInfo.length;
     }
