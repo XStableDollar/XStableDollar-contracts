@@ -19,9 +19,11 @@ contract Masset is IMasset, ERC20 {
 
     using StableMath for uint256;
 
-    uint256 public version = 66;
+    // 版本号，测试使用
+    uint256 private version = 1;
+
+    // 一蓝子稳定币管理器, 从外部注入进来
     IBasketManager private basketManager;
-    // XStableDollar private stableDollar;
 
     // 合成事件
     event Minted(address indexed minter, address recipient, uint256 mAssetQuantity, address bAsset, uint256 bAssetQuantity);
@@ -29,66 +31,63 @@ contract Masset is IMasset, ERC20 {
     // 赎回事件
     event Redeemed(address indexed redeemer, address recipient, uint256 mAssetQuantity, address[] bAssets, uint256[] bAssetQuantities);
     event RedeemedMasset(address indexed redeemer, address recipient, uint256 mAssetQuantity);
+    // 支付费用事件
     event PaidFee(address indexed payer, address asset, uint256 feeQuantity);
 
-    constructor (string memory name, string memory symbol) public ERC20(name, symbol) {}
+    // 构造函数，构造时需要指定代币名称和代币符号
+    constructor(string memory name, string memory symbol) public ERC20(name, symbol) {}
 
-    function initialize(
-        address _basketManager
-    )
+    // 初始化函数
+    function initialize(address _basketManager) 
         external
     {
         basketManager = IBasketManager(_basketManager);
     }
 
+    // 返回当前合约的版本号(测试使用)
     function getVersion() public view returns (uint256) {
         return version;
     }
 
     /**
-     * Mint a single bAsset, at a 1:1 ratio with the bAsset. This contract
-     * must have approval to spend the senders bAsset
-     * _bAsset         Address of the bAsset to mint
-     * _bAssetQuantity Quantity in bAsset units
-     * massetMinted   Number of newly minted mAssets
+     * 以1:1的比例用单一的稳定币合成 XSDT
+     * 该合约必须获得批准才能花费花费发送者的资产
+     * _bAsset         稳定币地址
+     * _bAssetQuantity 合成的数量
+     * massetMinted    合成XSDT的数量
      */
-    function mint(address _bAsset, uint256 _bAssetQuantity) override external returns (uint256 massetMinted){
-        return _mintTo(_bAsset, _bAssetQuantity, msg.sender);
+    function mint(address _bAsset, uint256 _bAssetAmount) override external returns (uint256 massetMinted){
+        return _mintTo(_bAsset, _bAssetAmount, msg.sender);
     }
 
-    /***************************************
-              MINTING (INTERNAL)
-    ****************************************/
-
-    // Mint Single
-    // 单一币种进行合成
-    function _mintTo(address _bAsset, uint256 _bAssetQuantity, address _recipient) internal returns (uint256 massetMinted){
+    // 单一稳定币合成XSDT
+    function _mintTo(address _bAsset, uint256 _bAssetAmount, address _recipient) internal returns (uint256 massetMinted){
         // 必须是个可用的接收者
         require(_recipient != address(0), "Must be a valid recipient");
-        // 数量不能为0
-        require(_bAssetQuantity > 0, "Quantity must not be 0");
+        // 数量必须大于0
+        require(_bAssetAmount > 0, "Quantity must not be 0");
 
-        (bool isValid, BassetDetails memory bInfo) = basketManager.prepareForgeBasset(_bAsset, _bAssetQuantity, true);
+        (bool isValid, BassetDetails memory bInfo) = basketManager.prepareForgeBasset(_bAsset, _bAssetAmount, true);
         if(!isValid) return 0;
 
         // Transfer collateral to the platform integration address and call deposit
+        // 
         address integrator = bInfo.integrator;
         (uint256 quantityDeposited, uint256 ratioedDeposit) =
-            _depositTokens(_bAsset, bInfo.bAsset.ratio, integrator, bInfo.bAsset.isTransferFeeCharged, _bAssetQuantity);
+            _depositTokens(_bAsset, bInfo.bAsset.ratio, integrator, bInfo.bAsset.isTransferFeeCharged, _bAssetAmount);
 
         // Validation should be after token transfer, as bAssetQty is unknown before
         // (bool mintValid, string memory reason) = forgeValidator.validateMint(totalSupply(), bInfo.bAsset, quantityDeposited);
         // require(mintValid, reason);
 
-        // Log the Vault increase - can only be done when basket is healthy
+        // 记录进行上帐, 必须 basket 是正常运转的前提下
         basketManager.increaseVaultBalance(0, integrator, quantityDeposited);
-    
-        // Mint the Masset
+
+        // 合成XSDT
         _mint(_recipient, ratioedDeposit);
         emit Minted(msg.sender, _recipient, ratioedDeposit, _bAsset, quantityDeposited);
 
-        // return ratioedDeposit;
-        return quantityDeposited;
+        return ratioedDeposit;
     }
 
     /**
@@ -111,7 +110,7 @@ contract Masset is IMasset, ERC20 {
         return _mintTo(_bAssets, _bAssetQuantity, _recipient);
     }
 
-    /** Mint Multi */
+    // 多币种合成
     function _mintTo(
         address[] memory _bAssets,
         uint256[] memory _bAssetQuantities,
@@ -151,7 +150,8 @@ contract Masset is IMasset, ERC20 {
         basketManager.increaseVaultBalances(props.indexes, props.integrators, receivedQty);
 
         // Validate the proposed mint, after token transfer
-        // (bool mintValid, string memory reason) = forgeValidator.validateMintMulti(totalSupply(), props.bAssets, receivedQty);
+        // (bool mintValid, string memory reason) = 
+        //             forgeValidator.validateMintMulti(totalSupply(), props.bAssets, receivedQty);
         // require(mintValid, reason);
 
         // Mint the Masset
@@ -161,7 +161,7 @@ contract Masset is IMasset, ERC20 {
         return mAssetQuantity;
     }
 
-    /** Deposits tokens into the platform integration and returns the ratioed amount */
+    // Deposits tokens into the platform integration and returns the ratioed amount
     function _depositTokens(
         address _bAsset,
         uint256 _bAssetRatio,
@@ -176,7 +176,7 @@ contract Masset is IMasset, ERC20 {
         ratioedDeposit = quantityDeposited.mulRatioTruncate(_bAssetRatio);
     }
 
-    /** @dev Deposits tokens into the platform integration and returns the deposited amount */
+    // Deposits tokens into the platform integration and returns the deposited amount
     function _depositTokens(
         address _bAsset,
         address _integrator,
@@ -220,10 +220,10 @@ contract Masset is IMasset, ERC20 {
     }
 
     /**
-     * @dev Credits a recipient with a proportionate amount of bAssets, relative to current vault
+     * Credits a recipient with a proportionate amount of bAssets, relative to current vault
      * balance levels and desired mAsset quantity. Burns the mAsset as payment.
-     * @param _mAssetQuantity   Quantity of mAsset to redeem
-     * @param _recipient        Address to credit the withdrawn bAssets
+     * _mAssetQuantity   Quantity of mAsset to redeem
+     * _recipient        Address to credit the withdrawn bAssets
      */
     function redeemMasset(
         uint256 _mAssetQuantity,
@@ -263,10 +263,10 @@ contract Masset is IMasset, ERC20 {
         uint256 bAssetCount = _bAssetQuantities.length;
         require(bAssetCount > 0 && bAssetCount == _bAssets.length, "Input array mismatch");
 
-        // Get high level basket info
+        // 获取basket信息
         Basket memory basket = basketManager.getBasket();
 
-        // Prepare relevant data
+        // 预准备相关数据
         ForgePropsMulti memory props = basketManager.prepareForgeBassets(_bAssets, _bAssetQuantities, false);
         if(!props.isValid) return 0;
 
@@ -275,9 +275,11 @@ contract Masset is IMasset, ERC20 {
         //     forgeValidator.validateRedemption(basket.failed, totalSupply(), basket.bassets, props.indexes, _bAssetQuantities);
         // require(redemptionValid, reason);
 
+        // TODO 这里需要把上面的注释解开
         uint256 mAssetQuantity = 0;
 
         // Calc total redeemed mAsset quantity
+        // 计算需要赎回XSDT的数量
         for(uint256 i = 0; i < bAssetCount; i++){
             uint256 bAssetQuantity = _bAssetQuantities[i];
             if(bAssetQuantity > 0){
@@ -299,7 +301,7 @@ contract Masset is IMasset, ERC20 {
         return mAssetQuantity;
     }
 
-    // Redeem mAsset for a multiple bAssets
+    // 用XSDT赎回用多个稳定币资产
     function _redeemMasset(
         uint256 _mAssetQuantity,
         address _recipient
@@ -310,25 +312,31 @@ contract Masset is IMasset, ERC20 {
         require(_mAssetQuantity > 0, "Invalid redemption quantity");
 
         // Fetch high level details
-        // RedeemPropsMulti memory props = basketManager.prepareRedeemMulti();
-        // uint256 colRatio = StableMath.min(props.colRatio, StableMath.getFullScale());
+        RedeemPropsMulti memory props = basketManager.prepareRedeemMulti();
+        uint256 colRatio = StableMath.min(props.colRatio, StableMath.getFullScale());
 
-        // // Ensure payout is related to the collateralised mAsset quantity
-        // uint256 collateralisedMassetQuantity = _mAssetQuantity.mulTruncate(colRatio);
+        // Ensure payout is related to the collateralised mAsset quantity
+        uint256 collateralisedMassetQuantity = _mAssetQuantity.mulTruncate(colRatio);
 
         // // Calculate redemption quantities
         // (bool redemptionValid, string memory reason, uint256[] memory bAssetQuantities) =
         //     forgeValidator.calculateRedemptionMulti(collateralisedMassetQuantity, props.bAssets);
         // require(redemptionValid, reason);
 
-        // // Apply fees, burn mAsset and return bAsset to recipient
-        // _settleRedemption(_recipient, _mAssetQuantity, props.bAssets, bAssetQuantities, props.indexes, props.integrators, redemptionFee);
+        // TODO 这里需要把上面的注释解开,来计算数量
+        uint256[] memory bAssetQuantities = new uint256[](1);
+
+        // 目前暂时定位0
+        uint256 redemptionFee = 0;
+
+        // Apply fees, burn mAsset and return bAsset to recipient
+        _settleRedemption(_recipient, _mAssetQuantity, props.bAssets, bAssetQuantities, props.indexes, props.integrators, redemptionFee);
 
         emit RedeemedMasset(msg.sender, _recipient, _mAssetQuantity);
     }
 
     /**
-     * @dev Internal func to update contract state post-redemption
+     * Internal func to update contract state post-redemption
      * @param _recipient        Recipient of the bAssets
      * @param _mAssetQuantity   Total amount of mAsset to burn from sender
      * @param _bAssets          Array of bAssets to redeem
@@ -345,7 +353,9 @@ contract Masset is IMasset, ERC20 {
         uint8[] memory _indices,
         address[] memory _integrators,
         uint256 _feeRate
-    ) internal {
+    ) 
+        internal 
+    {
         // Burn the full amount of Masset
         _burn(msg.sender, _mAssetQuantity);
 
@@ -367,16 +377,14 @@ contract Masset is IMasset, ERC20 {
     }
 
     /**
-     * @dev Pay the forging fee by burning relative amount of mAsset
+     * Pay the forging fee by burning relative amount of mAsset
      * @param _bAssetQuantity     Exact amount of bAsset being swapped out
      */
     function _deductSwapFee(address _asset, uint256 _bAssetQuantity, uint256 _feeRate)
         private
         returns (uint256 outputMinusFee)
     {
-
         outputMinusFee = _bAssetQuantity;
-
         if(_feeRate > 0){
             (uint256 fee, uint256 output) = _calcSwapFee(_bAssetQuantity, _feeRate);
             outputMinusFee = output;
@@ -385,7 +393,7 @@ contract Masset is IMasset, ERC20 {
     }
 
     /**
-     * @dev Pay the forging fee by burning relative amount of mAsset
+     * Pay the forging fee by burning relative amount of mAsset
      * @param _bAssetQuantity     Exact amount of bAsset being swapped out
      */
     function _calcSwapFee(uint256 _bAssetQuantity, uint256 _feeRate)

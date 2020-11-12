@@ -6,10 +6,8 @@ pragma solidity 0.6.12;
 /// @notice
 interface MassetStructs {
 
-    // Stores high level basket info
     // 目前支持的稳定币集合信息
     struct Basket {
-        // Array of Bassets currently active
         // 当前支持的稳定币币种
         Basset[] bassets;
         // Max number of bAssets that can be present in any Basket
@@ -27,9 +25,9 @@ interface MassetStructs {
     // Stores bAsset info. The struct takes 5 storage slots per Basset
     // 存储的bAsset信息
     struct Basset {
-        // Address of the bAsset
+        // 稳定币的地址
         address addr;
-        // Status of the basset
+        // 稳定币的状态
         BassetStatus status; // takes uint8 datatype (1 byte) in storage
         // An ERC20 can charge transfer fee, for example USDT, DGX tokens.
         // takes a byte in storage
@@ -40,7 +38,7 @@ interface MassetStructs {
         uint256 ratio;
         // Target weights of the Basset (100% == 1e18)
         uint256 maxWeight;
-        // Amount of the Basset that is held in Collateral
+        // 质押的数量
         uint256 vaultBalance;
     }
 
