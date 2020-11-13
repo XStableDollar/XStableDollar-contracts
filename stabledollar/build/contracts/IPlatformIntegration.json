@@ -1,0 +1,1207 @@
+{
+  "contractName": "IPlatformIntegration",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_bAsset",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "isTokenFeeCharged",
+          "type": "bool"
+        }
+      ],
+      "name": "deposit",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "quantityDeposited",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_receiver",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_bAsset",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "_isTokenFeeCharged",
+          "type": "bool"
+        }
+      ],
+      "name": "withdraw",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_bAsset",
+          "type": "address"
+        }
+      ],
+      "name": "checkBalance",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "balance",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_bAsset",
+          "type": "address"
+        }
+      ],
+      "name": "bAssetToPToken",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "pToken",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_bAsset\",\"type\":\"address\"}],\"name\":\"bAssetToPToken\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"pToken\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_bAsset\",\"type\":\"address\"}],\"name\":\"checkBalance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"balance\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_bAsset\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"isTokenFeeCharged\",\"type\":\"bool\"}],\"name\":\"deposit\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"quantityDeposited\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_receiver\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_bAsset\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"_isTokenFeeCharged\",\"type\":\"bool\"}],\"name\":\"withdraw\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"bAssetToPToken(address)\":{\"details\":\"Returns the pToken\"},\"checkBalance(address)\":{\"details\":\"Returns the current balance of the given bAsset\"},\"deposit(address,uint256,bool)\":{\"details\":\"Deposit the given bAsset to Lending platform\",\"params\":{\"_amount\":\"Amount to deposit\",\"_bAsset\":\"bAsset address\"}},\"withdraw(address,address,uint256,bool)\":{\"details\":\"Withdraw given bAsset from Lending platform\"}},\"title\":\"Platform interface to integrate with lending platform like Compound, AAVE etc.\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/interfaces/IPlatformIntegration.sol\":\"IPlatformIntegration\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/interfaces/IPlatformIntegration.sol\":{\"keccak256\":\"0x9cba509a06889a23f21154c20ea2a4df5b6c8498c49b312a1b5a3f702432ce4c\",\"license\":\"SimPL-2.0\",\"urls\":[\"bzz-raw://43d32c789c6401651f5007e1e93942e2771af67ae1e11ab3d9dca981bae5f531\",\"dweb:/ipfs/QmWq9WE7h4unQ4cHrP8yVda3XT7MTQxFCvinsb316GjSBZ\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: SimPL-2.0\npragma solidity 0.6.12;\n\n/**\n * @title Platform interface to integrate with lending platform like Compound, AAVE etc.\n */\ninterface IPlatformIntegration {\n\n    /**\n     * @dev Deposit the given bAsset to Lending platform\n     * @param _bAsset bAsset address\n     * @param _amount Amount to deposit\n     */\n    function deposit(address _bAsset, uint256 _amount, bool isTokenFeeCharged)\n        external returns (uint256 quantityDeposited);\n\n    /**\n     * @dev Withdraw given bAsset from Lending platform\n     */\n    function withdraw(address _receiver, address _bAsset, uint256 _amount, bool _isTokenFeeCharged) external;\n\n    /**\n     * @dev Returns the current balance of the given bAsset\n     */\n    function checkBalance(address _bAsset) external returns (uint256 balance);\n\n    /**\n     * @dev Returns the pToken\n     */\n    function bAssetToPToken(address _bAsset) external returns (address pToken);\n}\n",
+  "sourcePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/interfaces/IPlatformIntegration.sol",
+  "ast": {
+    "absolutePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/interfaces/IPlatformIntegration.sol",
+    "exportedSymbols": {
+      "IPlatformIntegration": [
+        9182
+      ]
+    },
+    "id": 9183,
+    "license": "SimPL-2.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 9140,
+        "literals": [
+          "solidity",
+          "0.6",
+          ".12"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "38:23:11"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 9141,
+          "nodeType": "StructuredDocumentation",
+          "src": "63:96:11",
+          "text": " @title Platform interface to integrate with lending platform like Compound, AAVE etc."
+        },
+        "fullyImplemented": false,
+        "id": 9182,
+        "linearizedBaseContracts": [
+          9182
+        ],
+        "name": "IPlatformIntegration",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": {
+              "id": 9142,
+              "nodeType": "StructuredDocumentation",
+              "src": "198:145:11",
+              "text": " @dev Deposit the given bAsset to Lending platform\n @param _bAsset bAsset address\n @param _amount Amount to deposit"
+            },
+            "functionSelector": "3edd1128",
+            "id": 9153,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "deposit",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 9149,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 9144,
+                  "mutability": "mutable",
+                  "name": "_bAsset",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 9153,
+                  "src": "365:15:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 9143,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "365:7:11",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 9146,
+                  "mutability": "mutable",
+                  "name": "_amount",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 9153,
+                  "src": "382:15:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 9145,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "382:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 9148,
+                  "mutability": "mutable",
+                  "name": "isTokenFeeCharged",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 9153,
+                  "src": "399:22:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 9147,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "399:4:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "364:58:11"
+            },
+            "returnParameters": {
+              "id": 9152,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 9151,
+                  "mutability": "mutable",
+                  "name": "quantityDeposited",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 9153,
+                  "src": "449:25:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 9150,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "449:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "448:27:11"
+            },
+            "scope": 9182,
+            "src": "348:128:11",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": {
+              "id": 9154,
+              "nodeType": "StructuredDocumentation",
+              "src": "482:67:11",
+              "text": " @dev Withdraw given bAsset from Lending platform"
+            },
+            "functionSelector": "934785b7",
+            "id": 9165,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "withdraw",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 9163,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 9156,
+                  "mutability": "mutable",
+                  "name": "_receiver",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 9165,
+                  "src": "572:17:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 9155,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "572:7:11",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 9158,
+                  "mutability": "mutable",
+                  "name": "_bAsset",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 9165,
+                  "src": "591:15:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 9157,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "591:7:11",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 9160,
+                  "mutability": "mutable",
+                  "name": "_amount",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 9165,
+                  "src": "608:15:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 9159,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "608:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 9162,
+                  "mutability": "mutable",
+                  "name": "_isTokenFeeCharged",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 9165,
+                  "src": "625:23:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 9161,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "625:4:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "571:78:11"
+            },
+            "returnParameters": {
+              "id": 9164,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "658:0:11"
+            },
+            "scope": 9182,
+            "src": "554:105:11",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": {
+              "id": 9166,
+              "nodeType": "StructuredDocumentation",
+              "src": "665:71:11",
+              "text": " @dev Returns the current balance of the given bAsset"
+            },
+            "functionSelector": "5f515226",
+            "id": 9173,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "checkBalance",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 9169,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 9168,
+                  "mutability": "mutable",
+                  "name": "_bAsset",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 9173,
+                  "src": "763:15:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 9167,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "763:7:11",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "762:17:11"
+            },
+            "returnParameters": {
+              "id": 9172,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 9171,
+                  "mutability": "mutable",
+                  "name": "balance",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 9173,
+                  "src": "798:15:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 9170,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "798:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "797:17:11"
+            },
+            "scope": 9182,
+            "src": "741:74:11",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": {
+              "id": 9174,
+              "nodeType": "StructuredDocumentation",
+              "src": "821:42:11",
+              "text": " @dev Returns the pToken"
+            },
+            "functionSelector": "71c46585",
+            "id": 9181,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "bAssetToPToken",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 9177,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 9176,
+                  "mutability": "mutable",
+                  "name": "_bAsset",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 9181,
+                  "src": "892:15:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 9175,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "892:7:11",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "891:17:11"
+            },
+            "returnParameters": {
+              "id": 9180,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 9179,
+                  "mutability": "mutable",
+                  "name": "pToken",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 9181,
+                  "src": "927:14:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 9178,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "927:7:11",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "926:16:11"
+            },
+            "scope": 9182,
+            "src": "868:75:11",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 9183,
+        "src": "160:785:11"
+      }
+    ],
+    "src": "38:908:11"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/interfaces/IPlatformIntegration.sol",
+    "exportedSymbols": {
+      "IPlatformIntegration": [
+        9182
+      ]
+    },
+    "id": 9183,
+    "license": "SimPL-2.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 9140,
+        "literals": [
+          "solidity",
+          "0.6",
+          ".12"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "38:23:11"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 9141,
+          "nodeType": "StructuredDocumentation",
+          "src": "63:96:11",
+          "text": " @title Platform interface to integrate with lending platform like Compound, AAVE etc."
+        },
+        "fullyImplemented": false,
+        "id": 9182,
+        "linearizedBaseContracts": [
+          9182
+        ],
+        "name": "IPlatformIntegration",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": {
+              "id": 9142,
+              "nodeType": "StructuredDocumentation",
+              "src": "198:145:11",
+              "text": " @dev Deposit the given bAsset to Lending platform\n @param _bAsset bAsset address\n @param _amount Amount to deposit"
+            },
+            "functionSelector": "3edd1128",
+            "id": 9153,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "deposit",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 9149,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 9144,
+                  "mutability": "mutable",
+                  "name": "_bAsset",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 9153,
+                  "src": "365:15:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 9143,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "365:7:11",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 9146,
+                  "mutability": "mutable",
+                  "name": "_amount",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 9153,
+                  "src": "382:15:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 9145,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "382:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 9148,
+                  "mutability": "mutable",
+                  "name": "isTokenFeeCharged",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 9153,
+                  "src": "399:22:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 9147,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "399:4:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "364:58:11"
+            },
+            "returnParameters": {
+              "id": 9152,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 9151,
+                  "mutability": "mutable",
+                  "name": "quantityDeposited",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 9153,
+                  "src": "449:25:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 9150,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "449:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "448:27:11"
+            },
+            "scope": 9182,
+            "src": "348:128:11",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": {
+              "id": 9154,
+              "nodeType": "StructuredDocumentation",
+              "src": "482:67:11",
+              "text": " @dev Withdraw given bAsset from Lending platform"
+            },
+            "functionSelector": "934785b7",
+            "id": 9165,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "withdraw",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 9163,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 9156,
+                  "mutability": "mutable",
+                  "name": "_receiver",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 9165,
+                  "src": "572:17:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 9155,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "572:7:11",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 9158,
+                  "mutability": "mutable",
+                  "name": "_bAsset",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 9165,
+                  "src": "591:15:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 9157,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "591:7:11",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 9160,
+                  "mutability": "mutable",
+                  "name": "_amount",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 9165,
+                  "src": "608:15:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 9159,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "608:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 9162,
+                  "mutability": "mutable",
+                  "name": "_isTokenFeeCharged",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 9165,
+                  "src": "625:23:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 9161,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "625:4:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "571:78:11"
+            },
+            "returnParameters": {
+              "id": 9164,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "658:0:11"
+            },
+            "scope": 9182,
+            "src": "554:105:11",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": {
+              "id": 9166,
+              "nodeType": "StructuredDocumentation",
+              "src": "665:71:11",
+              "text": " @dev Returns the current balance of the given bAsset"
+            },
+            "functionSelector": "5f515226",
+            "id": 9173,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "checkBalance",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 9169,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 9168,
+                  "mutability": "mutable",
+                  "name": "_bAsset",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 9173,
+                  "src": "763:15:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 9167,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "763:7:11",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "762:17:11"
+            },
+            "returnParameters": {
+              "id": 9172,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 9171,
+                  "mutability": "mutable",
+                  "name": "balance",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 9173,
+                  "src": "798:15:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 9170,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "798:7:11",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "797:17:11"
+            },
+            "scope": 9182,
+            "src": "741:74:11",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": {
+              "id": 9174,
+              "nodeType": "StructuredDocumentation",
+              "src": "821:42:11",
+              "text": " @dev Returns the pToken"
+            },
+            "functionSelector": "71c46585",
+            "id": 9181,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "bAssetToPToken",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 9177,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 9176,
+                  "mutability": "mutable",
+                  "name": "_bAsset",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 9181,
+                  "src": "892:15:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 9175,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "892:7:11",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "891:17:11"
+            },
+            "returnParameters": {
+              "id": 9180,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 9179,
+                  "mutability": "mutable",
+                  "name": "pToken",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 9181,
+                  "src": "927:14:11",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 9178,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "927:7:11",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "926:16:11"
+            },
+            "scope": 9182,
+            "src": "868:75:11",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 9183,
+        "src": "160:785:11"
+      }
+    ],
+    "src": "38:908:11"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.12+commit.27d51765.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.2",
+  "updatedAt": "2020-11-13T02:47:26.097Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "bAssetToPToken(address)": {
+        "details": "Returns the pToken"
+      },
+      "checkBalance(address)": {
+        "details": "Returns the current balance of the given bAsset"
+      },
+      "deposit(address,uint256,bool)": {
+        "details": "Deposit the given bAsset to Lending platform",
+        "params": {
+          "_amount": "Amount to deposit",
+          "_bAsset": "bAsset address"
+        }
+      },
+      "withdraw(address,address,uint256,bool)": {
+        "details": "Withdraw given bAsset from Lending platform"
+      }
+    },
+    "title": "Platform interface to integrate with lending platform like Compound, AAVE etc.",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
