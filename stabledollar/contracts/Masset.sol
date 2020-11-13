@@ -5,6 +5,7 @@ pragma experimental ABIEncoderV2;
 // External
 import { IBasketManager } from "./interfaces/IBasketManager.sol";
 import { IPlatformIntegration } from "./interfaces/IPlatformIntegration.sol";
+import { IForgeValidator } from "./forge-validator/IForgeValidator.sol";
 
 // Internal
 import { IMasset } from "./interfaces/IMasset.sol";
@@ -24,6 +25,7 @@ contract Masset is IMasset, ERC20 {
 
     // 一蓝子稳定币管理器, 从外部注入进来
     IBasketManager private basketManager;
+    IForgeValidator public forgeValidator;
 
     // 合成事件
     event Minted(address indexed minter, address recipient, uint256 mAssetQuantity, address bAsset, uint256 bAssetQuantity);
@@ -38,10 +40,14 @@ contract Masset is IMasset, ERC20 {
     constructor(string memory name, string memory symbol) public ERC20(name, symbol) {}
 
     // 初始化函数
-    function initialize(address _basketManager) 
+    function initialize(
+        address _basketManager,
+        address _forgeValidator
+    )
         external
     {
         basketManager = IBasketManager(_basketManager);
+        forgeValidator = IForgeValidator(_forgeValidator);
     }
 
     // 返回当前合约的版本号(测试使用)
@@ -71,14 +77,13 @@ contract Masset is IMasset, ERC20 {
         if(!isValid) return 0;
 
         // Transfer collateral to the platform integration address and call deposit
-        // 
         address integrator = bInfo.integrator;
         (uint256 quantityDeposited, uint256 ratioedDeposit) =
             _depositTokens(_bAsset, bInfo.bAsset.ratio, integrator, bInfo.bAsset.isTransferFeeCharged, _bAssetAmount);
 
         // Validation should be after token transfer, as bAssetQty is unknown before
-        // (bool mintValid, string memory reason) = forgeValidator.validateMint(totalSupply(), bInfo.bAsset, quantityDeposited);
-        // require(mintValid, reason);
+        (bool mintValid, string memory reason) = forgeValidator.validateMint(totalSupply(), bInfo.bAsset, quantityDeposited);
+        require(mintValid, reason);
 
         // 记录进行上帐, 必须 basket 是正常运转的前提下
         basketManager.increaseVaultBalance(0, integrator, quantityDeposited);
@@ -150,9 +155,9 @@ contract Masset is IMasset, ERC20 {
         basketManager.increaseVaultBalances(props.indexes, props.integrators, receivedQty);
 
         // Validate the proposed mint, after token transfer
-        // (bool mintValid, string memory reason) = 
-        //             forgeValidator.validateMintMulti(totalSupply(), props.bAssets, receivedQty);
-        // require(mintValid, reason);
+        (bool mintValid, string memory reason) = 
+                    forgeValidator.validateMintMulti(totalSupply(), props.bAssets, receivedQty);
+        require(mintValid, reason);
 
         // Mint the Masset
         _mint(_recipient, mAssetQuantity);
@@ -271,12 +276,9 @@ contract Masset is IMasset, ERC20 {
         if(!props.isValid) return 0;
 
         // Validate redemption
-        // (bool redemptionValid, string memory reason, bool applyFee) =
-        //     forgeValidator.validateRedemption(basket.failed, totalSupply(), basket.bassets, props.indexes, _bAssetQuantities);
-        // require(redemptionValid, reason);
-
-        // TODO 这里需要把上面的注释解开
-        uint256 mAssetQuantity = 0;
+        (bool redemptionValid, string memory reason, bool applyFee) =
+            forgeValidator.validateRedemption(basket.failed, totalSupply(), basket.bassets, props.indexes, _bAssetQuantities);
+        require(redemptionValid, reason);
 
         // Calc total redeemed mAsset quantity
         // 计算需要赎回XSDT的数量
@@ -285,20 +287,21 @@ contract Masset is IMasset, ERC20 {
             if(bAssetQuantity > 0){
                 // Calc equivalent mAsset amount
                 uint256 ratioedBasset = bAssetQuantity.mulRatioTruncateCeil(props.bAssets[i].ratio);
-                mAssetQuantity = mAssetQuantity.add(ratioedBasset);
+                bAssetCount = bAssetCount.add(ratioedBasset);
             }
         }
-        require(mAssetQuantity > 0, "Must redeem some bAssets");
+        require(bAssetCount > 0, "Must redeem some bAssets");
 
         // Redemption has fee? Fetch the rate
         // uint256 fee = applyFee ? swapFee : 0;
+        // 暂时先不设置手续费
         uint256 fee = 0;
 
         // Apply fees, burn mAsset and return bAsset to recipient
-        _settleRedemption(_recipient, mAssetQuantity, props.bAssets, _bAssetQuantities, props.indexes, props.integrators, fee);
+        _settleRedemption(_recipient, bAssetCount, props.bAssets, _bAssetQuantities, props.indexes, props.integrators, fee);
 
-        emit Redeemed(msg.sender, _recipient, mAssetQuantity, _bAssets, _bAssetQuantities);
-        return mAssetQuantity;
+        emit Redeemed(msg.sender, _recipient, bAssetCount, _bAssets, _bAssetQuantities);
+        return bAssetCount;
     }
 
     // 用XSDT赎回用多个稳定币资产
@@ -318,13 +321,10 @@ contract Masset is IMasset, ERC20 {
         // Ensure payout is related to the collateralised mAsset quantity
         uint256 collateralisedMassetQuantity = _mAssetQuantity.mulTruncate(colRatio);
 
-        // // Calculate redemption quantities
-        // (bool redemptionValid, string memory reason, uint256[] memory bAssetQuantities) =
-        //     forgeValidator.calculateRedemptionMulti(collateralisedMassetQuantity, props.bAssets);
-        // require(redemptionValid, reason);
-
-        // TODO 这里需要把上面的注释解开,来计算数量
-        uint256[] memory bAssetQuantities = new uint256[](1);
+        // Calculate redemption quantities
+        (bool redemptionValid, string memory reason, uint256[] memory bAssetQuantities) =
+            forgeValidator.calculateRedemptionMulti(collateralisedMassetQuantity, props.bAssets);
+        require(redemptionValid, reason);
 
         // 目前暂时定位0
         uint256 redemptionFee = 0;
