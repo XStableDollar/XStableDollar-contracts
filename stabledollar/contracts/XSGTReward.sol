@@ -217,19 +217,18 @@ contract XSGTReward is Ownable {
     }
 
     // Withdraw LP tokens from XSGTReward.
-    function withdraw(uint256 _amount) public {
+    function withdraw() public {
         uint256 _pid = 0;
         PoolInfo storage pool = poolInfo[_pid];
         UserInfo storage user = userInfo[_pid][msg.sender];
         updatePool(_pid);
         uint256 pending = user.amount.mul(pool.accXSGTPerShare).div(1e12).sub(user.rewardDebt);
-        require(pending >= _amount, "withdraw: not good");
         safeXSGTTransfer(msg.sender, pending);
         // user.amount = user.amount.sub(_amount);
         user.rewardDebt = user.amount.mul(pool.accXSGTPerShare).div(1e12);
         // pool.lpToken.safeTransfer(address(msg.sender), _amount);
         // pool.lpTokenAmount = pool.lpTokenAmount.sub(_amount);
-        emit Withdraw(msg.sender, _pid, _amount);
+        emit Withdraw(msg.sender, _pid, pending);
     }
 
     // Withdraw LP tokens from XSGTReward.
