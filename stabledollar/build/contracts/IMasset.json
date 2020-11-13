@@ -1,0 +1,482 @@
+{
+  "contractName": "IMasset",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_basset",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_bassetQuantity",
+          "type": "uint256"
+        }
+      ],
+      "name": "mint",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "massetMinted",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_basset\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_bassetQuantity\",\"type\":\"uint256\"}],\"name\":\"mint\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"massetMinted\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"@notice (Internal) Masset\\u4ea4\\u4e92\\u63a5\\u53e3\",\"kind\":\"dev\",\"methods\":{},\"title\":\"IMasset\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/flora/workspace/eth/stable-coin/XStableDollar/XStableDollar-contracts/stabledollar/contracts/interfaces/IMasset.sol\":\"IMasset\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/flora/workspace/eth/stable-coin/XStableDollar/XStableDollar-contracts/stabledollar/contracts/interfaces/IMasset.sol\":{\"keccak256\":\"0xf67c4b247426f689c9d817dfe3e3245ca39141c48149a3481f63413254bd3fea\",\"license\":\"SimPL-2.0\",\"urls\":[\"bzz-raw://1665dda64fcbffbb86dea52490909c95ff802da44040adcdecce34169316a76e\",\"dweb:/ipfs/QmWoAmpNDHFe1GyVpVzefX1oFX9xunzjdfMT6iLe37tV1W\"]},\"/Users/flora/workspace/eth/stable-coin/XStableDollar/XStableDollar-contracts/stabledollar/contracts/interfaces/MassetStructs.sol\":{\"keccak256\":\"0x22ea0755fef2d738da6a55522c11e2eca8e6bf2278c64c272294470427993b6b\",\"license\":\"SimPL-2.0\",\"urls\":[\"bzz-raw://bc8e0269fcc1438d6574694b8f3a311576b34e53026a362ede6a4399cca0d09a\",\"dweb:/ipfs/QmXVWquArw5nFRbK5GYmB4ZLhEUGudKjNTFfmXE3YXuubV\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: SimPL-2.0\npragma solidity 0.6.12;\n\nimport { MassetStructs } from \"./MassetStructs.sol\";\n\n/// @title IMasset\n/// @author\n/// @notice (Internal) Masset交互接口\ninterface IMasset is MassetStructs {\n\n    // Calc interest \n    // function collectInterest() external returns (uint256 massetMinted, uint256 newTotalSupply);\n\n    // Minting\n    function mint(address _basset, uint256 _bassetQuantity) external returns (uint256 massetMinted);\n    // function mintTo(address _basset, uint256 _bassetQuantity, address _recipient) external returns (uint256 massetMinted);\n    // function mintMulti(address[] calldata _bAssets, uint256[] calldata _bassetQuantity, address _recipient) external returns (uint256 massetMinted);\n\n    // Swapping\n    // function swap(address _input, address _output, uint256 _quantity, address _recipient) external returns (uint256 output);\n    // function getSwapOutput(address _input, address _output, uint256 _quantity) external view returns (bool, string memory, uint256 output);\n\n    // Redeeming\n    // function redeem(address _basset, uint256 _bassetQuantity) external returns (uint256 massetRedeemed);\n    // function redeemTo(address _basset, uint256 _bassetQuantity, address _recipient) external returns (uint256 massetRedeemed);\n    // function redeemMulti(address[] calldata _bAssets, uint256[] calldata _bassetQuantities, address _recipient) external returns (uint256 massetRedeemed);\n    // function redeemMasset(uint256 _mAssetQuantity, address _recipient) external;\n\n    // Setters for the Manager or Gov to update module info\n    // function upgradeForgeValidator(address _newForgeValidator) external;\n\n    // Setters for Gov to set system params\n    // function setSwapFee(uint256 _swapFee) external;\n\n    // Getters\n    // function getBasketManager() external view returns(address);\n    // function forgeValidator() external view returns (address);\n    // function totalSupply() external view returns (uint256);\n    // function swapFee() external view returns (uint256);\n}\n",
+  "sourcePath": "/Users/flora/workspace/eth/stable-coin/XStableDollar/XStableDollar-contracts/stabledollar/contracts/interfaces/IMasset.sol",
+  "ast": {
+    "absolutePath": "/Users/flora/workspace/eth/stable-coin/XStableDollar/XStableDollar-contracts/stabledollar/contracts/interfaces/IMasset.sol",
+    "exportedSymbols": {
+      "IMasset": [
+        4020
+      ]
+    },
+    "id": 4021,
+    "license": "SimPL-2.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 4005,
+        "literals": [
+          "solidity",
+          "0.6",
+          ".12"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "38:23:7"
+      },
+      {
+        "absolutePath": "/Users/flora/workspace/eth/stable-coin/XStableDollar/XStableDollar-contracts/stabledollar/contracts/interfaces/MassetStructs.sol",
+        "file": "./MassetStructs.sol",
+        "id": 4007,
+        "nodeType": "ImportDirective",
+        "scope": 4021,
+        "sourceUnit": 4090,
+        "src": "63:52:7",
+        "symbolAliases": [
+          {
+            "foreign": {
+              "argumentTypes": null,
+              "id": 4006,
+              "name": "MassetStructs",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": null,
+              "src": "72:13:7",
+              "typeDescriptions": {
+                "typeIdentifier": null,
+                "typeString": null
+              }
+            },
+            "local": null
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 4009,
+              "name": "MassetStructs",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 4089,
+              "src": "211:13:7",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_MassetStructs_$4089",
+                "typeString": "contract MassetStructs"
+              }
+            },
+            "id": 4010,
+            "nodeType": "InheritanceSpecifier",
+            "src": "211:13:7"
+          }
+        ],
+        "contractDependencies": [
+          4089
+        ],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 4008,
+          "nodeType": "StructuredDocumentation",
+          "src": "117:73:7",
+          "text": "@title IMasset\n @author\n @notice (Internal) Masset交互接口"
+        },
+        "fullyImplemented": false,
+        "id": 4020,
+        "linearizedBaseContracts": [
+          4020,
+          4089
+        ],
+        "name": "IMasset",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "40c10f19",
+            "id": 4019,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "mint",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 4015,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4012,
+                  "mutability": "mutable",
+                  "name": "_basset",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4019,
+                  "src": "383:15:7",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 4011,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "383:7:7",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4014,
+                  "mutability": "mutable",
+                  "name": "_bassetQuantity",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4019,
+                  "src": "400:23:7",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4013,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "400:7:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "382:42:7"
+            },
+            "returnParameters": {
+              "id": 4018,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4017,
+                  "mutability": "mutable",
+                  "name": "massetMinted",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4019,
+                  "src": "443:20:7",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4016,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "443:7:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "442:22:7"
+            },
+            "scope": 4020,
+            "src": "369:96:7",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 4021,
+        "src": "190:1849:7"
+      }
+    ],
+    "src": "38:2002:7"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/flora/workspace/eth/stable-coin/XStableDollar/XStableDollar-contracts/stabledollar/contracts/interfaces/IMasset.sol",
+    "exportedSymbols": {
+      "IMasset": [
+        4020
+      ]
+    },
+    "id": 4021,
+    "license": "SimPL-2.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 4005,
+        "literals": [
+          "solidity",
+          "0.6",
+          ".12"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "38:23:7"
+      },
+      {
+        "absolutePath": "/Users/flora/workspace/eth/stable-coin/XStableDollar/XStableDollar-contracts/stabledollar/contracts/interfaces/MassetStructs.sol",
+        "file": "./MassetStructs.sol",
+        "id": 4007,
+        "nodeType": "ImportDirective",
+        "scope": 4021,
+        "sourceUnit": 4090,
+        "src": "63:52:7",
+        "symbolAliases": [
+          {
+            "foreign": {
+              "argumentTypes": null,
+              "id": 4006,
+              "name": "MassetStructs",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": null,
+              "src": "72:13:7",
+              "typeDescriptions": {
+                "typeIdentifier": null,
+                "typeString": null
+              }
+            },
+            "local": null
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 4009,
+              "name": "MassetStructs",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 4089,
+              "src": "211:13:7",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_MassetStructs_$4089",
+                "typeString": "contract MassetStructs"
+              }
+            },
+            "id": 4010,
+            "nodeType": "InheritanceSpecifier",
+            "src": "211:13:7"
+          }
+        ],
+        "contractDependencies": [
+          4089
+        ],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 4008,
+          "nodeType": "StructuredDocumentation",
+          "src": "117:73:7",
+          "text": "@title IMasset\n @author\n @notice (Internal) Masset交互接口"
+        },
+        "fullyImplemented": false,
+        "id": 4020,
+        "linearizedBaseContracts": [
+          4020,
+          4089
+        ],
+        "name": "IMasset",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "40c10f19",
+            "id": 4019,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "mint",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 4015,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4012,
+                  "mutability": "mutable",
+                  "name": "_basset",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4019,
+                  "src": "383:15:7",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 4011,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "383:7:7",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4014,
+                  "mutability": "mutable",
+                  "name": "_bassetQuantity",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4019,
+                  "src": "400:23:7",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4013,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "400:7:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "382:42:7"
+            },
+            "returnParameters": {
+              "id": 4018,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4017,
+                  "mutability": "mutable",
+                  "name": "massetMinted",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 4019,
+                  "src": "443:20:7",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4016,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "443:7:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "442:22:7"
+            },
+            "scope": 4020,
+            "src": "369:96:7",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 4021,
+        "src": "190:1849:7"
+      }
+    ],
+    "src": "38:2002:7"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.12+commit.27d51765.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.1",
+  "updatedAt": "2020-11-12T15:16:16.114Z",
+  "devdoc": {
+    "author": "@notice (Internal) Masset交互接口",
+    "kind": "dev",
+    "methods": {},
+    "title": "IMasset",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
