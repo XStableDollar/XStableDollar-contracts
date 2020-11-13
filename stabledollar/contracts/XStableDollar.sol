@@ -1,13 +1,12 @@
 // SPDX-License-Identifier: SimPL-2.0
 pragma solidity 0.6.12;
 
-import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/math/SafeMath.sol";
 
 /// @title
 /// @author
 /// @notice
-contract XStableDollar is Ownable {
+contract XStableDollar {
     using SafeMath for uint256;
 
     // 每一块格子信息

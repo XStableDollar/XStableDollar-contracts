@@ -13,21 +13,20 @@ import { IBasketManager } from "./interfaces/IBasketManager.sol";
 
 // Libs
 import { CommonHelpers } from "./shared/CommonHelpers.sol";
+import { StableMath } from "./shared/StableMath.sol";
 import { SafeERC20 } from "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
 import { SafeMath } from "@openzeppelin/contracts/math/SafeMath.sol";
-import { StableMath } from "./shared/StableMath.sol";
 // import { InitializableReentrancyGuard } from "../shared/InitializableReentrancyGuard.sol";
 
 /**
- * @title   BasketManager
- * @notice  Manages the Basket composition for a particular mAsset. Feeds all required
+ * BasketManager
+ * Manages the Basket composition for a particular mAsset. Feeds all required
  *          basket data to the mAsset and is responsible for keeping accurate records.
  *          BasketManager can also optimise lending pool integrations and perform
  *          re-collateralisation on failed bAssets.
- * @dev     VERSION: 1.0
- *          DATE:    2020-05-05
+ * VERSION: 1.0
  */
-contract BasketManager is IBasketManager{
+contract BasketManager is IBasketManager {
     using SafeMath for uint256;
     using StableMath for uint256;
     using SafeERC20 for IERC20;
@@ -105,16 +104,6 @@ contract BasketManager is IBasketManager{
         require(!basket.undergoingRecol, "No bAssets can be undergoing recol");
         _;
     }
-
-    /**
-     * @dev Verifies that the caller either Manager or Gov
-     */
-    // modifier managerOrGovernor() {
-    //     require(
-    //         _manager() == msg.sender || _governor() == msg.sender,
-    //         "Must be manager or governor");
-    //     _;
-    // }
 
     /**
      * @dev Verifies that the caller is governed mAsset
@@ -504,7 +493,6 @@ contract BasketManager is IBasketManager{
     function prepareForgeBasset(address _bAsset, uint256 /*_amt*/, bool /*_mint*/)
         override
         external
-        whenNotRecolling
         returns (bool isValid, BassetDetails memory bInfo)
     {
         (bool exists, uint8 idx) = _isAssetInBasket(_bAsset);
@@ -515,59 +503,6 @@ contract BasketManager is IBasketManager{
             integrator: integrations[idx],
             index: idx
         });
-    }
-
-    /**
-     * @dev Prepare given bAssets for swapping
-     * @param _input     Address of the input bAsset
-     * @param _output    Address of the output bAsset
-     * @param _isMint    Is this swap actually a mint? i.e. output == address(mAsset)
-     * @return props     Struct of all relevant Forge information
-     */
-    function prepareSwapBassets(address _input, address _output, bool _isMint)
-        override
-        external
-        view
-        returns (bool, string memory, BassetDetails memory, BassetDetails memory)
-    {
-        BassetDetails memory input = BassetDetails({
-            bAsset: basket.bassets[0],
-            integrator: address(0),
-            index: 0
-        });
-        BassetDetails memory output = input;
-        // Check that basket state is healthy
-        if(basket.failed || basket.undergoingRecol){
-            return (false, "Basket is undergoing change", input, output);
-        }
-
-        // Fetch input bAsset
-        (bool inputExists, uint8 inputIdx) = _isAssetInBasket(_input);
-        if(!inputExists) {
-            return (false, "Input asset does not exist", input, output);
-        }
-        input = BassetDetails({
-            bAsset: basket.bassets[inputIdx],
-            integrator: integrations[inputIdx],
-            index: inputIdx
-        });
-
-        // If this is a mint, we don't need output bAsset
-        if(_isMint) {
-            return (true, "", input, output);
-        }
-
-        // Fetch output bAsset
-        (bool outputExists, uint8 outputIdx) = _isAssetInBasket(_output);
-        if(!outputExists) {
-            return (false, "Output asset does not exist", input, output);
-        }
-        output = BassetDetails({
-            bAsset: basket.bassets[outputIdx],
-            integrator: integrations[outputIdx],
-            index: outputIdx
-        });
-        return (true, "", input, output);
     }
 
     /**
@@ -780,57 +715,6 @@ contract BasketManager is IBasketManager{
     /***************************************
                 RE-COLLATERALISATION
     ****************************************/
-
-    /**
-     * @dev Executes the Auto Redistribution event by isolating the bAsset from the Basket
-     * @param _bAsset          Address of the ERC20 token to isolate
-     * @param _belowPeg        Bool to describe whether the bAsset deviated below peg (t)
-     *                         or above (f)
-     * @return alreadyActioned Bool to show whether a bAsset had already been actioned
-     */
-    function handlePegLoss(address _bAsset, bool _belowPeg)
-        override
-        external
-        whenBasketIsHealthy
-        returns (bool alreadyActioned)
-    {
-        (bool exists, uint256 i) = _isAssetInBasket(_bAsset);
-        require(exists, "bAsset must exist in Basket");
-
-        BassetStatus oldStatus = basket.bassets[i].status;
-        BassetStatus newStatus =
-            _belowPeg ? BassetStatus.BrokenBelowPeg : BassetStatus.BrokenAbovePeg;
-
-        if(oldStatus == newStatus || _bAssetHasRecolled(oldStatus)) {
-            return true;
-        }
-
-        // If we need to update the status.. then do it
-        basket.bassets[i].status = newStatus;
-        emit BassetStatusChanged(_bAsset, newStatus);
-        return false;
-    }
-
-    /**
-     * @dev Negates the isolation of a given bAsset
-     * @param _bAsset Address of the bAsset
-     */
-    function negateIsolation(address _bAsset)
-        override
-        external
-    {
-        (bool exists, uint256 i) = _isAssetInBasket(_bAsset);
-        require(exists, "bAsset must exist");
-
-        BassetStatus currentStatus = basket.bassets[i].status;
-        if(currentStatus == BassetStatus.BrokenBelowPeg ||
-            currentStatus == BassetStatus.BrokenAbovePeg ||
-            currentStatus == BassetStatus.Blacklisted) {
-            basket.bassets[i].status = BassetStatus.Normal;
-            emit BassetStatusChanged(_bAsset, BassetStatus.Normal);
-        }
-    }
-
     /**
      * @dev Marks a bAsset as permanently deviated from peg
      * @param _bAsset Address of the bAsset
