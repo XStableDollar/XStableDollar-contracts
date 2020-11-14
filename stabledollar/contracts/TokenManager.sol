@@ -4,8 +4,6 @@ pragma experimental ABIEncoderV2;
 
 // External
 import { ITokenManager } from "./ITokenManager.sol";
-import { IPlatformIntegration } from "./interfaces/IPlatformIntegration.sol";
-import { IForgeValidator } from "./forge-validator/IForgeValidator.sol";
 
 // Internal
 import { TokenStructs } from "./TokenStructs.sol";
@@ -40,6 +38,10 @@ contract TokenManager is ITokenManager, ERC20 {
     {
         // basketManager = IBasketManager(_basketManager);
         // forgeValidator = IForgeValidator(_forgeValidator);
+    }
+
+    function create(string memory name, string memory symbol) override external returns(address) {
+
     }
 
     function mintMulti(address[] calldata _preToken, uint256[] calldata _bassetAmount) override external returns (uint256 massetMinted) {
