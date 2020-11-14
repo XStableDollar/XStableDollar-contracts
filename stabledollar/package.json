@@ -17,7 +17,12 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "launch": "ganache-cli -h 0.0.0.0 --account='0x3bad8b7494ea2a23c603c171d29bcfb83595c0497522d42c35bcbcae53201946, 500000000000000000000' --account='0x8D03956D15969EF9E945CCF5C1973951E03F921E7E4414B3E685A1CFF9398842, 500000000000000000000' --account='0x4455ecbf099803ffa14f3317791ef42b0bbaf6b52735ff2ce9460494979ad976, 500000000000000000000' ",
+    "build": "truffle compile",
+    "deploy:dev": "truffle migrate --reset",
+    "deploy:testnet": "truffle migrate --network ropsten --reset --skip-dry-run",
+    "deploy:mainnet": "truffle migrate --network mainnet --reset --skip-dry-run",
+    "gen:sol": "truffle-flattener contracts/EthToken.sol > token.sol"
   },
   "author": "",
   "license": "ISC"
