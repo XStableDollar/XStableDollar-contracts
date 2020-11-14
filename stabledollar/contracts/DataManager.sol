@@ -754,7 +754,7 @@ contract DataManager is IDataManager {
     //     return (coin, amount);
     // }
 
-    // function tokenList() external view return (string[] memory, string[] memory, address[] memory){
+    // function tokenList() external view returns (string[] memory, string[] memory, address[] memory){
 
     //     uint _length = _tokenList.length
 
