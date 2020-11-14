@@ -1,7 +1,7 @@
-const XStableDollar = artifacts.require("XStableDollar");
+const tokenManager = artifacts.require("TokenManager");
 
 module.exports = function (deployer, network, accounts) {
-    deployer.deploy(XStableDollar, accounts[0]).then(async (GameControlInstance) => {
+    deployer.deploy(tokenManager, "DAI", "DAI", {from: accounts[0]}).then(async (GameControlInstance) => {
       console.log('success');
     });
 };
