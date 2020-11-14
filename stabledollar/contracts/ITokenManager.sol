@@ -7,7 +7,7 @@ import { TokenStructs } from "./TokenStructs.sol";
 interface ITokenManager is TokenStructs {
 
     // 创建一个自定义代码
-    function create(string memory name, string memory symbol) external;
+    function create(string memory name, string memory symbol) external returns (address);
 
     // 多个ERC20代币合成一个自定义代币
     function mintMulti(address erc20Addr, address[] calldata _preToken, uint256[] calldata _bassetAmount, bool[] calldata _isTransferFee, address receipt) external returns (uint256 massetMinted);

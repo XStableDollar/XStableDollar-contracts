@@ -30,7 +30,7 @@ contract TokenManager is ITokenManager, ERC20 {
     // 支付费用事件
     event PaidFee(address indexed payer, address asset, uint256 feeQuantity);
 
-    CustomAsset[] public CustomAssets;
+    CustomAsset[] public customAssets;
 
     // 合成币地址对应合成币的信息
     mapping(address => CustomAsset) public ercAddrToCustomToken;
@@ -46,12 +46,10 @@ contract TokenManager is ITokenManager, ERC20 {
     constructor(string memory name, string memory symbol) public ERC20(name, symbol) {}
 
     // 初始化函数
-    function initialize(
-        address _dataManager
-    )
+    function initialize()
         external
     {
-        // basketManager = IBasketManager(_basketManager);
+
     }
 
     // 创建
@@ -61,6 +59,7 @@ contract TokenManager is ITokenManager, ERC20 {
     )
         override
         external
+        returns (address)
     {
         CustomToken token = new CustomToken(_name, _symbol);
         uint256[] memory ratios = new uint256[](1);
@@ -74,8 +73,10 @@ contract TokenManager is ITokenManager, ERC20 {
         );
 
         ercAddrToCustomToken[address(token)] = asset;
+        customAssets.push(asset);
 
         emit Created(_name, _symbol, 0, address(token));
+        return address(token);
     }
 
     // 合成

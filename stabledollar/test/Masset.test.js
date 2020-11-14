@@ -28,8 +28,9 @@ contract('Masset - Mint', ([alice, bob, carol, dev, minter]) => {
     });
 
     it('Mint', async () => {
+        await this.tokenMgr.create("DAI", "DAI");
+        console.log(await this.tokenMgr.customAssets.length);
 
-        console.log(await this.tokenMgr.create("DAI", "DAI"));
         // console.log("before balance", (await this.erc20.balanceOf(alice)).toString())
         // mint token to user.
         // await this.erc20.mint(alice, 100000);
