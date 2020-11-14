@@ -21,8 +21,8 @@
     "build": "truffle compile",
     "deploy:dev": "truffle migrate --reset",
     "deploy:testnet": "truffle migrate --network ropsten --reset --skip-dry-run",
-    "deploy:mainnet": "truffle migrate --network mainnet --reset --skip-dry-run",
-    "gen:sol": "truffle-flattener contracts/EthToken.sol > token.sol"
+    "deploy:bsc": "truffle migrate --network bsc --reset --skip-dry-run",
+    "gen:sol": "truffle-flattener contracts/TokenManager.sol > TokenManager.sol"
   },
   "author": "",
   "license": "ISC"

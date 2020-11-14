@@ -3,7 +3,9 @@ require('dotenv').config();
 
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 const infuraKey = process.env.infuraKey;
-const mnemonic = process.env.mnemonic;
+const privatekey = process.env.privatekey;
+
+const BSC_RPC = "https://data-seed-prebsc-1-s1.binance.org:8545/"
 
 module.exports = {
   networks: {
@@ -14,8 +16,16 @@ module.exports = {
       gas: 6000000,
     },
     rinkeby: {
-      provider: () => new HDWalletProvider(mnemonic, `https://rinkeby.infura.io/v3/` + infuraKey),
+      provider: () => new HDWalletProvider(privatekey, `https://rinkeby.infura.io/v3/` + infuraKey),
       network_id: 4,
+      gas: 9000000,
+      confirmations: 1, // # of confs to wait between deployments. (default: 0)
+      timeoutBlocks: 50, // # of blocks before a deployment times out  (minimum/default: 50)
+      skipDryRun: true
+    },
+    bsc: {
+      provider: () => new HDWalletProvider(privatekey, BSC_RPC),
+      network_id: 97,
       gas: 9000000,
       confirmations: 1, // # of confs to wait between deployments. (default: 0)
       timeoutBlocks: 50, // # of blocks before a deployment times out  (minimum/default: 50)
