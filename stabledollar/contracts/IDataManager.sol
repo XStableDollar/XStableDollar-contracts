@@ -35,7 +35,7 @@ interface IDataManager is TokenStructs {
         address[] calldata _integrator,
         uint256[] calldata _decreaseAmount) external;
 
-    // 
+    //
     function collectInterest() external
         returns (uint256 interestCollected, uint256[] memory gains);
 
@@ -62,7 +62,7 @@ interface IDataManager is TokenStructs {
     function prepareForgeBassets(address[] calldata _bAssets, uint256[] calldata _amts, bool _mint) external
         returns (ForgePropsMulti memory props);
 
-    // 
+    //
     function prepareRedeemMulti() external view returns (RedeemPropsMulti memory props);
 
     // 获取单个Basset
@@ -70,4 +70,29 @@ interface IDataManager is TokenStructs {
     // 获取多个Basset
     function getBassets() external view returns (Basset[] memory bAssets, uint256 len);
     function paused() external view returns (bool);
+
+
+    // struct CustomAsset {
+    //     string name;
+    //     string symbol;
+    //     PreToken[] preTokens;
+    //     address target;
+    //     uint8 status;  // 预留状态
+    // }
+
+    address[] public tokenList;
+
+    // 合成token
+    function create(string memory name, string memory symbol, PreToken[] preTokens, address target) external returns (address){
+        // 合成成功 加入到 tokenList
+        // 事件由tokenManager发送
+    }
+
+    // 铸造token
+    function mint(address coin) external returns (uint){
+    }
+
+    // 赎回token
+    function redeem(address coin) external returns (uint){}
+
 }
