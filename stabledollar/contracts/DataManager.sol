@@ -138,7 +138,7 @@ contract DataManager is IDataManager {
         uint8[] calldata _bAssetIndices,
         address[] calldata /* _integrator */,
         uint256[] calldata _increaseAmount
-    )   
+    )
         override
         external
         onlyMasset
@@ -323,7 +323,7 @@ contract DataManager is IDataManager {
     function setBasketWeights(
         address[] calldata _bAssets,
         uint256[] calldata _weights
-    )   
+    )
         override
         external
         whenBasketIsHealthy
@@ -728,4 +728,48 @@ contract DataManager is IDataManager {
     function paused() override external view returns (bool) {
         return false;
     }
+
+///////////////////////////
+
+    // address[] public _tokenList;
+    // mapping(address => uint256) customAssetMap;
+
+    // CustomAsset[] public tokenList;
+
+    // // 合成token
+    // function create(string memory name, string memory symbol, PreToken[] preTokens) external returns (CustomAsset){
+    //     CustomAsset customAsset = CustomAsset(name, symbol, preTokens);
+    //     return customAsset;
+    // }
+
+    // // 铸造token
+    // function mint(address coin, uint256 amount) external returns (address, uint256){
+    //     // 检查数量
+    //     return (coin, amount);
+    // }
+
+    // // 赎回token
+    // function redeem(address coin, uint256 amount) external returns (uint, uint256){
+    //     // 检查此地址是否有足够数量的coin
+    //     return (coin, amount);
+    // }
+
+    // function tokenList() external view return (string[] memory, string[] memory, address[] memory){
+
+    //     uint _length = _tokenList.length
+
+    //     string[]  memory names = new string[](_length);
+    //     string[]  memory symbols = new string[](_length);
+    //     address[] memory targets = new string[](_length);
+
+    //     for (uint i=0; i < _length; i++) {
+    //         address addr = _tokenList[i]
+    //         names[i] = customAssetMap[addr].name
+    //         symbols[i] = customAssetMap[addr].symbol
+    //         targets[i] = customAssetMap[addr].target
+    //     }
+
+    //   return (names, symbols, targets);
+
+    // }
 }
