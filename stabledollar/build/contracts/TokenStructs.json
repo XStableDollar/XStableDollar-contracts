@@ -1,34 +1,34 @@
 {
   "contractName": "TokenStructs",
   "abi": [],
-  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"title\":\"MassetStructs\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/TokenStructs.sol\":\"TokenStructs\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/TokenStructs.sol\":{\"keccak256\":\"0xca2a2636bd364d58caf744e598efd2dbd620292b508f2fef351252876b23b279\",\"license\":\"SimPL-2.0\",\"urls\":[\"bzz-raw://4e76eea9c5cc5c29b199d358779cbd8a496056871515b4736e67a724142dd161\",\"dweb:/ipfs/QmV7arEXDgCxBgpi6TU1BADXxpcRPVNTQjzyvKCgWkLvyf\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"title\":\"MassetStructs\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/TokenStructs.sol\":\"TokenStructs\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/TokenStructs.sol\":{\"keccak256\":\"0x788f905b80769b0b770f08664fb59c6363e34b987a47d6778ca863821c5d7523\",\"license\":\"SimPL-2.0\",\"urls\":[\"bzz-raw://e1446482132b3d55e8867594bd8be1e3cda50da4f96a4e6b31d83f4fcadcc8ad\",\"dweb:/ipfs/QmUWaGLHtDgbRdB68F7anLUnDyhkAeKYRHhTRqTrsBRW7J\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "immutableReferences": {},
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "// SPDX-License-Identifier: SimPL-2.0\npragma solidity 0.6.12;\n\n/// @title MassetStructs\n/// @author\ninterface TokenStructs {\n\n    // 目前支持的稳定币集合信息\n    struct Basket {\n        // 当前支持的稳定币币种\n        Basset[] bassets;\n        // 稳定币支持的数量上限\n        uint8 maxBassets;\n        // Some bAsset is undergoing re-collateralisation\n        bool undergoingRecol;\n        // In the event that we do not raise enough funds from the auctioning of a failed Basset,\n        // The Basket is deemed as failed, and is undercollateralised to a certain degree.\n        // The collateralisation ratio is used to calc Masset burn rate.\n        bool failed;\n        uint256 collateralisationRatio;\n    }\n\n    // Stores bAsset info. The struct takes 5 storage slots per Basset\n    // 存储的bAsset信息\n    struct Basset {\n        // 稳定币的地址\n        address addr;\n        // 稳定币的状态\n        BassetStatus status; // takes uint8 datatype (1 byte) in storage\n        // An ERC20 can charge transfer fee, for example USDT, DGX tokens.\n        // takes a byte in storage\n        bool isTransferFeeCharged;\n        // 1 Basset * ratio / ratioScale == x Masset (relative value)\n        // If ratio == 10e8 then 1 bAsset = 10 mAssets\n        // A ratio is divised as 10^(18-tokenDecimals) * measurementMultiple(relative value of 1 base unit)\n        uint256 ratio;\n        // Target weights of the Basset (100% == 1e18)\n        uint256 maxWeight;\n        // 质押的数量\n        uint256 vaultBalance;\n    }\n\n    // Status of the Basset - has it broken its peg? \n    enum BassetStatus {\n        Default,\n        Normal,\n        BrokenBelowPeg,\n        BrokenAbovePeg,\n        Blacklisted,\n        Liquidating,\n        Liquidated,\n        Failed\n    }\n\n    // Internal details on Basset\n    struct BassetDetails {\n        Basset bAsset;\n        address integrator;\n        uint8 index;\n    }\n\n    // All details needed to Forge with multiple bAssets\n    struct ForgePropsMulti {\n        bool isValid; // Flag to signify that forge bAssets have passed validity check\n        Basset[] bAssets;\n        address[] integrators;\n        uint8[] indexes;\n    }\n\n    // All details needed for proportionate Redemption\n    struct RedeemPropsMulti {\n        uint256 colRatio;\n        Basset[] bAssets;\n        address[] integrators;\n        uint8[] indexes;\n    }\n\n    // 用户自定义资产\n    struct CustomAsset {\n        string name;\n        string symbol;\n        PreToken[] preTokens;\n        address target;\n        uint8 status;  // 预留状态\n    }\n\n    // 待合成资产\n    struct PreToken {\n        address tokenAddr;\n        uint256 amount;\n    }\n}\n",
+  "source": "// SPDX-License-Identifier: SimPL-2.0\npragma solidity 0.6.12;\n\n/// @title MassetStructs\n/// @author\ninterface TokenStructs {\n\n    // 目前支持的稳定币集合信息\n    struct Basket {\n        // 当前支持的稳定币币种\n        Basset[] bassets;\n        // 稳定币支持的数量上限\n        uint8 maxBassets;\n        // Some bAsset is undergoing re-collateralisation\n        bool undergoingRecol;\n        // In the event that we do not raise enough funds from the auctioning of a failed Basset,\n        // The Basket is deemed as failed, and is undercollateralised to a certain degree.\n        // The collateralisation ratio is used to calc Masset burn rate.\n        bool failed;\n        uint256 collateralisationRatio;\n    }\n\n    // Stores bAsset info. The struct takes 5 storage slots per Basset\n    // 存储的bAsset信息\n    struct Basset {\n        // 稳定币的地址\n        address addr;\n        // 稳定币的状态\n        BassetStatus status; // takes uint8 datatype (1 byte) in storage\n        // An ERC20 can charge transfer fee, for example USDT, DGX tokens.\n        // takes a byte in storage\n        bool isTransferFeeCharged;\n        // 1 Basset * ratio / ratioScale == x Masset (relative value)\n        // If ratio == 10e8 then 1 bAsset = 10 mAssets\n        // A ratio is divised as 10^(18-tokenDecimals) * measurementMultiple(relative value of 1 base unit)\n        uint256 ratio;\n        // Target weights of the Basset (100% == 1e18)\n        uint256 maxWeight;\n        // 质押的数量\n        uint256 vaultBalance;\n    }\n\n    // Status of the Basset - has it broken its peg? \n    enum BassetStatus {\n        Default,\n        Normal,\n        BrokenBelowPeg,\n        BrokenAbovePeg,\n        Blacklisted,\n        Liquidating,\n        Liquidated,\n        Failed\n    }\n\n    // Internal details on Basset\n    struct BassetDetails {\n        Basset bAsset;\n        address integrator;\n        uint8 index;\n    }\n\n    // All details needed to Forge with multiple bAssets\n    struct ForgePropsMulti {\n        bool isValid; // Flag to signify that forge bAssets have passed validity check\n        Basset[] bAssets;\n        address[] integrators;\n        uint8[] indexes;\n    }\n\n    // All details needed for proportionate Redemption\n    struct RedeemPropsMulti {\n        uint256 colRatio;\n        Basset[] bAssets;\n        address[] integrators;\n        uint8[] indexes;\n    }\n\n    // 用户自定义资产\n    struct CustomAsset {\n        string name;\n        string symbol;\n        address target;\n        uint256 status;  // 预留状态\n        uint256[] ratio;\n    }\n\n    // 待合成资产\n    struct PreToken {\n        address tokenAddr;\n        uint256 amount;\n    }\n}\n",
   "sourcePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/TokenStructs.sol",
   "ast": {
     "absolutePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/TokenStructs.sol",
     "exportedSymbols": {
       "TokenStructs": [
-        2502
+        2687
       ]
     },
-    "id": 2503,
+    "id": 2688,
     "license": "SimPL-2.0",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2418,
+        "id": 2603,
         "literals": [
           "solidity",
           "0.6",
           ".12"
         ],
         "nodeType": "PragmaDirective",
-        "src": "38:23:7"
+        "src": "38:23:8"
       },
       {
         "abstract": false,
@@ -36,57 +36,57 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "documentation": {
-          "id": 2419,
+          "id": 2604,
           "nodeType": "StructuredDocumentation",
-          "src": "63:37:7",
+          "src": "63:37:8",
           "text": "@title MassetStructs\n @author"
         },
         "fullyImplemented": true,
-        "id": 2502,
+        "id": 2687,
         "linearizedBaseContracts": [
-          2502
+          2687
         ],
         "name": "TokenStructs",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "canonicalName": "TokenStructs.Basket",
-            "id": 2431,
+            "id": 2616,
             "members": [
               {
                 "constant": false,
-                "id": 2422,
+                "id": 2607,
                 "mutability": "mutable",
                 "name": "bassets",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2431,
-                "src": "240:16:7",
+                "scope": 2616,
+                "src": "240:16:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_array$_t_struct$_Basset_$2444_storage_$dyn_storage_ptr",
+                  "typeIdentifier": "t_array$_t_struct$_Basset_$2629_storage_$dyn_storage_ptr",
                   "typeString": "struct TokenStructs.Basset[]"
                 },
                 "typeName": {
                   "baseType": {
                     "contractScope": null,
-                    "id": 2420,
+                    "id": 2605,
                     "name": "Basset",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2444,
-                    "src": "240:6:7",
+                    "referencedDeclaration": 2629,
+                    "src": "240:6:8",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Basset_$2444_storage_ptr",
+                      "typeIdentifier": "t_struct$_Basset_$2629_storage_ptr",
                       "typeString": "struct TokenStructs.Basset"
                     }
                   },
-                  "id": 2421,
+                  "id": 2606,
                   "length": null,
                   "nodeType": "ArrayTypeName",
-                  "src": "240:8:7",
+                  "src": "240:8:8",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_struct$_Basset_$2444_storage_$dyn_storage_ptr",
+                    "typeIdentifier": "t_array$_t_struct$_Basset_$2629_storage_$dyn_storage_ptr",
                     "typeString": "struct TokenStructs.Basset[]"
                   }
                 },
@@ -95,13 +95,13 @@
               },
               {
                 "constant": false,
-                "id": 2424,
+                "id": 2609,
                 "mutability": "mutable",
                 "name": "maxBassets",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2431,
-                "src": "308:16:7",
+                "scope": 2616,
+                "src": "308:16:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -109,10 +109,10 @@
                   "typeString": "uint8"
                 },
                 "typeName": {
-                  "id": 2423,
+                  "id": 2608,
                   "name": "uint8",
                   "nodeType": "ElementaryTypeName",
-                  "src": "308:5:7",
+                  "src": "308:5:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint8",
                     "typeString": "uint8"
@@ -123,13 +123,13 @@
               },
               {
                 "constant": false,
-                "id": 2426,
+                "id": 2611,
                 "mutability": "mutable",
                 "name": "undergoingRecol",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2431,
-                "src": "392:20:7",
+                "scope": 2616,
+                "src": "392:20:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -137,10 +137,10 @@
                   "typeString": "bool"
                 },
                 "typeName": {
-                  "id": 2425,
+                  "id": 2610,
                   "name": "bool",
                   "nodeType": "ElementaryTypeName",
-                  "src": "392:4:7",
+                  "src": "392:4:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_bool",
                     "typeString": "bool"
@@ -151,13 +151,13 @@
               },
               {
                 "constant": false,
-                "id": 2428,
+                "id": 2613,
                 "mutability": "mutable",
                 "name": "failed",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2431,
-                "src": "684:11:7",
+                "scope": 2616,
+                "src": "684:11:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -165,10 +165,10 @@
                   "typeString": "bool"
                 },
                 "typeName": {
-                  "id": 2427,
+                  "id": 2612,
                   "name": "bool",
                   "nodeType": "ElementaryTypeName",
-                  "src": "684:4:7",
+                  "src": "684:4:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_bool",
                     "typeString": "bool"
@@ -179,13 +179,13 @@
               },
               {
                 "constant": false,
-                "id": 2430,
+                "id": 2615,
                 "mutability": "mutable",
                 "name": "collateralisationRatio",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2431,
-                "src": "705:30:7",
+                "scope": 2616,
+                "src": "705:30:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -193,10 +193,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 2429,
+                  "id": 2614,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "705:7:7",
+                  "src": "705:7:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -208,23 +208,23 @@
             ],
             "name": "Basket",
             "nodeType": "StructDefinition",
-            "scope": 2502,
-            "src": "174:568:7",
+            "scope": 2687,
+            "src": "174:568:8",
             "visibility": "public"
           },
           {
             "canonicalName": "TokenStructs.Basset",
-            "id": 2444,
+            "id": 2629,
             "members": [
               {
                 "constant": false,
-                "id": 2433,
+                "id": 2618,
                 "mutability": "mutable",
                 "name": "addr",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2444,
-                "src": "902:12:7",
+                "scope": 2629,
+                "src": "902:12:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -232,10 +232,10 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 2432,
+                  "id": 2617,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "902:7:7",
+                  "src": "902:7:8",
                   "stateMutability": "nonpayable",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
@@ -247,28 +247,28 @@
               },
               {
                 "constant": false,
-                "id": 2435,
+                "id": 2620,
                 "mutability": "mutable",
                 "name": "status",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2444,
-                "src": "954:19:7",
+                "scope": 2629,
+                "src": "954:19:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_enum$_BassetStatus_$2453",
+                  "typeIdentifier": "t_enum$_BassetStatus_$2638",
                   "typeString": "enum TokenStructs.BassetStatus"
                 },
                 "typeName": {
                   "contractScope": null,
-                  "id": 2434,
+                  "id": 2619,
                   "name": "BassetStatus",
                   "nodeType": "UserDefinedTypeName",
-                  "referencedDeclaration": 2453,
-                  "src": "954:12:7",
+                  "referencedDeclaration": 2638,
+                  "src": "954:12:8",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_enum$_BassetStatus_$2453",
+                    "typeIdentifier": "t_enum$_BassetStatus_$2638",
                     "typeString": "enum TokenStructs.BassetStatus"
                   }
                 },
@@ -277,13 +277,13 @@
               },
               {
                 "constant": false,
-                "id": 2437,
+                "id": 2622,
                 "mutability": "mutable",
                 "name": "isTransferFeeCharged",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2444,
-                "src": "1137:25:7",
+                "scope": 2629,
+                "src": "1137:25:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -291,10 +291,10 @@
                   "typeString": "bool"
                 },
                 "typeName": {
-                  "id": 2436,
+                  "id": 2621,
                   "name": "bool",
                   "nodeType": "ElementaryTypeName",
-                  "src": "1137:4:7",
+                  "src": "1137:4:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_bool",
                     "typeString": "bool"
@@ -305,13 +305,13 @@
               },
               {
                 "constant": false,
-                "id": 2439,
+                "id": 2624,
                 "mutability": "mutable",
                 "name": "ratio",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2444,
-                "src": "1405:13:7",
+                "scope": 2629,
+                "src": "1405:13:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -319,10 +319,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 2438,
+                  "id": 2623,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "1405:7:7",
+                  "src": "1405:7:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -333,13 +333,13 @@
               },
               {
                 "constant": false,
-                "id": 2441,
+                "id": 2626,
                 "mutability": "mutable",
                 "name": "maxWeight",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2444,
-                "src": "1483:17:7",
+                "scope": 2629,
+                "src": "1483:17:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -347,10 +347,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 2440,
+                  "id": 2625,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "1483:7:7",
+                  "src": "1483:7:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -361,13 +361,13 @@
               },
               {
                 "constant": false,
-                "id": 2443,
+                "id": 2628,
                 "mutability": "mutable",
                 "name": "vaultBalance",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2444,
-                "src": "1537:20:7",
+                "scope": 2629,
+                "src": "1537:20:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -375,10 +375,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 2442,
+                  "id": 2627,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "1537:7:7",
+                  "src": "1537:7:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -390,95 +390,95 @@
             ],
             "name": "Basset",
             "nodeType": "StructDefinition",
-            "scope": 2502,
-            "src": "848:716:7",
+            "scope": 2687,
+            "src": "848:716:8",
             "visibility": "public"
           },
           {
             "canonicalName": "TokenStructs.BassetStatus",
-            "id": 2453,
+            "id": 2638,
             "members": [
               {
-                "id": 2445,
+                "id": 2630,
                 "name": "Default",
                 "nodeType": "EnumValue",
-                "src": "1652:7:7"
+                "src": "1652:7:8"
               },
               {
-                "id": 2446,
+                "id": 2631,
                 "name": "Normal",
                 "nodeType": "EnumValue",
-                "src": "1669:6:7"
+                "src": "1669:6:8"
               },
               {
-                "id": 2447,
+                "id": 2632,
                 "name": "BrokenBelowPeg",
                 "nodeType": "EnumValue",
-                "src": "1685:14:7"
+                "src": "1685:14:8"
               },
               {
-                "id": 2448,
+                "id": 2633,
                 "name": "BrokenAbovePeg",
                 "nodeType": "EnumValue",
-                "src": "1709:14:7"
+                "src": "1709:14:8"
               },
               {
-                "id": 2449,
+                "id": 2634,
                 "name": "Blacklisted",
                 "nodeType": "EnumValue",
-                "src": "1733:11:7"
+                "src": "1733:11:8"
               },
               {
-                "id": 2450,
+                "id": 2635,
                 "name": "Liquidating",
                 "nodeType": "EnumValue",
-                "src": "1754:11:7"
+                "src": "1754:11:8"
               },
               {
-                "id": 2451,
+                "id": 2636,
                 "name": "Liquidated",
                 "nodeType": "EnumValue",
-                "src": "1775:10:7"
+                "src": "1775:10:8"
               },
               {
-                "id": 2452,
+                "id": 2637,
                 "name": "Failed",
                 "nodeType": "EnumValue",
-                "src": "1795:6:7"
+                "src": "1795:6:8"
               }
             ],
             "name": "BassetStatus",
             "nodeType": "EnumDefinition",
-            "src": "1624:183:7"
+            "src": "1624:183:8"
           },
           {
             "canonicalName": "TokenStructs.BassetDetails",
-            "id": 2460,
+            "id": 2645,
             "members": [
               {
                 "constant": false,
-                "id": 2455,
+                "id": 2640,
                 "mutability": "mutable",
                 "name": "bAsset",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2460,
-                "src": "1878:13:7",
+                "scope": 2645,
+                "src": "1878:13:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Basset_$2444_storage_ptr",
+                  "typeIdentifier": "t_struct$_Basset_$2629_storage_ptr",
                   "typeString": "struct TokenStructs.Basset"
                 },
                 "typeName": {
                   "contractScope": null,
-                  "id": 2454,
+                  "id": 2639,
                   "name": "Basset",
                   "nodeType": "UserDefinedTypeName",
-                  "referencedDeclaration": 2444,
-                  "src": "1878:6:7",
+                  "referencedDeclaration": 2629,
+                  "src": "1878:6:8",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Basset_$2444_storage_ptr",
+                    "typeIdentifier": "t_struct$_Basset_$2629_storage_ptr",
                     "typeString": "struct TokenStructs.Basset"
                   }
                 },
@@ -487,13 +487,13 @@
               },
               {
                 "constant": false,
-                "id": 2457,
+                "id": 2642,
                 "mutability": "mutable",
                 "name": "integrator",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2460,
-                "src": "1901:18:7",
+                "scope": 2645,
+                "src": "1901:18:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -501,10 +501,10 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 2456,
+                  "id": 2641,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "1901:7:7",
+                  "src": "1901:7:8",
                   "stateMutability": "nonpayable",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
@@ -516,13 +516,13 @@
               },
               {
                 "constant": false,
-                "id": 2459,
+                "id": 2644,
                 "mutability": "mutable",
                 "name": "index",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2460,
-                "src": "1929:11:7",
+                "scope": 2645,
+                "src": "1929:11:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -530,10 +530,10 @@
                   "typeString": "uint8"
                 },
                 "typeName": {
-                  "id": 2458,
+                  "id": 2643,
                   "name": "uint8",
                   "nodeType": "ElementaryTypeName",
-                  "src": "1929:5:7",
+                  "src": "1929:5:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint8",
                     "typeString": "uint8"
@@ -545,23 +545,23 @@
             ],
             "name": "BassetDetails",
             "nodeType": "StructDefinition",
-            "scope": 2502,
-            "src": "1847:100:7",
+            "scope": 2687,
+            "src": "1847:100:8",
             "visibility": "public"
           },
           {
             "canonicalName": "TokenStructs.ForgePropsMulti",
-            "id": 2472,
+            "id": 2657,
             "members": [
               {
                 "constant": false,
-                "id": 2462,
+                "id": 2647,
                 "mutability": "mutable",
                 "name": "isValid",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2472,
-                "src": "2043:12:7",
+                "scope": 2657,
+                "src": "2043:12:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -569,10 +569,10 @@
                   "typeString": "bool"
                 },
                 "typeName": {
-                  "id": 2461,
+                  "id": 2646,
                   "name": "bool",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2043:4:7",
+                  "src": "2043:4:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_bool",
                     "typeString": "bool"
@@ -583,38 +583,38 @@
               },
               {
                 "constant": false,
-                "id": 2465,
+                "id": 2650,
                 "mutability": "mutable",
                 "name": "bAssets",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2472,
-                "src": "2130:16:7",
+                "scope": 2657,
+                "src": "2130:16:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_array$_t_struct$_Basset_$2444_storage_$dyn_storage_ptr",
+                  "typeIdentifier": "t_array$_t_struct$_Basset_$2629_storage_$dyn_storage_ptr",
                   "typeString": "struct TokenStructs.Basset[]"
                 },
                 "typeName": {
                   "baseType": {
                     "contractScope": null,
-                    "id": 2463,
+                    "id": 2648,
                     "name": "Basset",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2444,
-                    "src": "2130:6:7",
+                    "referencedDeclaration": 2629,
+                    "src": "2130:6:8",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Basset_$2444_storage_ptr",
+                      "typeIdentifier": "t_struct$_Basset_$2629_storage_ptr",
                       "typeString": "struct TokenStructs.Basset"
                     }
                   },
-                  "id": 2464,
+                  "id": 2649,
                   "length": null,
                   "nodeType": "ArrayTypeName",
-                  "src": "2130:8:7",
+                  "src": "2130:8:8",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_struct$_Basset_$2444_storage_$dyn_storage_ptr",
+                    "typeIdentifier": "t_array$_t_struct$_Basset_$2629_storage_$dyn_storage_ptr",
                     "typeString": "struct TokenStructs.Basset[]"
                   }
                 },
@@ -623,13 +623,13 @@
               },
               {
                 "constant": false,
-                "id": 2468,
+                "id": 2653,
                 "mutability": "mutable",
                 "name": "integrators",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2472,
-                "src": "2156:21:7",
+                "scope": 2657,
+                "src": "2156:21:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -638,20 +638,20 @@
                 },
                 "typeName": {
                   "baseType": {
-                    "id": 2466,
+                    "id": 2651,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2156:7:7",
+                    "src": "2156:7:8",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
-                  "id": 2467,
+                  "id": 2652,
                   "length": null,
                   "nodeType": "ArrayTypeName",
-                  "src": "2156:9:7",
+                  "src": "2156:9:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
                     "typeString": "address[]"
@@ -662,13 +662,13 @@
               },
               {
                 "constant": false,
-                "id": 2471,
+                "id": 2656,
                 "mutability": "mutable",
                 "name": "indexes",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2472,
-                "src": "2187:15:7",
+                "scope": 2657,
+                "src": "2187:15:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -677,19 +677,19 @@
                 },
                 "typeName": {
                   "baseType": {
-                    "id": 2469,
+                    "id": 2654,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2187:5:7",
+                    "src": "2187:5:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint8",
                       "typeString": "uint8"
                     }
                   },
-                  "id": 2470,
+                  "id": 2655,
                   "length": null,
                   "nodeType": "ArrayTypeName",
-                  "src": "2187:7:7",
+                  "src": "2187:7:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_array$_t_uint8_$dyn_storage_ptr",
                     "typeString": "uint8[]"
@@ -701,23 +701,23 @@
             ],
             "name": "ForgePropsMulti",
             "nodeType": "StructDefinition",
-            "scope": 2502,
-            "src": "2010:199:7",
+            "scope": 2687,
+            "src": "2010:199:8",
             "visibility": "public"
           },
           {
             "canonicalName": "TokenStructs.RedeemPropsMulti",
-            "id": 2484,
+            "id": 2669,
             "members": [
               {
                 "constant": false,
-                "id": 2474,
+                "id": 2659,
                 "mutability": "mutable",
                 "name": "colRatio",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2484,
-                "src": "2304:16:7",
+                "scope": 2669,
+                "src": "2304:16:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -725,10 +725,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 2473,
+                  "id": 2658,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2304:7:7",
+                  "src": "2304:7:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -739,38 +739,38 @@
               },
               {
                 "constant": false,
-                "id": 2477,
+                "id": 2662,
                 "mutability": "mutable",
                 "name": "bAssets",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2484,
-                "src": "2330:16:7",
+                "scope": 2669,
+                "src": "2330:16:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_array$_t_struct$_Basset_$2444_storage_$dyn_storage_ptr",
+                  "typeIdentifier": "t_array$_t_struct$_Basset_$2629_storage_$dyn_storage_ptr",
                   "typeString": "struct TokenStructs.Basset[]"
                 },
                 "typeName": {
                   "baseType": {
                     "contractScope": null,
-                    "id": 2475,
+                    "id": 2660,
                     "name": "Basset",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2444,
-                    "src": "2330:6:7",
+                    "referencedDeclaration": 2629,
+                    "src": "2330:6:8",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Basset_$2444_storage_ptr",
+                      "typeIdentifier": "t_struct$_Basset_$2629_storage_ptr",
                       "typeString": "struct TokenStructs.Basset"
                     }
                   },
-                  "id": 2476,
+                  "id": 2661,
                   "length": null,
                   "nodeType": "ArrayTypeName",
-                  "src": "2330:8:7",
+                  "src": "2330:8:8",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_struct$_Basset_$2444_storage_$dyn_storage_ptr",
+                    "typeIdentifier": "t_array$_t_struct$_Basset_$2629_storage_$dyn_storage_ptr",
                     "typeString": "struct TokenStructs.Basset[]"
                   }
                 },
@@ -779,13 +779,13 @@
               },
               {
                 "constant": false,
-                "id": 2480,
+                "id": 2665,
                 "mutability": "mutable",
                 "name": "integrators",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2484,
-                "src": "2356:21:7",
+                "scope": 2669,
+                "src": "2356:21:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -794,20 +794,20 @@
                 },
                 "typeName": {
                   "baseType": {
-                    "id": 2478,
+                    "id": 2663,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2356:7:7",
+                    "src": "2356:7:8",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
-                  "id": 2479,
+                  "id": 2664,
                   "length": null,
                   "nodeType": "ArrayTypeName",
-                  "src": "2356:9:7",
+                  "src": "2356:9:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
                     "typeString": "address[]"
@@ -818,13 +818,13 @@
               },
               {
                 "constant": false,
-                "id": 2483,
+                "id": 2668,
                 "mutability": "mutable",
                 "name": "indexes",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2484,
-                "src": "2387:15:7",
+                "scope": 2669,
+                "src": "2387:15:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -833,19 +833,19 @@
                 },
                 "typeName": {
                   "baseType": {
-                    "id": 2481,
+                    "id": 2666,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2387:5:7",
+                    "src": "2387:5:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint8",
                       "typeString": "uint8"
                     }
                   },
-                  "id": 2482,
+                  "id": 2667,
                   "length": null,
                   "nodeType": "ArrayTypeName",
-                  "src": "2387:7:7",
+                  "src": "2387:7:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_array$_t_uint8_$dyn_storage_ptr",
                     "typeString": "uint8[]"
@@ -857,23 +857,23 @@
             ],
             "name": "RedeemPropsMulti",
             "nodeType": "StructDefinition",
-            "scope": 2502,
-            "src": "2270:139:7",
+            "scope": 2687,
+            "src": "2270:139:8",
             "visibility": "public"
           },
           {
             "canonicalName": "TokenStructs.CustomAsset",
-            "id": 2496,
+            "id": 2681,
             "members": [
               {
                 "constant": false,
-                "id": 2486,
+                "id": 2671,
                 "mutability": "mutable",
                 "name": "name",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2496,
-                "src": "2473:11:7",
+                "scope": 2681,
+                "src": "2473:11:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -881,10 +881,10 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 2485,
+                  "id": 2670,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2473:6:7",
+                  "src": "2473:6:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -895,13 +895,13 @@
               },
               {
                 "constant": false,
-                "id": 2488,
+                "id": 2673,
                 "mutability": "mutable",
                 "name": "symbol",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2496,
-                "src": "2494:13:7",
+                "scope": 2681,
+                "src": "2494:13:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -909,10 +909,10 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 2487,
+                  "id": 2672,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2494:6:7",
+                  "src": "2494:6:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -923,53 +923,13 @@
               },
               {
                 "constant": false,
-                "id": 2491,
-                "mutability": "mutable",
-                "name": "preTokens",
-                "nodeType": "VariableDeclaration",
-                "overrides": null,
-                "scope": 2496,
-                "src": "2517:20:7",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_array$_t_struct$_PreToken_$2501_storage_$dyn_storage_ptr",
-                  "typeString": "struct TokenStructs.PreToken[]"
-                },
-                "typeName": {
-                  "baseType": {
-                    "contractScope": null,
-                    "id": 2489,
-                    "name": "PreToken",
-                    "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2501,
-                    "src": "2517:8:7",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_PreToken_$2501_storage_ptr",
-                      "typeString": "struct TokenStructs.PreToken"
-                    }
-                  },
-                  "id": 2490,
-                  "length": null,
-                  "nodeType": "ArrayTypeName",
-                  "src": "2517:10:7",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_struct$_PreToken_$2501_storage_$dyn_storage_ptr",
-                    "typeString": "struct TokenStructs.PreToken[]"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 2493,
+                "id": 2675,
                 "mutability": "mutable",
                 "name": "target",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2496,
-                "src": "2547:14:7",
+                "scope": 2681,
+                "src": "2517:14:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -977,10 +937,10 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 2492,
+                  "id": 2674,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2547:7:7",
+                  "src": "2517:7:8",
                   "stateMutability": "nonpayable",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
@@ -992,27 +952,65 @@
               },
               {
                 "constant": false,
-                "id": 2495,
+                "id": 2677,
                 "mutability": "mutable",
                 "name": "status",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2496,
-                "src": "2571:12:7",
+                "scope": 2681,
+                "src": "2541:14:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_uint8",
-                  "typeString": "uint8"
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 2494,
-                  "name": "uint8",
+                  "id": 2676,
+                  "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2571:5:7",
+                  "src": "2541:7:8",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_uint8",
-                    "typeString": "uint8"
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2680,
+                "mutability": "mutable",
+                "name": "ratio",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 2681,
+                "src": "2582:15:8",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                  "typeString": "uint256[]"
+                },
+                "typeName": {
+                  "baseType": {
+                    "id": 2678,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2582:7:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 2679,
+                  "length": null,
+                  "nodeType": "ArrayTypeName",
+                  "src": "2582:9:8",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                    "typeString": "uint256[]"
                   }
                 },
                 "value": null,
@@ -1021,23 +1019,23 @@
             ],
             "name": "CustomAsset",
             "nodeType": "StructDefinition",
-            "scope": 2502,
-            "src": "2444:163:7",
+            "scope": 2687,
+            "src": "2444:160:8",
             "visibility": "public"
           },
           {
             "canonicalName": "TokenStructs.PreToken",
-            "id": 2501,
+            "id": 2686,
             "members": [
               {
                 "constant": false,
-                "id": 2498,
+                "id": 2683,
                 "mutability": "mutable",
                 "name": "tokenAddr",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2501,
-                "src": "2662:17:7",
+                "scope": 2686,
+                "src": "2659:17:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1045,10 +1043,10 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 2497,
+                  "id": 2682,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2662:7:7",
+                  "src": "2659:7:8",
                   "stateMutability": "nonpayable",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
@@ -1060,13 +1058,13 @@
               },
               {
                 "constant": false,
-                "id": 2500,
+                "id": 2685,
                 "mutability": "mutable",
                 "name": "amount",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2501,
-                "src": "2689:14:7",
+                "scope": 2686,
+                "src": "2686:14:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1074,10 +1072,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 2499,
+                  "id": 2684,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2689:7:7",
+                  "src": "2686:7:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -1089,37 +1087,37 @@
             ],
             "name": "PreToken",
             "nodeType": "StructDefinition",
-            "scope": 2502,
-            "src": "2636:74:7",
+            "scope": 2687,
+            "src": "2633:74:8",
             "visibility": "public"
           }
         ],
-        "scope": 2503,
-        "src": "100:2612:7"
+        "scope": 2688,
+        "src": "100:2609:8"
       }
     ],
-    "src": "38:2675:7"
+    "src": "38:2672:8"
   },
   "legacyAST": {
     "absolutePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/TokenStructs.sol",
     "exportedSymbols": {
       "TokenStructs": [
-        2502
+        2687
       ]
     },
-    "id": 2503,
+    "id": 2688,
     "license": "SimPL-2.0",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2418,
+        "id": 2603,
         "literals": [
           "solidity",
           "0.6",
           ".12"
         ],
         "nodeType": "PragmaDirective",
-        "src": "38:23:7"
+        "src": "38:23:8"
       },
       {
         "abstract": false,
@@ -1127,57 +1125,57 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "documentation": {
-          "id": 2419,
+          "id": 2604,
           "nodeType": "StructuredDocumentation",
-          "src": "63:37:7",
+          "src": "63:37:8",
           "text": "@title MassetStructs\n @author"
         },
         "fullyImplemented": true,
-        "id": 2502,
+        "id": 2687,
         "linearizedBaseContracts": [
-          2502
+          2687
         ],
         "name": "TokenStructs",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "canonicalName": "TokenStructs.Basket",
-            "id": 2431,
+            "id": 2616,
             "members": [
               {
                 "constant": false,
-                "id": 2422,
+                "id": 2607,
                 "mutability": "mutable",
                 "name": "bassets",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2431,
-                "src": "240:16:7",
+                "scope": 2616,
+                "src": "240:16:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_array$_t_struct$_Basset_$2444_storage_$dyn_storage_ptr",
+                  "typeIdentifier": "t_array$_t_struct$_Basset_$2629_storage_$dyn_storage_ptr",
                   "typeString": "struct TokenStructs.Basset[]"
                 },
                 "typeName": {
                   "baseType": {
                     "contractScope": null,
-                    "id": 2420,
+                    "id": 2605,
                     "name": "Basset",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2444,
-                    "src": "240:6:7",
+                    "referencedDeclaration": 2629,
+                    "src": "240:6:8",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Basset_$2444_storage_ptr",
+                      "typeIdentifier": "t_struct$_Basset_$2629_storage_ptr",
                       "typeString": "struct TokenStructs.Basset"
                     }
                   },
-                  "id": 2421,
+                  "id": 2606,
                   "length": null,
                   "nodeType": "ArrayTypeName",
-                  "src": "240:8:7",
+                  "src": "240:8:8",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_struct$_Basset_$2444_storage_$dyn_storage_ptr",
+                    "typeIdentifier": "t_array$_t_struct$_Basset_$2629_storage_$dyn_storage_ptr",
                     "typeString": "struct TokenStructs.Basset[]"
                   }
                 },
@@ -1186,13 +1184,13 @@
               },
               {
                 "constant": false,
-                "id": 2424,
+                "id": 2609,
                 "mutability": "mutable",
                 "name": "maxBassets",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2431,
-                "src": "308:16:7",
+                "scope": 2616,
+                "src": "308:16:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1200,10 +1198,10 @@
                   "typeString": "uint8"
                 },
                 "typeName": {
-                  "id": 2423,
+                  "id": 2608,
                   "name": "uint8",
                   "nodeType": "ElementaryTypeName",
-                  "src": "308:5:7",
+                  "src": "308:5:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint8",
                     "typeString": "uint8"
@@ -1214,13 +1212,13 @@
               },
               {
                 "constant": false,
-                "id": 2426,
+                "id": 2611,
                 "mutability": "mutable",
                 "name": "undergoingRecol",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2431,
-                "src": "392:20:7",
+                "scope": 2616,
+                "src": "392:20:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1228,10 +1226,10 @@
                   "typeString": "bool"
                 },
                 "typeName": {
-                  "id": 2425,
+                  "id": 2610,
                   "name": "bool",
                   "nodeType": "ElementaryTypeName",
-                  "src": "392:4:7",
+                  "src": "392:4:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_bool",
                     "typeString": "bool"
@@ -1242,13 +1240,13 @@
               },
               {
                 "constant": false,
-                "id": 2428,
+                "id": 2613,
                 "mutability": "mutable",
                 "name": "failed",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2431,
-                "src": "684:11:7",
+                "scope": 2616,
+                "src": "684:11:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1256,10 +1254,10 @@
                   "typeString": "bool"
                 },
                 "typeName": {
-                  "id": 2427,
+                  "id": 2612,
                   "name": "bool",
                   "nodeType": "ElementaryTypeName",
-                  "src": "684:4:7",
+                  "src": "684:4:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_bool",
                     "typeString": "bool"
@@ -1270,13 +1268,13 @@
               },
               {
                 "constant": false,
-                "id": 2430,
+                "id": 2615,
                 "mutability": "mutable",
                 "name": "collateralisationRatio",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2431,
-                "src": "705:30:7",
+                "scope": 2616,
+                "src": "705:30:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1284,10 +1282,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 2429,
+                  "id": 2614,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "705:7:7",
+                  "src": "705:7:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -1299,23 +1297,23 @@
             ],
             "name": "Basket",
             "nodeType": "StructDefinition",
-            "scope": 2502,
-            "src": "174:568:7",
+            "scope": 2687,
+            "src": "174:568:8",
             "visibility": "public"
           },
           {
             "canonicalName": "TokenStructs.Basset",
-            "id": 2444,
+            "id": 2629,
             "members": [
               {
                 "constant": false,
-                "id": 2433,
+                "id": 2618,
                 "mutability": "mutable",
                 "name": "addr",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2444,
-                "src": "902:12:7",
+                "scope": 2629,
+                "src": "902:12:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1323,10 +1321,10 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 2432,
+                  "id": 2617,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "902:7:7",
+                  "src": "902:7:8",
                   "stateMutability": "nonpayable",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
@@ -1338,28 +1336,28 @@
               },
               {
                 "constant": false,
-                "id": 2435,
+                "id": 2620,
                 "mutability": "mutable",
                 "name": "status",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2444,
-                "src": "954:19:7",
+                "scope": 2629,
+                "src": "954:19:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_enum$_BassetStatus_$2453",
+                  "typeIdentifier": "t_enum$_BassetStatus_$2638",
                   "typeString": "enum TokenStructs.BassetStatus"
                 },
                 "typeName": {
                   "contractScope": null,
-                  "id": 2434,
+                  "id": 2619,
                   "name": "BassetStatus",
                   "nodeType": "UserDefinedTypeName",
-                  "referencedDeclaration": 2453,
-                  "src": "954:12:7",
+                  "referencedDeclaration": 2638,
+                  "src": "954:12:8",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_enum$_BassetStatus_$2453",
+                    "typeIdentifier": "t_enum$_BassetStatus_$2638",
                     "typeString": "enum TokenStructs.BassetStatus"
                   }
                 },
@@ -1368,13 +1366,13 @@
               },
               {
                 "constant": false,
-                "id": 2437,
+                "id": 2622,
                 "mutability": "mutable",
                 "name": "isTransferFeeCharged",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2444,
-                "src": "1137:25:7",
+                "scope": 2629,
+                "src": "1137:25:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1382,10 +1380,10 @@
                   "typeString": "bool"
                 },
                 "typeName": {
-                  "id": 2436,
+                  "id": 2621,
                   "name": "bool",
                   "nodeType": "ElementaryTypeName",
-                  "src": "1137:4:7",
+                  "src": "1137:4:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_bool",
                     "typeString": "bool"
@@ -1396,13 +1394,13 @@
               },
               {
                 "constant": false,
-                "id": 2439,
+                "id": 2624,
                 "mutability": "mutable",
                 "name": "ratio",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2444,
-                "src": "1405:13:7",
+                "scope": 2629,
+                "src": "1405:13:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1410,10 +1408,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 2438,
+                  "id": 2623,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "1405:7:7",
+                  "src": "1405:7:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -1424,13 +1422,13 @@
               },
               {
                 "constant": false,
-                "id": 2441,
+                "id": 2626,
                 "mutability": "mutable",
                 "name": "maxWeight",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2444,
-                "src": "1483:17:7",
+                "scope": 2629,
+                "src": "1483:17:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1438,10 +1436,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 2440,
+                  "id": 2625,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "1483:7:7",
+                  "src": "1483:7:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -1452,13 +1450,13 @@
               },
               {
                 "constant": false,
-                "id": 2443,
+                "id": 2628,
                 "mutability": "mutable",
                 "name": "vaultBalance",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2444,
-                "src": "1537:20:7",
+                "scope": 2629,
+                "src": "1537:20:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1466,10 +1464,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 2442,
+                  "id": 2627,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "1537:7:7",
+                  "src": "1537:7:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -1481,95 +1479,95 @@
             ],
             "name": "Basset",
             "nodeType": "StructDefinition",
-            "scope": 2502,
-            "src": "848:716:7",
+            "scope": 2687,
+            "src": "848:716:8",
             "visibility": "public"
           },
           {
             "canonicalName": "TokenStructs.BassetStatus",
-            "id": 2453,
+            "id": 2638,
             "members": [
               {
-                "id": 2445,
+                "id": 2630,
                 "name": "Default",
                 "nodeType": "EnumValue",
-                "src": "1652:7:7"
+                "src": "1652:7:8"
               },
               {
-                "id": 2446,
+                "id": 2631,
                 "name": "Normal",
                 "nodeType": "EnumValue",
-                "src": "1669:6:7"
+                "src": "1669:6:8"
               },
               {
-                "id": 2447,
+                "id": 2632,
                 "name": "BrokenBelowPeg",
                 "nodeType": "EnumValue",
-                "src": "1685:14:7"
+                "src": "1685:14:8"
               },
               {
-                "id": 2448,
+                "id": 2633,
                 "name": "BrokenAbovePeg",
                 "nodeType": "EnumValue",
-                "src": "1709:14:7"
+                "src": "1709:14:8"
               },
               {
-                "id": 2449,
+                "id": 2634,
                 "name": "Blacklisted",
                 "nodeType": "EnumValue",
-                "src": "1733:11:7"
+                "src": "1733:11:8"
               },
               {
-                "id": 2450,
+                "id": 2635,
                 "name": "Liquidating",
                 "nodeType": "EnumValue",
-                "src": "1754:11:7"
+                "src": "1754:11:8"
               },
               {
-                "id": 2451,
+                "id": 2636,
                 "name": "Liquidated",
                 "nodeType": "EnumValue",
-                "src": "1775:10:7"
+                "src": "1775:10:8"
               },
               {
-                "id": 2452,
+                "id": 2637,
                 "name": "Failed",
                 "nodeType": "EnumValue",
-                "src": "1795:6:7"
+                "src": "1795:6:8"
               }
             ],
             "name": "BassetStatus",
             "nodeType": "EnumDefinition",
-            "src": "1624:183:7"
+            "src": "1624:183:8"
           },
           {
             "canonicalName": "TokenStructs.BassetDetails",
-            "id": 2460,
+            "id": 2645,
             "members": [
               {
                 "constant": false,
-                "id": 2455,
+                "id": 2640,
                 "mutability": "mutable",
                 "name": "bAsset",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2460,
-                "src": "1878:13:7",
+                "scope": 2645,
+                "src": "1878:13:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Basset_$2444_storage_ptr",
+                  "typeIdentifier": "t_struct$_Basset_$2629_storage_ptr",
                   "typeString": "struct TokenStructs.Basset"
                 },
                 "typeName": {
                   "contractScope": null,
-                  "id": 2454,
+                  "id": 2639,
                   "name": "Basset",
                   "nodeType": "UserDefinedTypeName",
-                  "referencedDeclaration": 2444,
-                  "src": "1878:6:7",
+                  "referencedDeclaration": 2629,
+                  "src": "1878:6:8",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Basset_$2444_storage_ptr",
+                    "typeIdentifier": "t_struct$_Basset_$2629_storage_ptr",
                     "typeString": "struct TokenStructs.Basset"
                   }
                 },
@@ -1578,13 +1576,13 @@
               },
               {
                 "constant": false,
-                "id": 2457,
+                "id": 2642,
                 "mutability": "mutable",
                 "name": "integrator",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2460,
-                "src": "1901:18:7",
+                "scope": 2645,
+                "src": "1901:18:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1592,10 +1590,10 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 2456,
+                  "id": 2641,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "1901:7:7",
+                  "src": "1901:7:8",
                   "stateMutability": "nonpayable",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
@@ -1607,13 +1605,13 @@
               },
               {
                 "constant": false,
-                "id": 2459,
+                "id": 2644,
                 "mutability": "mutable",
                 "name": "index",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2460,
-                "src": "1929:11:7",
+                "scope": 2645,
+                "src": "1929:11:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1621,10 +1619,10 @@
                   "typeString": "uint8"
                 },
                 "typeName": {
-                  "id": 2458,
+                  "id": 2643,
                   "name": "uint8",
                   "nodeType": "ElementaryTypeName",
-                  "src": "1929:5:7",
+                  "src": "1929:5:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint8",
                     "typeString": "uint8"
@@ -1636,23 +1634,23 @@
             ],
             "name": "BassetDetails",
             "nodeType": "StructDefinition",
-            "scope": 2502,
-            "src": "1847:100:7",
+            "scope": 2687,
+            "src": "1847:100:8",
             "visibility": "public"
           },
           {
             "canonicalName": "TokenStructs.ForgePropsMulti",
-            "id": 2472,
+            "id": 2657,
             "members": [
               {
                 "constant": false,
-                "id": 2462,
+                "id": 2647,
                 "mutability": "mutable",
                 "name": "isValid",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2472,
-                "src": "2043:12:7",
+                "scope": 2657,
+                "src": "2043:12:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1660,10 +1658,10 @@
                   "typeString": "bool"
                 },
                 "typeName": {
-                  "id": 2461,
+                  "id": 2646,
                   "name": "bool",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2043:4:7",
+                  "src": "2043:4:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_bool",
                     "typeString": "bool"
@@ -1674,38 +1672,38 @@
               },
               {
                 "constant": false,
-                "id": 2465,
+                "id": 2650,
                 "mutability": "mutable",
                 "name": "bAssets",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2472,
-                "src": "2130:16:7",
+                "scope": 2657,
+                "src": "2130:16:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_array$_t_struct$_Basset_$2444_storage_$dyn_storage_ptr",
+                  "typeIdentifier": "t_array$_t_struct$_Basset_$2629_storage_$dyn_storage_ptr",
                   "typeString": "struct TokenStructs.Basset[]"
                 },
                 "typeName": {
                   "baseType": {
                     "contractScope": null,
-                    "id": 2463,
+                    "id": 2648,
                     "name": "Basset",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2444,
-                    "src": "2130:6:7",
+                    "referencedDeclaration": 2629,
+                    "src": "2130:6:8",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Basset_$2444_storage_ptr",
+                      "typeIdentifier": "t_struct$_Basset_$2629_storage_ptr",
                       "typeString": "struct TokenStructs.Basset"
                     }
                   },
-                  "id": 2464,
+                  "id": 2649,
                   "length": null,
                   "nodeType": "ArrayTypeName",
-                  "src": "2130:8:7",
+                  "src": "2130:8:8",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_struct$_Basset_$2444_storage_$dyn_storage_ptr",
+                    "typeIdentifier": "t_array$_t_struct$_Basset_$2629_storage_$dyn_storage_ptr",
                     "typeString": "struct TokenStructs.Basset[]"
                   }
                 },
@@ -1714,13 +1712,13 @@
               },
               {
                 "constant": false,
-                "id": 2468,
+                "id": 2653,
                 "mutability": "mutable",
                 "name": "integrators",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2472,
-                "src": "2156:21:7",
+                "scope": 2657,
+                "src": "2156:21:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1729,20 +1727,20 @@
                 },
                 "typeName": {
                   "baseType": {
-                    "id": 2466,
+                    "id": 2651,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2156:7:7",
+                    "src": "2156:7:8",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
-                  "id": 2467,
+                  "id": 2652,
                   "length": null,
                   "nodeType": "ArrayTypeName",
-                  "src": "2156:9:7",
+                  "src": "2156:9:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
                     "typeString": "address[]"
@@ -1753,13 +1751,13 @@
               },
               {
                 "constant": false,
-                "id": 2471,
+                "id": 2656,
                 "mutability": "mutable",
                 "name": "indexes",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2472,
-                "src": "2187:15:7",
+                "scope": 2657,
+                "src": "2187:15:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1768,19 +1766,19 @@
                 },
                 "typeName": {
                   "baseType": {
-                    "id": 2469,
+                    "id": 2654,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2187:5:7",
+                    "src": "2187:5:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint8",
                       "typeString": "uint8"
                     }
                   },
-                  "id": 2470,
+                  "id": 2655,
                   "length": null,
                   "nodeType": "ArrayTypeName",
-                  "src": "2187:7:7",
+                  "src": "2187:7:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_array$_t_uint8_$dyn_storage_ptr",
                     "typeString": "uint8[]"
@@ -1792,23 +1790,23 @@
             ],
             "name": "ForgePropsMulti",
             "nodeType": "StructDefinition",
-            "scope": 2502,
-            "src": "2010:199:7",
+            "scope": 2687,
+            "src": "2010:199:8",
             "visibility": "public"
           },
           {
             "canonicalName": "TokenStructs.RedeemPropsMulti",
-            "id": 2484,
+            "id": 2669,
             "members": [
               {
                 "constant": false,
-                "id": 2474,
+                "id": 2659,
                 "mutability": "mutable",
                 "name": "colRatio",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2484,
-                "src": "2304:16:7",
+                "scope": 2669,
+                "src": "2304:16:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1816,10 +1814,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 2473,
+                  "id": 2658,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2304:7:7",
+                  "src": "2304:7:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -1830,38 +1828,38 @@
               },
               {
                 "constant": false,
-                "id": 2477,
+                "id": 2662,
                 "mutability": "mutable",
                 "name": "bAssets",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2484,
-                "src": "2330:16:7",
+                "scope": 2669,
+                "src": "2330:16:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_array$_t_struct$_Basset_$2444_storage_$dyn_storage_ptr",
+                  "typeIdentifier": "t_array$_t_struct$_Basset_$2629_storage_$dyn_storage_ptr",
                   "typeString": "struct TokenStructs.Basset[]"
                 },
                 "typeName": {
                   "baseType": {
                     "contractScope": null,
-                    "id": 2475,
+                    "id": 2660,
                     "name": "Basset",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2444,
-                    "src": "2330:6:7",
+                    "referencedDeclaration": 2629,
+                    "src": "2330:6:8",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Basset_$2444_storage_ptr",
+                      "typeIdentifier": "t_struct$_Basset_$2629_storage_ptr",
                       "typeString": "struct TokenStructs.Basset"
                     }
                   },
-                  "id": 2476,
+                  "id": 2661,
                   "length": null,
                   "nodeType": "ArrayTypeName",
-                  "src": "2330:8:7",
+                  "src": "2330:8:8",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_struct$_Basset_$2444_storage_$dyn_storage_ptr",
+                    "typeIdentifier": "t_array$_t_struct$_Basset_$2629_storage_$dyn_storage_ptr",
                     "typeString": "struct TokenStructs.Basset[]"
                   }
                 },
@@ -1870,13 +1868,13 @@
               },
               {
                 "constant": false,
-                "id": 2480,
+                "id": 2665,
                 "mutability": "mutable",
                 "name": "integrators",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2484,
-                "src": "2356:21:7",
+                "scope": 2669,
+                "src": "2356:21:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1885,20 +1883,20 @@
                 },
                 "typeName": {
                   "baseType": {
-                    "id": 2478,
+                    "id": 2663,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2356:7:7",
+                    "src": "2356:7:8",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
-                  "id": 2479,
+                  "id": 2664,
                   "length": null,
                   "nodeType": "ArrayTypeName",
-                  "src": "2356:9:7",
+                  "src": "2356:9:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
                     "typeString": "address[]"
@@ -1909,13 +1907,13 @@
               },
               {
                 "constant": false,
-                "id": 2483,
+                "id": 2668,
                 "mutability": "mutable",
                 "name": "indexes",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2484,
-                "src": "2387:15:7",
+                "scope": 2669,
+                "src": "2387:15:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1924,19 +1922,19 @@
                 },
                 "typeName": {
                   "baseType": {
-                    "id": 2481,
+                    "id": 2666,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2387:5:7",
+                    "src": "2387:5:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint8",
                       "typeString": "uint8"
                     }
                   },
-                  "id": 2482,
+                  "id": 2667,
                   "length": null,
                   "nodeType": "ArrayTypeName",
-                  "src": "2387:7:7",
+                  "src": "2387:7:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_array$_t_uint8_$dyn_storage_ptr",
                     "typeString": "uint8[]"
@@ -1948,23 +1946,23 @@
             ],
             "name": "RedeemPropsMulti",
             "nodeType": "StructDefinition",
-            "scope": 2502,
-            "src": "2270:139:7",
+            "scope": 2687,
+            "src": "2270:139:8",
             "visibility": "public"
           },
           {
             "canonicalName": "TokenStructs.CustomAsset",
-            "id": 2496,
+            "id": 2681,
             "members": [
               {
                 "constant": false,
-                "id": 2486,
+                "id": 2671,
                 "mutability": "mutable",
                 "name": "name",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2496,
-                "src": "2473:11:7",
+                "scope": 2681,
+                "src": "2473:11:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1972,10 +1970,10 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 2485,
+                  "id": 2670,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2473:6:7",
+                  "src": "2473:6:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -1986,13 +1984,13 @@
               },
               {
                 "constant": false,
-                "id": 2488,
+                "id": 2673,
                 "mutability": "mutable",
                 "name": "symbol",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2496,
-                "src": "2494:13:7",
+                "scope": 2681,
+                "src": "2494:13:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -2000,10 +1998,10 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 2487,
+                  "id": 2672,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2494:6:7",
+                  "src": "2494:6:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -2014,53 +2012,13 @@
               },
               {
                 "constant": false,
-                "id": 2491,
-                "mutability": "mutable",
-                "name": "preTokens",
-                "nodeType": "VariableDeclaration",
-                "overrides": null,
-                "scope": 2496,
-                "src": "2517:20:7",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_array$_t_struct$_PreToken_$2501_storage_$dyn_storage_ptr",
-                  "typeString": "struct TokenStructs.PreToken[]"
-                },
-                "typeName": {
-                  "baseType": {
-                    "contractScope": null,
-                    "id": 2489,
-                    "name": "PreToken",
-                    "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2501,
-                    "src": "2517:8:7",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_PreToken_$2501_storage_ptr",
-                      "typeString": "struct TokenStructs.PreToken"
-                    }
-                  },
-                  "id": 2490,
-                  "length": null,
-                  "nodeType": "ArrayTypeName",
-                  "src": "2517:10:7",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_struct$_PreToken_$2501_storage_$dyn_storage_ptr",
-                    "typeString": "struct TokenStructs.PreToken[]"
-                  }
-                },
-                "value": null,
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 2493,
+                "id": 2675,
                 "mutability": "mutable",
                 "name": "target",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2496,
-                "src": "2547:14:7",
+                "scope": 2681,
+                "src": "2517:14:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -2068,10 +2026,10 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 2492,
+                  "id": 2674,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2547:7:7",
+                  "src": "2517:7:8",
                   "stateMutability": "nonpayable",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
@@ -2083,27 +2041,65 @@
               },
               {
                 "constant": false,
-                "id": 2495,
+                "id": 2677,
                 "mutability": "mutable",
                 "name": "status",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2496,
-                "src": "2571:12:7",
+                "scope": 2681,
+                "src": "2541:14:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_uint8",
-                  "typeString": "uint8"
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 2494,
-                  "name": "uint8",
+                  "id": 2676,
+                  "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2571:5:7",
+                  "src": "2541:7:8",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_uint8",
-                    "typeString": "uint8"
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 2680,
+                "mutability": "mutable",
+                "name": "ratio",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 2681,
+                "src": "2582:15:8",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                  "typeString": "uint256[]"
+                },
+                "typeName": {
+                  "baseType": {
+                    "id": 2678,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2582:7:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 2679,
+                  "length": null,
+                  "nodeType": "ArrayTypeName",
+                  "src": "2582:9:8",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                    "typeString": "uint256[]"
                   }
                 },
                 "value": null,
@@ -2112,23 +2108,23 @@
             ],
             "name": "CustomAsset",
             "nodeType": "StructDefinition",
-            "scope": 2502,
-            "src": "2444:163:7",
+            "scope": 2687,
+            "src": "2444:160:8",
             "visibility": "public"
           },
           {
             "canonicalName": "TokenStructs.PreToken",
-            "id": 2501,
+            "id": 2686,
             "members": [
               {
                 "constant": false,
-                "id": 2498,
+                "id": 2683,
                 "mutability": "mutable",
                 "name": "tokenAddr",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2501,
-                "src": "2662:17:7",
+                "scope": 2686,
+                "src": "2659:17:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -2136,10 +2132,10 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 2497,
+                  "id": 2682,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2662:7:7",
+                  "src": "2659:7:8",
                   "stateMutability": "nonpayable",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
@@ -2151,13 +2147,13 @@
               },
               {
                 "constant": false,
-                "id": 2500,
+                "id": 2685,
                 "mutability": "mutable",
                 "name": "amount",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 2501,
-                "src": "2689:14:7",
+                "scope": 2686,
+                "src": "2686:14:8",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -2165,10 +2161,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 2499,
+                  "id": 2684,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2689:7:7",
+                  "src": "2686:7:8",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -2180,16 +2176,16 @@
             ],
             "name": "PreToken",
             "nodeType": "StructDefinition",
-            "scope": 2502,
-            "src": "2636:74:7",
+            "scope": 2687,
+            "src": "2633:74:8",
             "visibility": "public"
           }
         ],
-        "scope": 2503,
-        "src": "100:2612:7"
+        "scope": 2688,
+        "src": "100:2609:8"
       }
     ],
-    "src": "38:2675:7"
+    "src": "38:2672:8"
   },
   "compiler": {
     "name": "solc",
@@ -2197,7 +2193,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.2",
-  "updatedAt": "2020-11-14T07:15:27.490Z",
+  "updatedAt": "2020-11-14T10:47:35.541Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

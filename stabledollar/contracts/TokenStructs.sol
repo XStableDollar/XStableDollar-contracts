@@ -79,9 +79,9 @@ interface TokenStructs {
     struct CustomAsset {
         string name;
         string symbol;
-        PreToken[] preTokens;
         address target;
-        uint8 status;  // 预留状态
+        uint256 status;  // 预留状态
+        uint256[] ratio;
     }
 
     // 待合成资产

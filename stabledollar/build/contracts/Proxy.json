@@ -13,15 +13,15 @@
     "absolutePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/Proxy.sol",
     "exportedSymbols": {
       "Proxy": [
-        1817
+        1826
       ]
     },
-    "id": 1818,
+    "id": 1827,
     "license": "SimPL-2.0",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1811,
+        "id": 1820,
         "literals": [
           "solidity",
           "0.6",
@@ -33,16 +33,16 @@
       {
         "absolutePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/IProxy.sol",
         "file": "./IProxy.sol",
-        "id": 1813,
+        "id": 1822,
         "nodeType": "ImportDirective",
-        "scope": 1818,
+        "scope": 1827,
         "sourceUnit": 1730,
         "src": "63:38:5",
         "symbolAliases": [
           {
             "foreign": {
               "argumentTypes": null,
-              "id": 1812,
+              "id": 1821,
               "name": "IProxy",
               "nodeType": "Identifier",
               "overloadedDeclarations": [],
@@ -65,7 +65,7 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1815,
+              "id": 1824,
               "name": "IProxy",
               "nodeType": "UserDefinedTypeName",
               "referencedDeclaration": 1729,
@@ -75,7 +75,7 @@
                 "typeString": "contract IProxy"
               }
             },
-            "id": 1816,
+            "id": 1825,
             "nodeType": "InheritanceSpecifier",
             "src": "143:6:5"
           }
@@ -85,21 +85,21 @@
         ],
         "contractKind": "contract",
         "documentation": {
-          "id": 1814,
+          "id": 1823,
           "nodeType": "StructuredDocumentation",
           "src": "103:22:5",
           "text": "Token服务合约"
         },
         "fullyImplemented": true,
-        "id": 1817,
+        "id": 1826,
         "linearizedBaseContracts": [
-          1817,
+          1826,
           1729
         ],
         "name": "Proxy",
         "nodeType": "ContractDefinition",
         "nodes": [],
-        "scope": 1818,
+        "scope": 1827,
         "src": "125:83:5"
       }
     ],
@@ -109,15 +109,15 @@
     "absolutePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/Proxy.sol",
     "exportedSymbols": {
       "Proxy": [
-        1817
+        1826
       ]
     },
-    "id": 1818,
+    "id": 1827,
     "license": "SimPL-2.0",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1811,
+        "id": 1820,
         "literals": [
           "solidity",
           "0.6",
@@ -129,16 +129,16 @@
       {
         "absolutePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/IProxy.sol",
         "file": "./IProxy.sol",
-        "id": 1813,
+        "id": 1822,
         "nodeType": "ImportDirective",
-        "scope": 1818,
+        "scope": 1827,
         "sourceUnit": 1730,
         "src": "63:38:5",
         "symbolAliases": [
           {
             "foreign": {
               "argumentTypes": null,
-              "id": 1812,
+              "id": 1821,
               "name": "IProxy",
               "nodeType": "Identifier",
               "overloadedDeclarations": [],
@@ -161,7 +161,7 @@
             "arguments": null,
             "baseName": {
               "contractScope": null,
-              "id": 1815,
+              "id": 1824,
               "name": "IProxy",
               "nodeType": "UserDefinedTypeName",
               "referencedDeclaration": 1729,
@@ -171,7 +171,7 @@
                 "typeString": "contract IProxy"
               }
             },
-            "id": 1816,
+            "id": 1825,
             "nodeType": "InheritanceSpecifier",
             "src": "143:6:5"
           }
@@ -181,21 +181,21 @@
         ],
         "contractKind": "contract",
         "documentation": {
-          "id": 1814,
+          "id": 1823,
           "nodeType": "StructuredDocumentation",
           "src": "103:22:5",
           "text": "Token服务合约"
         },
         "fullyImplemented": true,
-        "id": 1817,
+        "id": 1826,
         "linearizedBaseContracts": [
-          1817,
+          1826,
           1729
         ],
         "name": "Proxy",
         "nodeType": "ContractDefinition",
         "nodes": [],
-        "scope": 1818,
+        "scope": 1827,
         "src": "125:83:5"
       }
     ],
@@ -207,7 +207,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.2",
-  "updatedAt": "2020-11-14T07:15:27.478Z",
+  "updatedAt": "2020-11-14T07:52:41.783Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},
