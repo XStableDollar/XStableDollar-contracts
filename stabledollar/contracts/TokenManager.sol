@@ -38,6 +38,7 @@ contract TokenManager is ITokenManager, ERC20 {
     // 合成币地址对应待合成币数组
     mapping(address => PreToken[]) public preTokens;
 
+    // 合成币对应的比例
     mapping(address => uint256) public ratio;
 
     mapping(address => mapping(address => uint256)) public tokenRadio;
@@ -54,7 +55,7 @@ contract TokenManager is ITokenManager, ERC20 {
 
     // 创建
     function create(
-        string memory _name, 
+        string memory _name,
         string memory _symbol
     )
         override
@@ -63,7 +64,7 @@ contract TokenManager is ITokenManager, ERC20 {
     {
         CustomToken token = new CustomToken(_name, _symbol);
         uint256[] memory ratios = new uint256[](1);
-        uint256 status = 1;
+        uint256 status = 1; // 可用状态
         CustomAsset memory asset = CustomAsset(
             _name,
             _symbol,
@@ -82,14 +83,14 @@ contract TokenManager is ITokenManager, ERC20 {
     // 合成
     function mintMulti(
         address erc20Addr,
-        address[] calldata _preToken, 
-        uint256[] calldata _bassetAmount, 
+        address[] calldata _preToken,
+        uint256[] calldata _bassetAmount,
         bool[] calldata _isTransferFee,
         address receipt
     )
         override
         external
-        returns (uint256 massetMinted) 
+        returns (uint256 massetMinted)
     {
         require(_preToken.length > 0, "_preToken lenght must not be 0");
         require(_preToken.length != _bassetAmount.length, "lenght must be equal");
@@ -179,7 +180,7 @@ contract TokenManager is ITokenManager, ERC20 {
     //     address[] calldata _bAssets,
     //     uint256[] calldata _bAssetQuantity,
     //     address _recipient
-    // )   
+    // )
     //     external
     //     returns(uint256 massetMinted)
     // {
@@ -226,7 +227,7 @@ contract TokenManager is ITokenManager, ERC20 {
         // basketManager.increaseVaultBalances(props.indexes, props.integrators, receivedQty);
 
         // Validate the proposed mint, after token transfer
-        // (bool mintValid, string memory reason) = 
+        // (bool mintValid, string memory reason) =
         //             forgeValidator.validateMintMulti(totalSupply(), props.bAssets, receivedQty);
         // require(mintValid, reason);
 
@@ -390,6 +391,16 @@ contract TokenManager is ITokenManager, ERC20 {
         emit RedeemedMasset(msg.sender, _recipient, _mAssetQuantity);
     }
 
+
+    ////////// by shooter //////////////
+
+    function getTokenList() external view return (address){
+
+    }
+
+    ////////// by shooter //////////////
+
+
     /**
      * Internal func to update contract state post-redemption
      * @param _recipient        Recipient of the bAssets
@@ -408,8 +419,8 @@ contract TokenManager is ITokenManager, ERC20 {
         uint8[] memory _indices,
         address[] memory _integrators,
         uint256 _feeRate
-    ) 
-        internal 
+    )
+        internal
     {
         // Burn the full amount of Masset
         _burn(msg.sender, _mAssetQuantity);
