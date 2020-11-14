@@ -2,7 +2,7 @@
 pragma solidity 0.6.12;
 pragma experimental ABIEncoderV2;
 
-import { IForgeValidator, MassetStructs } from "./IForgeValidator.sol";
+import { IForgeValidator, TokenStructs } from "./IForgeValidator.sol";
 import { StableMath } from "../shared/StableMath.sol";
 import { SafeMath } from "@openzeppelin/contracts/math/SafeMath.sol";
 

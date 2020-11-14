@@ -3,14 +3,12 @@ pragma solidity 0.6.12;
 
 /// @title MassetStructs
 /// @author
-/// @notice
-interface MassetStructs {
+interface TokenStructs {
 
     // 目前支持的稳定币集合信息
     struct Basket {
         // 当前支持的稳定币币种
         Basset[] bassets;
-        // Max number of bAssets that can be present in any Basket
         // 稳定币支持的数量上限
         uint8 maxBassets;
         // Some bAsset is undergoing re-collateralisation
@@ -75,5 +73,20 @@ interface MassetStructs {
         Basset[] bAssets;
         address[] integrators;
         uint8[] indexes;
+    }
+
+    // 用户自定义资产
+    struct CustomAsset {
+        string name;
+        string symbol;
+        PreToken[] preTokens;
+        address target;
+        uint8 status;  // 预留状态
+    }
+
+    // 待合成资产
+    struct PreToken {
+        address tokenAddr;
+        uint256 amount;
     }
 }

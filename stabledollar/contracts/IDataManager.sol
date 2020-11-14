@@ -2,14 +2,13 @@
 pragma solidity 0.6.12;
 pragma experimental ABIEncoderV2;
 
-import { MassetStructs } from "./MassetStructs.sol";
+import { TokenStructs } from "./TokenStructs.sol";
 
 /**
  * IBasketManager
  * (Internal) Interface for interacting with BasketManager
- * VERSION: 1.0
  */
-interface IBasketManager is MassetStructs {
+interface IDataManager is TokenStructs {
 
     // Setters for mAsset to update balances
     // 给单一金库增加余额

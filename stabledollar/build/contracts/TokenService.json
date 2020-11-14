@@ -1,0 +1,122 @@
+{
+  "contractName": "TokenService",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"notice\":\"Token\\u670d\\u52a1\\u5408\\u7ea6\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/TokenService.sol\":\"TokenService\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/TokenService.sol\":{\"keccak256\":\"0xf040b42bb3a9d47c24559e5cb4de6061615afb68bbc83ddbd3a36d17d356a111\",\"license\":\"SimPL-2.0\",\"urls\":[\"bzz-raw://d76c7628b88d06cae3aac574a5d2b134e30239caf8146ceb4f244ba50914c20c\",\"dweb:/ipfs/QmbWhRHk3dtPw5TNSvDzRcFUgaUk7W5iNjSY86Km1fSnLn\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea26469706673582212209267aa89ad6d030745ca23e657b5bf80862eaee843b9eaa2eca16fe51e01265864736f6c634300060c0033",
+  "deployedBytecode": "0x6080604052600080fdfea26469706673582212209267aa89ad6d030745ca23e657b5bf80862eaee843b9eaa2eca16fe51e01265864736f6c634300060c0033",
+  "immutableReferences": {},
+  "sourceMap": "85:80:5:-:0;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "85:80:5:-:0;;;;;",
+  "source": "// SPDX-License-Identifier: SimPL-2.0\npragma solidity 0.6.12;\n\n/// Token服务合约\ncontract TokenService {\n\n    // 铸币\n\n\n    // 赎回\n\n\n    // 查看列表\n\n\n}\n\n",
+  "sourcePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/TokenService.sol",
+  "ast": {
+    "absolutePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/TokenService.sol",
+    "exportedSymbols": {
+      "TokenService": [
+        2875
+      ]
+    },
+    "id": 2876,
+    "license": "SimPL-2.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 2873,
+        "literals": [
+          "solidity",
+          "0.6",
+          ".12"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "38:23:5"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": {
+          "id": 2874,
+          "nodeType": "StructuredDocumentation",
+          "src": "63:22:5",
+          "text": "Token服务合约"
+        },
+        "fullyImplemented": true,
+        "id": 2875,
+        "linearizedBaseContracts": [
+          2875
+        ],
+        "name": "TokenService",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 2876,
+        "src": "85:80:5"
+      }
+    ],
+    "src": "38:129:5"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/TokenService.sol",
+    "exportedSymbols": {
+      "TokenService": [
+        2875
+      ]
+    },
+    "id": 2876,
+    "license": "SimPL-2.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 2873,
+        "literals": [
+          "solidity",
+          "0.6",
+          ".12"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "38:23:5"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": {
+          "id": 2874,
+          "nodeType": "StructuredDocumentation",
+          "src": "63:22:5",
+          "text": "Token服务合约"
+        },
+        "fullyImplemented": true,
+        "id": 2875,
+        "linearizedBaseContracts": [
+          2875
+        ],
+        "name": "TokenService",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 2876,
+        "src": "85:80:5"
+      }
+    ],
+    "src": "38:129:5"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.12+commit.27d51765.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.2",
+  "updatedAt": "2020-11-14T06:30:33.522Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "notice": "Token服务合约",
+    "version": 1
+  }
+}
