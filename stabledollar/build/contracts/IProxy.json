@@ -1,34 +1,90 @@
 {
   "contractName": "IProxy",
   "abi": [],
-  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"notice\":\"Token\\u670d\\u52a1\\u5408\\u7ea6\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/IProxy.sol\":\"IProxy\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/IProxy.sol\":{\"keccak256\":\"0x49736e90045c59fbe304b6e8306050a1a82819155d729307337799db1bf83e97\",\"license\":\"SimPL-2.0\",\"urls\":[\"bzz-raw://27334d8fd3f14913eaaac1defaf3920971f62741fb0587ece5ee5e68473feb5e\",\"dweb:/ipfs/QmZbNWJXu8TH7uE2QKnV5DpESbAnrWys4h19suB3CFNqcR\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"notice\":\"Token\\u670d\\u52a1\\u5408\\u7ea6\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/IProxy.sol\":\"IProxy\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/IDataManager.sol\":{\"keccak256\":\"0x6d77bbd6faa36a94bda9cacf5b8746935f9676c734987a1b24e9d3cde6d8a4e5\",\"license\":\"SimPL-2.0\",\"urls\":[\"bzz-raw://5333bc2d666217ff67a792bfaf249502ac46c7e805c91d7c67a4067707103cb0\",\"dweb:/ipfs/QmczETSvXJwB9uyTMvSQowF6MyX96yenHtoDpRLhYBriUj\"]},\"/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/IProxy.sol\":{\"keccak256\":\"0xdc00696d9c8fe48cd51920dacf1c7ee226fb5817f5adaed3ae299d712757d0aa\",\"license\":\"SimPL-2.0\",\"urls\":[\"bzz-raw://d6dbe8988115c24972b9b089efaedeef374a3ea5300c42a372dedb204a1d2104\",\"dweb:/ipfs/QmR3QEAY1TxQfMD32ZAMKpQ7omx6dhu2mh5LENGKqxwxFH\"]},\"/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/ITokenManager.sol\":{\"keccak256\":\"0x9da64239b9ab41e43dce3bafe7ed96ed666ba1a2bce32fcc3b91fb8662505833\",\"license\":\"SimPL-2.0\",\"urls\":[\"bzz-raw://865c8efa19836f77609f62ebc33d9e70c858abc6076d50c5af7c2015aab07e26\",\"dweb:/ipfs/QmTW9e39gahgDoEnGdbyf1RCtg4K2VJXaJNLze3FRyerc8\"]},\"/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/TokenStructs.sol\":{\"keccak256\":\"0x788f905b80769b0b770f08664fb59c6363e34b987a47d6778ca863821c5d7523\",\"license\":\"SimPL-2.0\",\"urls\":[\"bzz-raw://e1446482132b3d55e8867594bd8be1e3cda50da4f96a4e6b31d83f4fcadcc8ad\",\"dweb:/ipfs/QmUWaGLHtDgbRdB68F7anLUnDyhkAeKYRHhTRqTrsBRW7J\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "immutableReferences": {},
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "// SPDX-License-Identifier: SimPL-2.0\npragma solidity 0.6.12;\n\n/// Token服务合约\ninterface IProxy {\n\n    // 铸币\n\n\n    // 赎回\n\n\n    // 查看列表\n\n\n}\n\n",
+  "source": "// SPDX-License-Identifier: SimPL-2.0\npragma solidity 0.6.12;\n\nimport { ITokenManager } from \"./ITokenManager.sol\";\nimport { IDataManager } from \"./IDataManager.sol\";\n\n/// Token服务合约\ninterface IProxy {\n    // 铸币\n    // 赎回\n    // 查看列表\n}\n\n",
   "sourcePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/IProxy.sol",
   "ast": {
     "absolutePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/IProxy.sol",
     "exportedSymbols": {
       "IProxy": [
-        1729
+        1751
       ]
     },
-    "id": 1730,
+    "id": 1752,
     "license": "SimPL-2.0",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1727,
+        "id": 1745,
         "literals": [
           "solidity",
           "0.6",
           ".12"
         ],
         "nodeType": "PragmaDirective",
-        "src": "38:23:2"
+        "src": "38:23:3"
+      },
+      {
+        "absolutePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/ITokenManager.sol",
+        "file": "./ITokenManager.sol",
+        "id": 1747,
+        "nodeType": "ImportDirective",
+        "scope": 1752,
+        "sourceUnit": 1793,
+        "src": "63:52:3",
+        "symbolAliases": [
+          {
+            "foreign": {
+              "argumentTypes": null,
+              "id": 1746,
+              "name": "ITokenManager",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": null,
+              "src": "72:13:3",
+              "typeDescriptions": {
+                "typeIdentifier": null,
+                "typeString": null
+              }
+            },
+            "local": null
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/IDataManager.sol",
+        "file": "./IDataManager.sol",
+        "id": 1749,
+        "nodeType": "ImportDirective",
+        "scope": 1752,
+        "sourceUnit": 1744,
+        "src": "116:50:3",
+        "symbolAliases": [
+          {
+            "foreign": {
+              "argumentTypes": null,
+              "id": 1748,
+              "name": "IDataManager",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": null,
+              "src": "125:12:3",
+              "typeDescriptions": {
+                "typeIdentifier": null,
+                "typeString": null
+              }
+            },
+            "local": null
+          }
+        ],
+        "unitAlias": ""
       },
       {
         "abstract": false,
@@ -36,45 +92,101 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "documentation": {
-          "id": 1728,
+          "id": 1750,
           "nodeType": "StructuredDocumentation",
-          "src": "63:22:2",
+          "src": "168:22:3",
           "text": "Token服务合约"
         },
         "fullyImplemented": true,
-        "id": 1729,
+        "id": 1751,
         "linearizedBaseContracts": [
-          1729
+          1751
         ],
         "name": "IProxy",
         "nodeType": "ContractDefinition",
         "nodes": [],
-        "scope": 1730,
-        "src": "85:75:2"
+        "scope": 1752,
+        "src": "190:68:3"
       }
     ],
-    "src": "38:124:2"
+    "src": "38:222:3"
   },
   "legacyAST": {
     "absolutePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/IProxy.sol",
     "exportedSymbols": {
       "IProxy": [
-        1729
+        1751
       ]
     },
-    "id": 1730,
+    "id": 1752,
     "license": "SimPL-2.0",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1727,
+        "id": 1745,
         "literals": [
           "solidity",
           "0.6",
           ".12"
         ],
         "nodeType": "PragmaDirective",
-        "src": "38:23:2"
+        "src": "38:23:3"
+      },
+      {
+        "absolutePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/ITokenManager.sol",
+        "file": "./ITokenManager.sol",
+        "id": 1747,
+        "nodeType": "ImportDirective",
+        "scope": 1752,
+        "sourceUnit": 1793,
+        "src": "63:52:3",
+        "symbolAliases": [
+          {
+            "foreign": {
+              "argumentTypes": null,
+              "id": 1746,
+              "name": "ITokenManager",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": null,
+              "src": "72:13:3",
+              "typeDescriptions": {
+                "typeIdentifier": null,
+                "typeString": null
+              }
+            },
+            "local": null
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "absolutePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/IDataManager.sol",
+        "file": "./IDataManager.sol",
+        "id": 1749,
+        "nodeType": "ImportDirective",
+        "scope": 1752,
+        "sourceUnit": 1744,
+        "src": "116:50:3",
+        "symbolAliases": [
+          {
+            "foreign": {
+              "argumentTypes": null,
+              "id": 1748,
+              "name": "IDataManager",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "referencedDeclaration": null,
+              "src": "125:12:3",
+              "typeDescriptions": {
+                "typeIdentifier": null,
+                "typeString": null
+              }
+            },
+            "local": null
+          }
+        ],
+        "unitAlias": ""
       },
       {
         "abstract": false,
@@ -82,24 +194,24 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "documentation": {
-          "id": 1728,
+          "id": 1750,
           "nodeType": "StructuredDocumentation",
-          "src": "63:22:2",
+          "src": "168:22:3",
           "text": "Token服务合约"
         },
         "fullyImplemented": true,
-        "id": 1729,
+        "id": 1751,
         "linearizedBaseContracts": [
-          1729
+          1751
         ],
         "name": "IProxy",
         "nodeType": "ContractDefinition",
         "nodes": [],
-        "scope": 1730,
-        "src": "85:75:2"
+        "scope": 1752,
+        "src": "190:68:3"
       }
     ],
-    "src": "38:124:2"
+    "src": "38:222:3"
   },
   "compiler": {
     "name": "solc",
@@ -107,7 +219,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.2",
-  "updatedAt": "2020-11-14T07:52:41.781Z",
+  "updatedAt": "2020-11-14T11:22:23.799Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

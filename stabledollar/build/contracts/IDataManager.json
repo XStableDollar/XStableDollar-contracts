@@ -596,13 +596,13 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_basset\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_integration\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"_isTransferFeeCharged\",\"type\":\"bool\"}],\"name\":\"addBasset\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"index\",\"type\":\"uint8\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"collectInterest\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"interestCollected\",\"type\":\"uint256\"},{\"internalType\":\"uint256[]\",\"name\":\"gains\",\"type\":\"uint256[]\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint8\",\"name\":\"_bAsset\",\"type\":\"uint8\"},{\"internalType\":\"address\",\"name\":\"_integrator\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_decreaseAmount\",\"type\":\"uint256\"}],\"name\":\"decreaseVaultBalance\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint8[]\",\"name\":\"_bAsset\",\"type\":\"uint8[]\"},{\"internalType\":\"address[]\",\"name\":\"_integrator\",\"type\":\"address[]\"},{\"internalType\":\"uint256[]\",\"name\":\"_decreaseAmount\",\"type\":\"uint256[]\"}],\"name\":\"decreaseVaultBalances\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getBasket\",\"outputs\":[{\"components\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"},{\"internalType\":\"enum TokenStructs.BassetStatus\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"bool\",\"name\":\"isTransferFeeCharged\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"ratio\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxWeight\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"vaultBalance\",\"type\":\"uint256\"}],\"internalType\":\"struct TokenStructs.Basset[]\",\"name\":\"bassets\",\"type\":\"tuple[]\"},{\"internalType\":\"uint8\",\"name\":\"maxBassets\",\"type\":\"uint8\"},{\"internalType\":\"bool\",\"name\":\"undergoingRecol\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"failed\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"collateralisationRatio\",\"type\":\"uint256\"}],\"internalType\":\"struct TokenStructs.Basket\",\"name\":\"b\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_token\",\"type\":\"address\"}],\"name\":\"getBasset\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"},{\"internalType\":\"enum TokenStructs.BassetStatus\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"bool\",\"name\":\"isTransferFeeCharged\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"ratio\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxWeight\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"vaultBalance\",\"type\":\"uint256\"}],\"internalType\":\"struct TokenStructs.Basset\",\"name\":\"bAsset\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getBassets\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"},{\"internalType\":\"enum TokenStructs.BassetStatus\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"bool\",\"name\":\"isTransferFeeCharged\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"ratio\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxWeight\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"vaultBalance\",\"type\":\"uint256\"}],\"internalType\":\"struct TokenStructs.Basset[]\",\"name\":\"bAssets\",\"type\":\"tuple[]\"},{\"internalType\":\"uint256\",\"name\":\"len\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint8\",\"name\":\"_bAsset\",\"type\":\"uint8\"},{\"internalType\":\"address\",\"name\":\"_integrator\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_increaseAmount\",\"type\":\"uint256\"}],\"name\":\"increaseVaultBalance\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint8[]\",\"name\":\"_bAsset\",\"type\":\"uint8[]\"},{\"internalType\":\"address[]\",\"name\":\"_integrator\",\"type\":\"address[]\"},{\"internalType\":\"uint256[]\",\"name\":\"_increaseAmount\",\"type\":\"uint256[]\"}],\"name\":\"increaseVaultBalances\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"paused\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_amt\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"_mint\",\"type\":\"bool\"}],\"name\":\"prepareForgeBasset\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"isValid\",\"type\":\"bool\"},{\"components\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"},{\"internalType\":\"enum TokenStructs.BassetStatus\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"bool\",\"name\":\"isTransferFeeCharged\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"ratio\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxWeight\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"vaultBalance\",\"type\":\"uint256\"}],\"internalType\":\"struct TokenStructs.Basset\",\"name\":\"bAsset\",\"type\":\"tuple\"},{\"internalType\":\"address\",\"name\":\"integrator\",\"type\":\"address\"},{\"internalType\":\"uint8\",\"name\":\"index\",\"type\":\"uint8\"}],\"internalType\":\"struct TokenStructs.BassetDetails\",\"name\":\"bInfo\",\"type\":\"tuple\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"_bAssets\",\"type\":\"address[]\"},{\"internalType\":\"uint256[]\",\"name\":\"_amts\",\"type\":\"uint256[]\"},{\"internalType\":\"bool\",\"name\":\"_mint\",\"type\":\"bool\"}],\"name\":\"prepareForgeBassets\",\"outputs\":[{\"components\":[{\"internalType\":\"bool\",\"name\":\"isValid\",\"type\":\"bool\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"},{\"internalType\":\"enum TokenStructs.BassetStatus\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"bool\",\"name\":\"isTransferFeeCharged\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"ratio\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxWeight\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"vaultBalance\",\"type\":\"uint256\"}],\"internalType\":\"struct TokenStructs.Basset[]\",\"name\":\"bAssets\",\"type\":\"tuple[]\"},{\"internalType\":\"address[]\",\"name\":\"integrators\",\"type\":\"address[]\"},{\"internalType\":\"uint8[]\",\"name\":\"indexes\",\"type\":\"uint8[]\"}],\"internalType\":\"struct TokenStructs.ForgePropsMulti\",\"name\":\"props\",\"type\":\"tuple\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"prepareRedeemMulti\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"colRatio\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"},{\"internalType\":\"enum TokenStructs.BassetStatus\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"bool\",\"name\":\"isTransferFeeCharged\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"ratio\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxWeight\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"vaultBalance\",\"type\":\"uint256\"}],\"internalType\":\"struct TokenStructs.Basset[]\",\"name\":\"bAssets\",\"type\":\"tuple[]\"},{\"internalType\":\"address[]\",\"name\":\"integrators\",\"type\":\"address[]\"},{\"internalType\":\"uint8[]\",\"name\":\"indexes\",\"type\":\"uint8[]\"}],\"internalType\":\"struct TokenStructs.RedeemPropsMulti\",\"name\":\"props\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"_bassets\",\"type\":\"address[]\"},{\"internalType\":\"uint256[]\",\"name\":\"_weights\",\"type\":\"uint256[]\"}],\"name\":\"setBasketWeights\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_bAsset\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"_flag\",\"type\":\"bool\"}],\"name\":\"setTransferFeesFlag\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"notice\":\"IBasketManager (Internal) Interface for interacting with BasketManager\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/IDataManager.sol\":\"IDataManager\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/IDataManager.sol\":{\"keccak256\":\"0xdf6abb4c6eae2f082bb7e7a8deab23406c33c2c15b91266da374a8e609a135ec\",\"license\":\"SimPL-2.0\",\"urls\":[\"bzz-raw://3a8f163c126913812906516c70ccee1f2279af90ad649fb9b53ea32a192f9ebb\",\"dweb:/ipfs/QmS72UG4BKNqr1HVgoRc5GRik8kBAHV49mcbQkyBisqn7D\"]},\"/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/TokenStructs.sol\":{\"keccak256\":\"0x788f905b80769b0b770f08664fb59c6363e34b987a47d6778ca863821c5d7523\",\"license\":\"SimPL-2.0\",\"urls\":[\"bzz-raw://e1446482132b3d55e8867594bd8be1e3cda50da4f96a4e6b31d83f4fcadcc8ad\",\"dweb:/ipfs/QmUWaGLHtDgbRdB68F7anLUnDyhkAeKYRHhTRqTrsBRW7J\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_basset\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_integration\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"_isTransferFeeCharged\",\"type\":\"bool\"}],\"name\":\"addBasset\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"index\",\"type\":\"uint8\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"collectInterest\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"interestCollected\",\"type\":\"uint256\"},{\"internalType\":\"uint256[]\",\"name\":\"gains\",\"type\":\"uint256[]\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint8\",\"name\":\"_bAsset\",\"type\":\"uint8\"},{\"internalType\":\"address\",\"name\":\"_integrator\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_decreaseAmount\",\"type\":\"uint256\"}],\"name\":\"decreaseVaultBalance\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint8[]\",\"name\":\"_bAsset\",\"type\":\"uint8[]\"},{\"internalType\":\"address[]\",\"name\":\"_integrator\",\"type\":\"address[]\"},{\"internalType\":\"uint256[]\",\"name\":\"_decreaseAmount\",\"type\":\"uint256[]\"}],\"name\":\"decreaseVaultBalances\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getBasket\",\"outputs\":[{\"components\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"},{\"internalType\":\"enum TokenStructs.BassetStatus\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"bool\",\"name\":\"isTransferFeeCharged\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"ratio\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxWeight\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"vaultBalance\",\"type\":\"uint256\"}],\"internalType\":\"struct TokenStructs.Basset[]\",\"name\":\"bassets\",\"type\":\"tuple[]\"},{\"internalType\":\"uint8\",\"name\":\"maxBassets\",\"type\":\"uint8\"},{\"internalType\":\"bool\",\"name\":\"undergoingRecol\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"failed\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"collateralisationRatio\",\"type\":\"uint256\"}],\"internalType\":\"struct TokenStructs.Basket\",\"name\":\"b\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_token\",\"type\":\"address\"}],\"name\":\"getBasset\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"},{\"internalType\":\"enum TokenStructs.BassetStatus\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"bool\",\"name\":\"isTransferFeeCharged\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"ratio\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxWeight\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"vaultBalance\",\"type\":\"uint256\"}],\"internalType\":\"struct TokenStructs.Basset\",\"name\":\"bAsset\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getBassets\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"},{\"internalType\":\"enum TokenStructs.BassetStatus\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"bool\",\"name\":\"isTransferFeeCharged\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"ratio\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxWeight\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"vaultBalance\",\"type\":\"uint256\"}],\"internalType\":\"struct TokenStructs.Basset[]\",\"name\":\"bAssets\",\"type\":\"tuple[]\"},{\"internalType\":\"uint256\",\"name\":\"len\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint8\",\"name\":\"_bAsset\",\"type\":\"uint8\"},{\"internalType\":\"address\",\"name\":\"_integrator\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_increaseAmount\",\"type\":\"uint256\"}],\"name\":\"increaseVaultBalance\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint8[]\",\"name\":\"_bAsset\",\"type\":\"uint8[]\"},{\"internalType\":\"address[]\",\"name\":\"_integrator\",\"type\":\"address[]\"},{\"internalType\":\"uint256[]\",\"name\":\"_increaseAmount\",\"type\":\"uint256[]\"}],\"name\":\"increaseVaultBalances\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"paused\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_amt\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"_mint\",\"type\":\"bool\"}],\"name\":\"prepareForgeBasset\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"isValid\",\"type\":\"bool\"},{\"components\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"},{\"internalType\":\"enum TokenStructs.BassetStatus\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"bool\",\"name\":\"isTransferFeeCharged\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"ratio\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxWeight\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"vaultBalance\",\"type\":\"uint256\"}],\"internalType\":\"struct TokenStructs.Basset\",\"name\":\"bAsset\",\"type\":\"tuple\"},{\"internalType\":\"address\",\"name\":\"integrator\",\"type\":\"address\"},{\"internalType\":\"uint8\",\"name\":\"index\",\"type\":\"uint8\"}],\"internalType\":\"struct TokenStructs.BassetDetails\",\"name\":\"bInfo\",\"type\":\"tuple\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"_bAssets\",\"type\":\"address[]\"},{\"internalType\":\"uint256[]\",\"name\":\"_amts\",\"type\":\"uint256[]\"},{\"internalType\":\"bool\",\"name\":\"_mint\",\"type\":\"bool\"}],\"name\":\"prepareForgeBassets\",\"outputs\":[{\"components\":[{\"internalType\":\"bool\",\"name\":\"isValid\",\"type\":\"bool\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"},{\"internalType\":\"enum TokenStructs.BassetStatus\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"bool\",\"name\":\"isTransferFeeCharged\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"ratio\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxWeight\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"vaultBalance\",\"type\":\"uint256\"}],\"internalType\":\"struct TokenStructs.Basset[]\",\"name\":\"bAssets\",\"type\":\"tuple[]\"},{\"internalType\":\"address[]\",\"name\":\"integrators\",\"type\":\"address[]\"},{\"internalType\":\"uint8[]\",\"name\":\"indexes\",\"type\":\"uint8[]\"}],\"internalType\":\"struct TokenStructs.ForgePropsMulti\",\"name\":\"props\",\"type\":\"tuple\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"prepareRedeemMulti\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"colRatio\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"},{\"internalType\":\"enum TokenStructs.BassetStatus\",\"name\":\"status\",\"type\":\"uint8\"},{\"internalType\":\"bool\",\"name\":\"isTransferFeeCharged\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"ratio\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxWeight\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"vaultBalance\",\"type\":\"uint256\"}],\"internalType\":\"struct TokenStructs.Basset[]\",\"name\":\"bAssets\",\"type\":\"tuple[]\"},{\"internalType\":\"address[]\",\"name\":\"integrators\",\"type\":\"address[]\"},{\"internalType\":\"uint8[]\",\"name\":\"indexes\",\"type\":\"uint8[]\"}],\"internalType\":\"struct TokenStructs.RedeemPropsMulti\",\"name\":\"props\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"_bassets\",\"type\":\"address[]\"},{\"internalType\":\"uint256[]\",\"name\":\"_weights\",\"type\":\"uint256[]\"}],\"name\":\"setBasketWeights\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_bAsset\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"_flag\",\"type\":\"bool\"}],\"name\":\"setTransferFeesFlag\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"notice\":\"IBasketManager (Internal) Interface for interacting with BasketManager\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/IDataManager.sol\":\"IDataManager\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/IDataManager.sol\":{\"keccak256\":\"0x6d77bbd6faa36a94bda9cacf5b8746935f9676c734987a1b24e9d3cde6d8a4e5\",\"license\":\"SimPL-2.0\",\"urls\":[\"bzz-raw://5333bc2d666217ff67a792bfaf249502ac46c7e805c91d7c67a4067707103cb0\",\"dweb:/ipfs/QmczETSvXJwB9uyTMvSQowF6MyX96yenHtoDpRLhYBriUj\"]},\"/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/TokenStructs.sol\":{\"keccak256\":\"0x788f905b80769b0b770f08664fb59c6363e34b987a47d6778ca863821c5d7523\",\"license\":\"SimPL-2.0\",\"urls\":[\"bzz-raw://e1446482132b3d55e8867594bd8be1e3cda50da4f96a4e6b31d83f4fcadcc8ad\",\"dweb:/ipfs/QmUWaGLHtDgbRdB68F7anLUnDyhkAeKYRHhTRqTrsBRW7J\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "immutableReferences": {},
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "// SPDX-License-Identifier: SimPL-2.0\npragma solidity 0.6.12;\npragma experimental ABIEncoderV2;\n\nimport { TokenStructs } from \"./TokenStructs.sol\";\n\n/**\n * IBasketManager\n * (Internal) Interface for interacting with BasketManager\n */\ninterface IDataManager is TokenStructs {\n\n    // Setters for mAsset to update balances\n    // 给单一金库增加余额\n    function increaseVaultBalance(\n        uint8 _bAsset,\n        address _integrator,\n        uint256 _increaseAmount) external;\n\n    // 给多种金库增加余额\n    function increaseVaultBalances(\n        uint8[] calldata _bAsset,\n        address[] calldata _integrator,\n        uint256[] calldata _increaseAmount) external;\n\n    // 给单一金库减少余额\n    function decreaseVaultBalance(\n        uint8 _bAsset,\n        address _integrator,\n        uint256 _decreaseAmount) external;\n\n    // 给多种金库减少余额\n    function decreaseVaultBalances(\n        uint8[] calldata _bAsset,\n        address[] calldata _integrator,\n        uint256[] calldata _decreaseAmount) external;\n\n    // \n    function collectInterest() external\n        returns (uint256 interestCollected, uint256[] memory gains);\n\n    // Setters for Gov to update Basket composition\n    // 更新一揽子稳定的集合\n    function addBasset(\n        address _basset,\n        address _integration,\n        bool _isTransferFeeCharged) external returns (uint8 index);\n\n    // 设置稳定币的权重\n    function setBasketWeights(address[] calldata _bassets, uint256[] calldata _weights) external;\n    function setTransferFeesFlag(address _bAsset, bool _flag) external;\n\n    // Getters to retrieve Basket information\n    // 获得一揽子稳定币信息\n    function getBasket() external view returns (Basket memory b);\n\n    // 铸造Basset预准备\n    function prepareForgeBasset(address _token, uint256 _amt, bool _mint) external\n        returns (bool isValid, BassetDetails memory bInfo);\n\n    // 铸造多种bAsset做预准备\n    function prepareForgeBassets(address[] calldata _bAssets, uint256[] calldata _amts, bool _mint) external\n        returns (ForgePropsMulti memory props);\n\n    // \n    function prepareRedeemMulti() external view returns (RedeemPropsMulti memory props);\n\n    // 获取单个Basset\n    function getBasset(address _token) external view returns (Basset memory bAsset);\n    // 获取多个Basset\n    function getBassets() external view returns (Basset[] memory bAssets, uint256 len);\n    function paused() external view returns (bool);\n}\n",
+  "source": "// SPDX-License-Identifier: SimPL-2.0\npragma solidity 0.6.12;\npragma experimental ABIEncoderV2;\n\nimport { TokenStructs } from \"./TokenStructs.sol\";\n\n/**\n * IBasketManager\n * (Internal) Interface for interacting with BasketManager\n */\ninterface IDataManager is TokenStructs {\n\n    // Setters for mAsset to update balances\n    // 给单一金库增加余额\n    function increaseVaultBalance(\n        uint8 _bAsset,\n        address _integrator,\n        uint256 _increaseAmount) external;\n\n    // 给多种金库增加余额\n    function increaseVaultBalances(\n        uint8[] calldata _bAsset,\n        address[] calldata _integrator,\n        uint256[] calldata _increaseAmount) external;\n\n    // 给单一金库减少余额\n    function decreaseVaultBalance(\n        uint8 _bAsset,\n        address _integrator,\n        uint256 _decreaseAmount) external;\n\n    // 给多种金库减少余额\n    function decreaseVaultBalances(\n        uint8[] calldata _bAsset,\n        address[] calldata _integrator,\n        uint256[] calldata _decreaseAmount) external;\n\n    //\n    function collectInterest() external\n        returns (uint256 interestCollected, uint256[] memory gains);\n\n    // Setters for Gov to update Basket composition\n    // 更新一揽子稳定的集合\n    function addBasset(\n        address _basset,\n        address _integration,\n        bool _isTransferFeeCharged) external returns (uint8 index);\n\n    // 设置稳定币的权重\n    function setBasketWeights(address[] calldata _bassets, uint256[] calldata _weights) external;\n    function setTransferFeesFlag(address _bAsset, bool _flag) external;\n\n    // Getters to retrieve Basket information\n    // 获得一揽子稳定币信息\n    function getBasket() external view returns (Basket memory b);\n\n    // 铸造Basset预准备\n    function prepareForgeBasset(address _token, uint256 _amt, bool _mint) external\n        returns (bool isValid, BassetDetails memory bInfo);\n\n    // 铸造多种bAsset做预准备\n    function prepareForgeBassets(address[] calldata _bAssets, uint256[] calldata _amts, bool _mint) external\n        returns (ForgePropsMulti memory props);\n\n    //\n    function prepareRedeemMulti() external view returns (RedeemPropsMulti memory props);\n\n    // 获取单个Basset\n    function getBasset(address _token) external view returns (Basset memory bAsset);\n    // 获取多个Basset\n    function getBassets() external view returns (Basset[] memory bAssets, uint256 len);\n    function paused() external view returns (bool);\n\n\n    // struct CustomAsset {\n    //     string name;\n    //     string symbol;\n    //     PreToken[] preTokens;\n    //     address target;\n    //     uint8 status;  // 预留状态\n    // }\n\n    // address[] public tokenList;\n\n    // 合成token\n    // function create(string memory name, string memory symbol, address target) external returns (address){\n    //     // 合成成功 加入到 tokenList\n    //     // 事件由tokenManager发送\n    //     return target;\n    // }\n\n    // // 铸造token\n    // function mint(address coin) external returns (uint){\n    //     return 0;\n    // }\n\n    // // 赎回token\n    // function redeem(address coin) external returns (uint){\n    //     return 0;\n    // }\n\n}\n",
   "sourcePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/IDataManager.sol",
   "ast": {
     "absolutePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/IDataManager.sol",
@@ -640,7 +640,7 @@
         "id": 1606,
         "nodeType": "ImportDirective",
         "scope": 1744,
-        "sourceUnit": 2688,
+        "sourceUnit": 2696,
         "src": "97:50:2",
         "symbolAliases": [
           {
@@ -672,10 +672,10 @@
               "id": 1608,
               "name": "TokenStructs",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2687,
+              "referencedDeclaration": 2695,
               "src": "260:12:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_TokenStructs_$2687",
+                "typeIdentifier": "t_contract$_TokenStructs_$2695",
                 "typeString": "contract TokenStructs"
               }
             },
@@ -685,7 +685,7 @@
           }
         ],
         "contractDependencies": [
-          2687
+          2695
         ],
         "contractKind": "interface",
         "documentation": {
@@ -698,7 +698,7 @@
         "id": 1743,
         "linearizedBaseContracts": [
           1743,
-          2687
+          2695
         ],
         "name": "IDataManager",
         "nodeType": "ContractDefinition",
@@ -1238,7 +1238,7 @@
               "id": 1652,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1089:2:2"
+              "src": "1088:2:2"
             },
             "returnParameters": {
               "id": 1658,
@@ -1252,7 +1252,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1659,
-                  "src": "1118:25:2",
+                  "src": "1117:25:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1263,7 +1263,7 @@
                     "id": 1653,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1118:7:2",
+                    "src": "1117:7:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1280,7 +1280,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1659,
-                  "src": "1145:22:2",
+                  "src": "1144:22:2",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -1292,7 +1292,7 @@
                       "id": 1655,
                       "name": "uint256",
                       "nodeType": "ElementaryTypeName",
-                      "src": "1145:7:2",
+                      "src": "1144:7:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -1301,7 +1301,7 @@
                     "id": 1656,
                     "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "1145:9:2",
+                    "src": "1144:9:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
                       "typeString": "uint256[]"
@@ -1311,10 +1311,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1117:51:2"
+              "src": "1116:51:2"
             },
             "scope": 1743,
-            "src": "1065:104:2",
+            "src": "1064:104:2",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
@@ -1342,7 +1342,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1670,
-                  "src": "1293:15:2",
+                  "src": "1292:15:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1353,7 +1353,7 @@
                     "id": 1660,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1293:7:2",
+                    "src": "1292:7:2",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1371,7 +1371,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1670,
-                  "src": "1318:20:2",
+                  "src": "1317:20:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1382,7 +1382,7 @@
                     "id": 1662,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1318:7:2",
+                    "src": "1317:7:2",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1400,7 +1400,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1670,
-                  "src": "1348:26:2",
+                  "src": "1347:26:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1411,7 +1411,7 @@
                     "id": 1664,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1348:4:2",
+                    "src": "1347:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -1421,7 +1421,7 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1283:92:2"
+              "src": "1282:92:2"
             },
             "returnParameters": {
               "id": 1669,
@@ -1435,7 +1435,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1670,
-                  "src": "1394:11:2",
+                  "src": "1393:11:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1446,7 +1446,7 @@
                     "id": 1667,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1394:5:2",
+                    "src": "1393:5:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint8",
                       "typeString": "uint8"
@@ -1456,10 +1456,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1393:13:2"
+              "src": "1392:13:2"
             },
             "scope": 1743,
-            "src": "1265:142:2",
+            "src": "1264:142:2",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
@@ -1487,7 +1487,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1679,
-                  "src": "1471:27:2",
+                  "src": "1470:27:2",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -1499,7 +1499,7 @@
                       "id": 1671,
                       "name": "address",
                       "nodeType": "ElementaryTypeName",
-                      "src": "1471:7:2",
+                      "src": "1470:7:2",
                       "stateMutability": "nonpayable",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -1509,7 +1509,7 @@
                     "id": 1672,
                     "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "1471:9:2",
+                    "src": "1470:9:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
                       "typeString": "address[]"
@@ -1526,7 +1526,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1679,
-                  "src": "1500:27:2",
+                  "src": "1499:27:2",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -1538,7 +1538,7 @@
                       "id": 1674,
                       "name": "uint256",
                       "nodeType": "ElementaryTypeName",
-                      "src": "1500:7:2",
+                      "src": "1499:7:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -1547,7 +1547,7 @@
                     "id": 1675,
                     "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "1500:9:2",
+                    "src": "1499:9:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
                       "typeString": "uint256[]"
@@ -1557,16 +1557,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1470:58:2"
+              "src": "1469:58:2"
             },
             "returnParameters": {
               "id": 1678,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1537:0:2"
+              "src": "1536:0:2"
             },
             "scope": 1743,
-            "src": "1445:93:2",
+            "src": "1444:93:2",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
@@ -1594,7 +1594,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1686,
-                  "src": "1572:15:2",
+                  "src": "1571:15:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1605,7 +1605,7 @@
                     "id": 1680,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1572:7:2",
+                    "src": "1571:7:2",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1623,7 +1623,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1686,
-                  "src": "1589:10:2",
+                  "src": "1588:10:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1634,7 +1634,7 @@
                     "id": 1682,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1589:4:2",
+                    "src": "1588:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -1644,16 +1644,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1571:29:2"
+              "src": "1570:29:2"
             },
             "returnParameters": {
               "id": 1685,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1609:0:2"
+              "src": "1608:0:2"
             },
             "scope": 1743,
-            "src": "1543:67:2",
+            "src": "1542:67:2",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
@@ -1673,7 +1673,7 @@
               "id": 1687,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1718:2:2"
+              "src": "1717:2:2"
             },
             "returnParameters": {
               "id": 1690,
@@ -1687,11 +1687,11 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1691,
-                  "src": "1744:15:2",
+                  "src": "1743:15:2",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Basket_$2616_memory_ptr",
+                    "typeIdentifier": "t_struct$_Basket_$2624_memory_ptr",
                     "typeString": "struct TokenStructs.Basket"
                   },
                   "typeName": {
@@ -1699,10 +1699,10 @@
                     "id": 1688,
                     "name": "Basket",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2616,
-                    "src": "1744:6:2",
+                    "referencedDeclaration": 2624,
+                    "src": "1743:6:2",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Basket_$2616_storage_ptr",
+                      "typeIdentifier": "t_struct$_Basket_$2624_storage_ptr",
                       "typeString": "struct TokenStructs.Basket"
                     }
                   },
@@ -1710,10 +1710,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1743:17:2"
+              "src": "1742:17:2"
             },
             "scope": 1743,
-            "src": "1700:61:2",
+            "src": "1699:61:2",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
@@ -1741,7 +1741,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1704,
-                  "src": "1824:14:2",
+                  "src": "1823:14:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1752,7 +1752,7 @@
                     "id": 1692,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1824:7:2",
+                    "src": "1823:7:2",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1770,7 +1770,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1704,
-                  "src": "1840:12:2",
+                  "src": "1839:12:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1781,7 +1781,7 @@
                     "id": 1694,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1840:7:2",
+                    "src": "1839:7:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1798,7 +1798,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1704,
-                  "src": "1854:10:2",
+                  "src": "1853:10:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1809,7 +1809,7 @@
                     "id": 1696,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1854:4:2",
+                    "src": "1853:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -1819,7 +1819,7 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1823:42:2"
+              "src": "1822:42:2"
             },
             "returnParameters": {
               "id": 1703,
@@ -1833,7 +1833,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1704,
-                  "src": "1892:12:2",
+                  "src": "1891:12:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1844,7 +1844,7 @@
                     "id": 1699,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1892:4:2",
+                    "src": "1891:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -1861,11 +1861,11 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1704,
-                  "src": "1906:26:2",
+                  "src": "1905:26:2",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_BassetDetails_$2645_memory_ptr",
+                    "typeIdentifier": "t_struct$_BassetDetails_$2653_memory_ptr",
                     "typeString": "struct TokenStructs.BassetDetails"
                   },
                   "typeName": {
@@ -1873,10 +1873,10 @@
                     "id": 1701,
                     "name": "BassetDetails",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2645,
-                    "src": "1906:13:2",
+                    "referencedDeclaration": 2653,
+                    "src": "1905:13:2",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_BassetDetails_$2645_storage_ptr",
+                      "typeIdentifier": "t_struct$_BassetDetails_$2653_storage_ptr",
                       "typeString": "struct TokenStructs.BassetDetails"
                     }
                   },
@@ -1884,10 +1884,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1891:42:2"
+              "src": "1890:42:2"
             },
             "scope": 1743,
-            "src": "1796:138:2",
+            "src": "1795:138:2",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
@@ -1915,7 +1915,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1717,
-                  "src": "2007:27:2",
+                  "src": "2006:27:2",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -1927,7 +1927,7 @@
                       "id": 1705,
                       "name": "address",
                       "nodeType": "ElementaryTypeName",
-                      "src": "2007:7:2",
+                      "src": "2006:7:2",
                       "stateMutability": "nonpayable",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -1937,7 +1937,7 @@
                     "id": 1706,
                     "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "2007:9:2",
+                    "src": "2006:9:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
                       "typeString": "address[]"
@@ -1954,7 +1954,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1717,
-                  "src": "2036:24:2",
+                  "src": "2035:24:2",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -1966,7 +1966,7 @@
                       "id": 1708,
                       "name": "uint256",
                       "nodeType": "ElementaryTypeName",
-                      "src": "2036:7:2",
+                      "src": "2035:7:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -1975,7 +1975,7 @@
                     "id": 1709,
                     "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "2036:9:2",
+                    "src": "2035:9:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
                       "typeString": "uint256[]"
@@ -1992,7 +1992,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1717,
-                  "src": "2062:10:2",
+                  "src": "2061:10:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2003,7 +2003,7 @@
                     "id": 1711,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2062:4:2",
+                    "src": "2061:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -2013,7 +2013,7 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2006:67:2"
+              "src": "2005:67:2"
             },
             "returnParameters": {
               "id": 1716,
@@ -2027,11 +2027,11 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1717,
-                  "src": "2100:28:2",
+                  "src": "2099:28:2",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_ForgePropsMulti_$2657_memory_ptr",
+                    "typeIdentifier": "t_struct$_ForgePropsMulti_$2665_memory_ptr",
                     "typeString": "struct TokenStructs.ForgePropsMulti"
                   },
                   "typeName": {
@@ -2039,10 +2039,10 @@
                     "id": 1714,
                     "name": "ForgePropsMulti",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2657,
-                    "src": "2100:15:2",
+                    "referencedDeclaration": 2665,
+                    "src": "2099:15:2",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_ForgePropsMulti_$2657_storage_ptr",
+                      "typeIdentifier": "t_struct$_ForgePropsMulti_$2665_storage_ptr",
                       "typeString": "struct TokenStructs.ForgePropsMulti"
                     }
                   },
@@ -2050,10 +2050,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2099:30:2"
+              "src": "2098:30:2"
             },
             "scope": 1743,
-            "src": "1978:152:2",
+            "src": "1977:152:2",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
@@ -2073,7 +2073,7 @@
               "id": 1718,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2171:2:2"
+              "src": "2169:2:2"
             },
             "returnParameters": {
               "id": 1721,
@@ -2087,11 +2087,11 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1722,
-                  "src": "2197:29:2",
+                  "src": "2195:29:2",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_RedeemPropsMulti_$2669_memory_ptr",
+                    "typeIdentifier": "t_struct$_RedeemPropsMulti_$2677_memory_ptr",
                     "typeString": "struct TokenStructs.RedeemPropsMulti"
                   },
                   "typeName": {
@@ -2099,10 +2099,10 @@
                     "id": 1719,
                     "name": "RedeemPropsMulti",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2669,
-                    "src": "2197:16:2",
+                    "referencedDeclaration": 2677,
+                    "src": "2195:16:2",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_RedeemPropsMulti_$2669_storage_ptr",
+                      "typeIdentifier": "t_struct$_RedeemPropsMulti_$2677_storage_ptr",
                       "typeString": "struct TokenStructs.RedeemPropsMulti"
                     }
                   },
@@ -2110,10 +2110,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2196:31:2"
+              "src": "2194:31:2"
             },
             "scope": 1743,
-            "src": "2144:84:2",
+            "src": "2142:84:2",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
@@ -2141,7 +2141,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1729,
-                  "src": "2279:14:2",
+                  "src": "2277:14:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2152,7 +2152,7 @@
                     "id": 1723,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2279:7:2",
+                    "src": "2277:7:2",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2163,7 +2163,7 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2278:16:2"
+              "src": "2276:16:2"
             },
             "returnParameters": {
               "id": 1728,
@@ -2177,11 +2177,11 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1729,
-                  "src": "2318:20:2",
+                  "src": "2316:20:2",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Basset_$2629_memory_ptr",
+                    "typeIdentifier": "t_struct$_Basset_$2637_memory_ptr",
                     "typeString": "struct TokenStructs.Basset"
                   },
                   "typeName": {
@@ -2189,10 +2189,10 @@
                     "id": 1726,
                     "name": "Basset",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2629,
-                    "src": "2318:6:2",
+                    "referencedDeclaration": 2637,
+                    "src": "2316:6:2",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Basset_$2629_storage_ptr",
+                      "typeIdentifier": "t_struct$_Basset_$2637_storage_ptr",
                       "typeString": "struct TokenStructs.Basset"
                     }
                   },
@@ -2200,10 +2200,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2317:22:2"
+              "src": "2315:22:2"
             },
             "scope": 1743,
-            "src": "2260:80:2",
+            "src": "2258:80:2",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
@@ -2223,7 +2223,7 @@
               "id": 1730,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2390:2:2"
+              "src": "2388:2:2"
             },
             "returnParameters": {
               "id": 1736,
@@ -2237,11 +2237,11 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1737,
-                  "src": "2416:23:2",
+                  "src": "2414:23:2",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_struct$_Basset_$2629_memory_ptr_$dyn_memory_ptr",
+                    "typeIdentifier": "t_array$_t_struct$_Basset_$2637_memory_ptr_$dyn_memory_ptr",
                     "typeString": "struct TokenStructs.Basset[]"
                   },
                   "typeName": {
@@ -2250,19 +2250,19 @@
                       "id": 1731,
                       "name": "Basset",
                       "nodeType": "UserDefinedTypeName",
-                      "referencedDeclaration": 2629,
-                      "src": "2416:6:2",
+                      "referencedDeclaration": 2637,
+                      "src": "2414:6:2",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Basset_$2629_storage_ptr",
+                        "typeIdentifier": "t_struct$_Basset_$2637_storage_ptr",
                         "typeString": "struct TokenStructs.Basset"
                       }
                     },
                     "id": 1732,
                     "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "2416:8:2",
+                    "src": "2414:8:2",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_struct$_Basset_$2629_storage_$dyn_storage_ptr",
+                      "typeIdentifier": "t_array$_t_struct$_Basset_$2637_storage_$dyn_storage_ptr",
                       "typeString": "struct TokenStructs.Basset[]"
                     }
                   },
@@ -2277,7 +2277,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1737,
-                  "src": "2441:11:2",
+                  "src": "2439:11:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2288,7 +2288,7 @@
                     "id": 1734,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2441:7:2",
+                    "src": "2439:7:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2298,10 +2298,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2415:38:2"
+              "src": "2413:38:2"
             },
             "scope": 1743,
-            "src": "2371:83:2",
+            "src": "2369:83:2",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
@@ -2321,7 +2321,7 @@
               "id": 1738,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2474:2:2"
+              "src": "2472:2:2"
             },
             "returnParameters": {
               "id": 1741,
@@ -2335,7 +2335,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1742,
-                  "src": "2500:4:2",
+                  "src": "2498:4:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2346,7 +2346,7 @@
                     "id": 1739,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2500:4:2",
+                    "src": "2498:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -2356,20 +2356,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2499:6:2"
+              "src": "2497:6:2"
             },
             "scope": 1743,
-            "src": "2459:47:2",
+            "src": "2457:47:2",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
         "scope": 1744,
-        "src": "234:2274:2"
+        "src": "234:2981:2"
       }
     ],
-    "src": "38:2471:2"
+    "src": "38:3178:2"
   },
   "legacyAST": {
     "absolutePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/IDataManager.sol",
@@ -2407,7 +2407,7 @@
         "id": 1606,
         "nodeType": "ImportDirective",
         "scope": 1744,
-        "sourceUnit": 2688,
+        "sourceUnit": 2696,
         "src": "97:50:2",
         "symbolAliases": [
           {
@@ -2439,10 +2439,10 @@
               "id": 1608,
               "name": "TokenStructs",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2687,
+              "referencedDeclaration": 2695,
               "src": "260:12:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_TokenStructs_$2687",
+                "typeIdentifier": "t_contract$_TokenStructs_$2695",
                 "typeString": "contract TokenStructs"
               }
             },
@@ -2452,7 +2452,7 @@
           }
         ],
         "contractDependencies": [
-          2687
+          2695
         ],
         "contractKind": "interface",
         "documentation": {
@@ -2465,7 +2465,7 @@
         "id": 1743,
         "linearizedBaseContracts": [
           1743,
-          2687
+          2695
         ],
         "name": "IDataManager",
         "nodeType": "ContractDefinition",
@@ -3005,7 +3005,7 @@
               "id": 1652,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1089:2:2"
+              "src": "1088:2:2"
             },
             "returnParameters": {
               "id": 1658,
@@ -3019,7 +3019,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1659,
-                  "src": "1118:25:2",
+                  "src": "1117:25:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3030,7 +3030,7 @@
                     "id": 1653,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1118:7:2",
+                    "src": "1117:7:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -3047,7 +3047,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1659,
-                  "src": "1145:22:2",
+                  "src": "1144:22:2",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -3059,7 +3059,7 @@
                       "id": 1655,
                       "name": "uint256",
                       "nodeType": "ElementaryTypeName",
-                      "src": "1145:7:2",
+                      "src": "1144:7:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -3068,7 +3068,7 @@
                     "id": 1656,
                     "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "1145:9:2",
+                    "src": "1144:9:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
                       "typeString": "uint256[]"
@@ -3078,10 +3078,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1117:51:2"
+              "src": "1116:51:2"
             },
             "scope": 1743,
-            "src": "1065:104:2",
+            "src": "1064:104:2",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
@@ -3109,7 +3109,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1670,
-                  "src": "1293:15:2",
+                  "src": "1292:15:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3120,7 +3120,7 @@
                     "id": 1660,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1293:7:2",
+                    "src": "1292:7:2",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -3138,7 +3138,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1670,
-                  "src": "1318:20:2",
+                  "src": "1317:20:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3149,7 +3149,7 @@
                     "id": 1662,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1318:7:2",
+                    "src": "1317:7:2",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -3167,7 +3167,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1670,
-                  "src": "1348:26:2",
+                  "src": "1347:26:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3178,7 +3178,7 @@
                     "id": 1664,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1348:4:2",
+                    "src": "1347:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -3188,7 +3188,7 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1283:92:2"
+              "src": "1282:92:2"
             },
             "returnParameters": {
               "id": 1669,
@@ -3202,7 +3202,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1670,
-                  "src": "1394:11:2",
+                  "src": "1393:11:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3213,7 +3213,7 @@
                     "id": 1667,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1394:5:2",
+                    "src": "1393:5:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint8",
                       "typeString": "uint8"
@@ -3223,10 +3223,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1393:13:2"
+              "src": "1392:13:2"
             },
             "scope": 1743,
-            "src": "1265:142:2",
+            "src": "1264:142:2",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
@@ -3254,7 +3254,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1679,
-                  "src": "1471:27:2",
+                  "src": "1470:27:2",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -3266,7 +3266,7 @@
                       "id": 1671,
                       "name": "address",
                       "nodeType": "ElementaryTypeName",
-                      "src": "1471:7:2",
+                      "src": "1470:7:2",
                       "stateMutability": "nonpayable",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -3276,7 +3276,7 @@
                     "id": 1672,
                     "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "1471:9:2",
+                    "src": "1470:9:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
                       "typeString": "address[]"
@@ -3293,7 +3293,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1679,
-                  "src": "1500:27:2",
+                  "src": "1499:27:2",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -3305,7 +3305,7 @@
                       "id": 1674,
                       "name": "uint256",
                       "nodeType": "ElementaryTypeName",
-                      "src": "1500:7:2",
+                      "src": "1499:7:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -3314,7 +3314,7 @@
                     "id": 1675,
                     "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "1500:9:2",
+                    "src": "1499:9:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
                       "typeString": "uint256[]"
@@ -3324,16 +3324,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1470:58:2"
+              "src": "1469:58:2"
             },
             "returnParameters": {
               "id": 1678,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1537:0:2"
+              "src": "1536:0:2"
             },
             "scope": 1743,
-            "src": "1445:93:2",
+            "src": "1444:93:2",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
@@ -3361,7 +3361,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1686,
-                  "src": "1572:15:2",
+                  "src": "1571:15:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3372,7 +3372,7 @@
                     "id": 1680,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1572:7:2",
+                    "src": "1571:7:2",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -3390,7 +3390,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1686,
-                  "src": "1589:10:2",
+                  "src": "1588:10:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3401,7 +3401,7 @@
                     "id": 1682,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1589:4:2",
+                    "src": "1588:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -3411,16 +3411,16 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1571:29:2"
+              "src": "1570:29:2"
             },
             "returnParameters": {
               "id": 1685,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1609:0:2"
+              "src": "1608:0:2"
             },
             "scope": 1743,
-            "src": "1543:67:2",
+            "src": "1542:67:2",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
@@ -3440,7 +3440,7 @@
               "id": 1687,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1718:2:2"
+              "src": "1717:2:2"
             },
             "returnParameters": {
               "id": 1690,
@@ -3454,11 +3454,11 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1691,
-                  "src": "1744:15:2",
+                  "src": "1743:15:2",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Basket_$2616_memory_ptr",
+                    "typeIdentifier": "t_struct$_Basket_$2624_memory_ptr",
                     "typeString": "struct TokenStructs.Basket"
                   },
                   "typeName": {
@@ -3466,10 +3466,10 @@
                     "id": 1688,
                     "name": "Basket",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2616,
-                    "src": "1744:6:2",
+                    "referencedDeclaration": 2624,
+                    "src": "1743:6:2",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Basket_$2616_storage_ptr",
+                      "typeIdentifier": "t_struct$_Basket_$2624_storage_ptr",
                       "typeString": "struct TokenStructs.Basket"
                     }
                   },
@@ -3477,10 +3477,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1743:17:2"
+              "src": "1742:17:2"
             },
             "scope": 1743,
-            "src": "1700:61:2",
+            "src": "1699:61:2",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
@@ -3508,7 +3508,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1704,
-                  "src": "1824:14:2",
+                  "src": "1823:14:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3519,7 +3519,7 @@
                     "id": 1692,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1824:7:2",
+                    "src": "1823:7:2",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -3537,7 +3537,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1704,
-                  "src": "1840:12:2",
+                  "src": "1839:12:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3548,7 +3548,7 @@
                     "id": 1694,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1840:7:2",
+                    "src": "1839:7:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -3565,7 +3565,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1704,
-                  "src": "1854:10:2",
+                  "src": "1853:10:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3576,7 +3576,7 @@
                     "id": 1696,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1854:4:2",
+                    "src": "1853:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -3586,7 +3586,7 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1823:42:2"
+              "src": "1822:42:2"
             },
             "returnParameters": {
               "id": 1703,
@@ -3600,7 +3600,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1704,
-                  "src": "1892:12:2",
+                  "src": "1891:12:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3611,7 +3611,7 @@
                     "id": 1699,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1892:4:2",
+                    "src": "1891:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -3628,11 +3628,11 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1704,
-                  "src": "1906:26:2",
+                  "src": "1905:26:2",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_BassetDetails_$2645_memory_ptr",
+                    "typeIdentifier": "t_struct$_BassetDetails_$2653_memory_ptr",
                     "typeString": "struct TokenStructs.BassetDetails"
                   },
                   "typeName": {
@@ -3640,10 +3640,10 @@
                     "id": 1701,
                     "name": "BassetDetails",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2645,
-                    "src": "1906:13:2",
+                    "referencedDeclaration": 2653,
+                    "src": "1905:13:2",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_BassetDetails_$2645_storage_ptr",
+                      "typeIdentifier": "t_struct$_BassetDetails_$2653_storage_ptr",
                       "typeString": "struct TokenStructs.BassetDetails"
                     }
                   },
@@ -3651,10 +3651,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1891:42:2"
+              "src": "1890:42:2"
             },
             "scope": 1743,
-            "src": "1796:138:2",
+            "src": "1795:138:2",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
@@ -3682,7 +3682,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1717,
-                  "src": "2007:27:2",
+                  "src": "2006:27:2",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -3694,7 +3694,7 @@
                       "id": 1705,
                       "name": "address",
                       "nodeType": "ElementaryTypeName",
-                      "src": "2007:7:2",
+                      "src": "2006:7:2",
                       "stateMutability": "nonpayable",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -3704,7 +3704,7 @@
                     "id": 1706,
                     "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "2007:9:2",
+                    "src": "2006:9:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
                       "typeString": "address[]"
@@ -3721,7 +3721,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1717,
-                  "src": "2036:24:2",
+                  "src": "2035:24:2",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -3733,7 +3733,7 @@
                       "id": 1708,
                       "name": "uint256",
                       "nodeType": "ElementaryTypeName",
-                      "src": "2036:7:2",
+                      "src": "2035:7:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -3742,7 +3742,7 @@
                     "id": 1709,
                     "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "2036:9:2",
+                    "src": "2035:9:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
                       "typeString": "uint256[]"
@@ -3759,7 +3759,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1717,
-                  "src": "2062:10:2",
+                  "src": "2061:10:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3770,7 +3770,7 @@
                     "id": 1711,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2062:4:2",
+                    "src": "2061:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -3780,7 +3780,7 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2006:67:2"
+              "src": "2005:67:2"
             },
             "returnParameters": {
               "id": 1716,
@@ -3794,11 +3794,11 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1717,
-                  "src": "2100:28:2",
+                  "src": "2099:28:2",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_ForgePropsMulti_$2657_memory_ptr",
+                    "typeIdentifier": "t_struct$_ForgePropsMulti_$2665_memory_ptr",
                     "typeString": "struct TokenStructs.ForgePropsMulti"
                   },
                   "typeName": {
@@ -3806,10 +3806,10 @@
                     "id": 1714,
                     "name": "ForgePropsMulti",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2657,
-                    "src": "2100:15:2",
+                    "referencedDeclaration": 2665,
+                    "src": "2099:15:2",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_ForgePropsMulti_$2657_storage_ptr",
+                      "typeIdentifier": "t_struct$_ForgePropsMulti_$2665_storage_ptr",
                       "typeString": "struct TokenStructs.ForgePropsMulti"
                     }
                   },
@@ -3817,10 +3817,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2099:30:2"
+              "src": "2098:30:2"
             },
             "scope": 1743,
-            "src": "1978:152:2",
+            "src": "1977:152:2",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
@@ -3840,7 +3840,7 @@
               "id": 1718,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2171:2:2"
+              "src": "2169:2:2"
             },
             "returnParameters": {
               "id": 1721,
@@ -3854,11 +3854,11 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1722,
-                  "src": "2197:29:2",
+                  "src": "2195:29:2",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_RedeemPropsMulti_$2669_memory_ptr",
+                    "typeIdentifier": "t_struct$_RedeemPropsMulti_$2677_memory_ptr",
                     "typeString": "struct TokenStructs.RedeemPropsMulti"
                   },
                   "typeName": {
@@ -3866,10 +3866,10 @@
                     "id": 1719,
                     "name": "RedeemPropsMulti",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2669,
-                    "src": "2197:16:2",
+                    "referencedDeclaration": 2677,
+                    "src": "2195:16:2",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_RedeemPropsMulti_$2669_storage_ptr",
+                      "typeIdentifier": "t_struct$_RedeemPropsMulti_$2677_storage_ptr",
                       "typeString": "struct TokenStructs.RedeemPropsMulti"
                     }
                   },
@@ -3877,10 +3877,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2196:31:2"
+              "src": "2194:31:2"
             },
             "scope": 1743,
-            "src": "2144:84:2",
+            "src": "2142:84:2",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
@@ -3908,7 +3908,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1729,
-                  "src": "2279:14:2",
+                  "src": "2277:14:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3919,7 +3919,7 @@
                     "id": 1723,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2279:7:2",
+                    "src": "2277:7:2",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -3930,7 +3930,7 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2278:16:2"
+              "src": "2276:16:2"
             },
             "returnParameters": {
               "id": 1728,
@@ -3944,11 +3944,11 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1729,
-                  "src": "2318:20:2",
+                  "src": "2316:20:2",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Basset_$2629_memory_ptr",
+                    "typeIdentifier": "t_struct$_Basset_$2637_memory_ptr",
                     "typeString": "struct TokenStructs.Basset"
                   },
                   "typeName": {
@@ -3956,10 +3956,10 @@
                     "id": 1726,
                     "name": "Basset",
                     "nodeType": "UserDefinedTypeName",
-                    "referencedDeclaration": 2629,
-                    "src": "2318:6:2",
+                    "referencedDeclaration": 2637,
+                    "src": "2316:6:2",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Basset_$2629_storage_ptr",
+                      "typeIdentifier": "t_struct$_Basset_$2637_storage_ptr",
                       "typeString": "struct TokenStructs.Basset"
                     }
                   },
@@ -3967,10 +3967,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2317:22:2"
+              "src": "2315:22:2"
             },
             "scope": 1743,
-            "src": "2260:80:2",
+            "src": "2258:80:2",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
@@ -3990,7 +3990,7 @@
               "id": 1730,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2390:2:2"
+              "src": "2388:2:2"
             },
             "returnParameters": {
               "id": 1736,
@@ -4004,11 +4004,11 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1737,
-                  "src": "2416:23:2",
+                  "src": "2414:23:2",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_struct$_Basset_$2629_memory_ptr_$dyn_memory_ptr",
+                    "typeIdentifier": "t_array$_t_struct$_Basset_$2637_memory_ptr_$dyn_memory_ptr",
                     "typeString": "struct TokenStructs.Basset[]"
                   },
                   "typeName": {
@@ -4017,19 +4017,19 @@
                       "id": 1731,
                       "name": "Basset",
                       "nodeType": "UserDefinedTypeName",
-                      "referencedDeclaration": 2629,
-                      "src": "2416:6:2",
+                      "referencedDeclaration": 2637,
+                      "src": "2414:6:2",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Basset_$2629_storage_ptr",
+                        "typeIdentifier": "t_struct$_Basset_$2637_storage_ptr",
                         "typeString": "struct TokenStructs.Basset"
                       }
                     },
                     "id": 1732,
                     "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "2416:8:2",
+                    "src": "2414:8:2",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_struct$_Basset_$2629_storage_$dyn_storage_ptr",
+                      "typeIdentifier": "t_array$_t_struct$_Basset_$2637_storage_$dyn_storage_ptr",
                       "typeString": "struct TokenStructs.Basset[]"
                     }
                   },
@@ -4044,7 +4044,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1737,
-                  "src": "2441:11:2",
+                  "src": "2439:11:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -4055,7 +4055,7 @@
                     "id": 1734,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2441:7:2",
+                    "src": "2439:7:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -4065,10 +4065,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2415:38:2"
+              "src": "2413:38:2"
             },
             "scope": 1743,
-            "src": "2371:83:2",
+            "src": "2369:83:2",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
@@ -4088,7 +4088,7 @@
               "id": 1738,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2474:2:2"
+              "src": "2472:2:2"
             },
             "returnParameters": {
               "id": 1741,
@@ -4102,7 +4102,7 @@
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
                   "scope": 1742,
-                  "src": "2500:4:2",
+                  "src": "2498:4:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -4113,7 +4113,7 @@
                     "id": 1739,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2500:4:2",
+                    "src": "2498:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -4123,20 +4123,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2499:6:2"
+              "src": "2497:6:2"
             },
             "scope": 1743,
-            "src": "2459:47:2",
+            "src": "2457:47:2",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
         "scope": 1744,
-        "src": "234:2274:2"
+        "src": "234:2981:2"
       }
     ],
-    "src": "38:2471:2"
+    "src": "38:3178:2"
   },
   "compiler": {
     "name": "solc",
@@ -4144,7 +4144,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.2",
-  "updatedAt": "2020-11-14T10:47:35.502Z",
+  "updatedAt": "2020-11-14T11:22:23.797Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

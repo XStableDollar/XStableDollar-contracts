@@ -80,19 +80,23 @@ interface IDataManager is TokenStructs {
     //     uint8 status;  // 预留状态
     // }
 
-    address[] public tokenList;
+    // address[] public tokenList;
 
     // 合成token
-    function create(string memory name, string memory symbol, PreToken[] preTokens, address target) external returns (address){
-        // 合成成功 加入到 tokenList
-        // 事件由tokenManager发送
-    }
+    // function create(string memory name, string memory symbol, address target) external returns (address){
+    //     // 合成成功 加入到 tokenList
+    //     // 事件由tokenManager发送
+    //     return target;
+    // }
 
-    // 铸造token
-    function mint(address coin) external returns (uint){
-    }
+    // // 铸造token
+    // function mint(address coin) external returns (uint){
+    //     return 0;
+    // }
 
-    // 赎回token
-    function redeem(address coin) external returns (uint){}
+    // // 赎回token
+    // function redeem(address coin) external returns (uint){
+    //     return 0;
+    // }
 
 }
