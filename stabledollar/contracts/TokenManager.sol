@@ -393,8 +393,8 @@ contract TokenManager is ITokenManager, ERC20 {
 
     ////////// by shooter //////////////
 
-    function getTokenList() external view return (address){
-
+    function getTokenList() external view returns (address) {
+        return address(0);
     }
 
     ////////// by shooter //////////////
