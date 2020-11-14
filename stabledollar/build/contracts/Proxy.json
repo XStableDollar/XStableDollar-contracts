@@ -1,9 +1,9 @@
 {
   "contractName": "Proxy",
   "abi": [],
-  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"notice\":\"Token\\u670d\\u52a1\\u5408\\u7ea6\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/Proxy.sol\":\"Proxy\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/IDataManager.sol\":{\"keccak256\":\"0x6d77bbd6faa36a94bda9cacf5b8746935f9676c734987a1b24e9d3cde6d8a4e5\",\"license\":\"SimPL-2.0\",\"urls\":[\"bzz-raw://5333bc2d666217ff67a792bfaf249502ac46c7e805c91d7c67a4067707103cb0\",\"dweb:/ipfs/QmczETSvXJwB9uyTMvSQowF6MyX96yenHtoDpRLhYBriUj\"]},\"/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/IProxy.sol\":{\"keccak256\":\"0xdc00696d9c8fe48cd51920dacf1c7ee226fb5817f5adaed3ae299d712757d0aa\",\"license\":\"SimPL-2.0\",\"urls\":[\"bzz-raw://d6dbe8988115c24972b9b089efaedeef374a3ea5300c42a372dedb204a1d2104\",\"dweb:/ipfs/QmR3QEAY1TxQfMD32ZAMKpQ7omx6dhu2mh5LENGKqxwxFH\"]},\"/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/ITokenManager.sol\":{\"keccak256\":\"0x9da64239b9ab41e43dce3bafe7ed96ed666ba1a2bce32fcc3b91fb8662505833\",\"license\":\"SimPL-2.0\",\"urls\":[\"bzz-raw://865c8efa19836f77609f62ebc33d9e70c858abc6076d50c5af7c2015aab07e26\",\"dweb:/ipfs/QmTW9e39gahgDoEnGdbyf1RCtg4K2VJXaJNLze3FRyerc8\"]},\"/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/Proxy.sol\":{\"keccak256\":\"0x7843963e0386a91f0635b01559cbf52e082b03528e5010e85f0d005d835e076c\",\"license\":\"SimPL-2.0\",\"urls\":[\"bzz-raw://96fda3e204b68679e41a12e68bf5ce96eca5131a405e072c26c99d72502eafa0\",\"dweb:/ipfs/QmWwzNThcwfMUH3NSf9F44H3Mao6yA1fK1avDWinxNZAqc\"]},\"/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/TokenStructs.sol\":{\"keccak256\":\"0x788f905b80769b0b770f08664fb59c6363e34b987a47d6778ca863821c5d7523\",\"license\":\"SimPL-2.0\",\"urls\":[\"bzz-raw://e1446482132b3d55e8867594bd8be1e3cda50da4f96a4e6b31d83f4fcadcc8ad\",\"dweb:/ipfs/QmUWaGLHtDgbRdB68F7anLUnDyhkAeKYRHhTRqTrsBRW7J\"]}},\"version\":1}",
-  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea2646970667358221220a637d49800281ceb3fb30654a045a5b29d72c502b545810ba692f41e30451be564736f6c634300060c0033",
-  "deployedBytecode": "0x6080604052600080fdfea2646970667358221220a637d49800281ceb3fb30654a045a5b29d72c502b545810ba692f41e30451be564736f6c634300060c0033",
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"notice\":\"Token\\u670d\\u52a1\\u5408\\u7ea6\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/Proxy.sol\":\"Proxy\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/IDataManager.sol\":{\"keccak256\":\"0x6d77bbd6faa36a94bda9cacf5b8746935f9676c734987a1b24e9d3cde6d8a4e5\",\"license\":\"SimPL-2.0\",\"urls\":[\"bzz-raw://5333bc2d666217ff67a792bfaf249502ac46c7e805c91d7c67a4067707103cb0\",\"dweb:/ipfs/QmczETSvXJwB9uyTMvSQowF6MyX96yenHtoDpRLhYBriUj\"]},\"/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/IProxy.sol\":{\"keccak256\":\"0xdc00696d9c8fe48cd51920dacf1c7ee226fb5817f5adaed3ae299d712757d0aa\",\"license\":\"SimPL-2.0\",\"urls\":[\"bzz-raw://d6dbe8988115c24972b9b089efaedeef374a3ea5300c42a372dedb204a1d2104\",\"dweb:/ipfs/QmR3QEAY1TxQfMD32ZAMKpQ7omx6dhu2mh5LENGKqxwxFH\"]},\"/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/ITokenManager.sol\":{\"keccak256\":\"0x01a4aabfb7ce7b3d15d9a138bb6bfa7538903cf750f9196d11ad8f8788d2f4ca\",\"license\":\"SimPL-2.0\",\"urls\":[\"bzz-raw://1234285b4f0a1f50a896bb65a142fb33c12300113fa0c0d55fba7e4423f6a480\",\"dweb:/ipfs/QmP5VXJ1ocu93SUDstHhETCRVDUmMRdM6NyKPNvQwVtymG\"]},\"/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/Proxy.sol\":{\"keccak256\":\"0x7843963e0386a91f0635b01559cbf52e082b03528e5010e85f0d005d835e076c\",\"license\":\"SimPL-2.0\",\"urls\":[\"bzz-raw://96fda3e204b68679e41a12e68bf5ce96eca5131a405e072c26c99d72502eafa0\",\"dweb:/ipfs/QmWwzNThcwfMUH3NSf9F44H3Mao6yA1fK1avDWinxNZAqc\"]},\"/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/TokenStructs.sol\":{\"keccak256\":\"0x788f905b80769b0b770f08664fb59c6363e34b987a47d6778ca863821c5d7523\",\"license\":\"SimPL-2.0\",\"urls\":[\"bzz-raw://e1446482132b3d55e8867594bd8be1e3cda50da4f96a4e6b31d83f4fcadcc8ad\",\"dweb:/ipfs/QmUWaGLHtDgbRdB68F7anLUnDyhkAeKYRHhTRqTrsBRW7J\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea26469706673582212200b71db58a769259e7b0d2743cc3b6f09c6875e2ac3cb3b1869c71fc50a61bc7f64736f6c634300060c0033",
+  "deployedBytecode": "0x6080604052600080fdfea26469706673582212200b71db58a769259e7b0d2743cc3b6f09c6875e2ac3cb3b1869c71fc50a61bc7f64736f6c634300060c0033",
   "immutableReferences": {},
   "sourceMap": "280:1783:6:-:0;;;;;;;;;;;;;;;;;;;",
   "deployedSourceMap": "280:1783:6:-:0;;;;;",
@@ -13,15 +13,15 @@
     "absolutePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/Proxy.sol",
     "exportedSymbols": {
       "Proxy": [
-        1857
+        1859
       ]
     },
-    "id": 1858,
+    "id": 1860,
     "license": "SimPL-2.0",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1847,
+        "id": 1849,
         "literals": [
           "solidity",
           "0.6",
@@ -33,16 +33,16 @@
       {
         "absolutePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/IProxy.sol",
         "file": "./IProxy.sol",
-        "id": 1849,
+        "id": 1851,
         "nodeType": "ImportDirective",
-        "scope": 1858,
+        "scope": 1860,
         "sourceUnit": 1752,
         "src": "63:38:6",
         "symbolAliases": [
           {
             "foreign": {
               "argumentTypes": null,
-              "id": 1848,
+              "id": 1850,
               "name": "IProxy",
               "nodeType": "Identifier",
               "overloadedDeclarations": [],
@@ -61,16 +61,16 @@
       {
         "absolutePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/ITokenManager.sol",
         "file": "./ITokenManager.sol",
-        "id": 1851,
+        "id": 1853,
         "nodeType": "ImportDirective",
-        "scope": 1858,
-        "sourceUnit": 1793,
+        "scope": 1860,
+        "sourceUnit": 1795,
         "src": "102:52:6",
         "symbolAliases": [
           {
             "foreign": {
               "argumentTypes": null,
-              "id": 1850,
+              "id": 1852,
               "name": "ITokenManager",
               "nodeType": "Identifier",
               "overloadedDeclarations": [],
@@ -89,16 +89,16 @@
       {
         "absolutePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/IDataManager.sol",
         "file": "./IDataManager.sol",
-        "id": 1853,
+        "id": 1855,
         "nodeType": "ImportDirective",
-        "scope": 1858,
+        "scope": 1860,
         "sourceUnit": 1744,
         "src": "155:50:6",
         "symbolAliases": [
           {
             "foreign": {
               "argumentTypes": null,
-              "id": 1852,
+              "id": 1854,
               "name": "IDataManager",
               "nodeType": "Identifier",
               "overloadedDeclarations": [],
@@ -117,16 +117,16 @@
       {
         "absolutePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/TokenStructs.sol",
         "file": "./TokenStructs.sol",
-        "id": 1855,
+        "id": 1857,
         "nodeType": "ImportDirective",
-        "scope": 1858,
-        "sourceUnit": 2696,
+        "scope": 1860,
+        "sourceUnit": 2720,
         "src": "206:50:6",
         "symbolAliases": [
           {
             "foreign": {
               "argumentTypes": null,
-              "id": 1854,
+              "id": 1856,
               "name": "TokenStructs",
               "nodeType": "Identifier",
               "overloadedDeclarations": [],
@@ -148,20 +148,20 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "documentation": {
-          "id": 1856,
+          "id": 1858,
           "nodeType": "StructuredDocumentation",
           "src": "258:22:6",
           "text": "Token服务合约"
         },
         "fullyImplemented": true,
-        "id": 1857,
+        "id": 1859,
         "linearizedBaseContracts": [
-          1857
+          1859
         ],
         "name": "Proxy",
         "nodeType": "ContractDefinition",
         "nodes": [],
-        "scope": 1858,
+        "scope": 1860,
         "src": "280:1783:6"
       }
     ],
@@ -171,15 +171,15 @@
     "absolutePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/Proxy.sol",
     "exportedSymbols": {
       "Proxy": [
-        1857
+        1859
       ]
     },
-    "id": 1858,
+    "id": 1860,
     "license": "SimPL-2.0",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1847,
+        "id": 1849,
         "literals": [
           "solidity",
           "0.6",
@@ -191,16 +191,16 @@
       {
         "absolutePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/IProxy.sol",
         "file": "./IProxy.sol",
-        "id": 1849,
+        "id": 1851,
         "nodeType": "ImportDirective",
-        "scope": 1858,
+        "scope": 1860,
         "sourceUnit": 1752,
         "src": "63:38:6",
         "symbolAliases": [
           {
             "foreign": {
               "argumentTypes": null,
-              "id": 1848,
+              "id": 1850,
               "name": "IProxy",
               "nodeType": "Identifier",
               "overloadedDeclarations": [],
@@ -219,16 +219,16 @@
       {
         "absolutePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/ITokenManager.sol",
         "file": "./ITokenManager.sol",
-        "id": 1851,
+        "id": 1853,
         "nodeType": "ImportDirective",
-        "scope": 1858,
-        "sourceUnit": 1793,
+        "scope": 1860,
+        "sourceUnit": 1795,
         "src": "102:52:6",
         "symbolAliases": [
           {
             "foreign": {
               "argumentTypes": null,
-              "id": 1850,
+              "id": 1852,
               "name": "ITokenManager",
               "nodeType": "Identifier",
               "overloadedDeclarations": [],
@@ -247,16 +247,16 @@
       {
         "absolutePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/IDataManager.sol",
         "file": "./IDataManager.sol",
-        "id": 1853,
+        "id": 1855,
         "nodeType": "ImportDirective",
-        "scope": 1858,
+        "scope": 1860,
         "sourceUnit": 1744,
         "src": "155:50:6",
         "symbolAliases": [
           {
             "foreign": {
               "argumentTypes": null,
-              "id": 1852,
+              "id": 1854,
               "name": "IDataManager",
               "nodeType": "Identifier",
               "overloadedDeclarations": [],
@@ -275,16 +275,16 @@
       {
         "absolutePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/TokenStructs.sol",
         "file": "./TokenStructs.sol",
-        "id": 1855,
+        "id": 1857,
         "nodeType": "ImportDirective",
-        "scope": 1858,
-        "sourceUnit": 2696,
+        "scope": 1860,
+        "sourceUnit": 2720,
         "src": "206:50:6",
         "symbolAliases": [
           {
             "foreign": {
               "argumentTypes": null,
-              "id": 1854,
+              "id": 1856,
               "name": "TokenStructs",
               "nodeType": "Identifier",
               "overloadedDeclarations": [],
@@ -306,20 +306,20 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "documentation": {
-          "id": 1856,
+          "id": 1858,
           "nodeType": "StructuredDocumentation",
           "src": "258:22:6",
           "text": "Token服务合约"
         },
         "fullyImplemented": true,
-        "id": 1857,
+        "id": 1859,
         "linearizedBaseContracts": [
-          1857
+          1859
         ],
         "name": "Proxy",
         "nodeType": "ContractDefinition",
         "nodes": [],
-        "scope": 1858,
+        "scope": 1860,
         "src": "280:1783:6"
       }
     ],
@@ -331,7 +331,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.2",
-  "updatedAt": "2020-11-14T11:22:23.800Z",
+  "updatedAt": "2020-11-14T12:17:36.938Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},
