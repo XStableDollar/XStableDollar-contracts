@@ -2,7 +2,7 @@
 pragma solidity 0.6.12;
 pragma experimental ABIEncoderV2;
 
-import { MassetStructs } from "../interfaces/MassetStructs.sol";
+import { TokenStructs } from "../TokenStructs.sol";
 
 /**
  * @title   IForgeValidator
@@ -11,7 +11,7 @@ import { MassetStructs } from "../interfaces/MassetStructs.sol";
  *          on how it affects the underlying basket collateral weightings
  * @dev     Abstract ForgeValidator contract for interacting with the Forge Validator implementation
  */
-interface IForgeValidator is MassetStructs {
+interface IForgeValidator is TokenStructs {
     function validateMint(uint256 _totalVault, Basset calldata _basset, uint256 _bAssetQuantity)
         external pure returns (bool, string memory);
     function validateMintMulti(uint256 _totalVault, Basset[] calldata _bassets, uint256[] calldata _bAssetQuantities)

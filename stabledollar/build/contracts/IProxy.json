@@ -1,0 +1,122 @@
+{
+  "contractName": "IProxy",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"notice\":\"Token\\u670d\\u52a1\\u5408\\u7ea6\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/IProxy.sol\":\"IProxy\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/IProxy.sol\":{\"keccak256\":\"0x49736e90045c59fbe304b6e8306050a1a82819155d729307337799db1bf83e97\",\"license\":\"SimPL-2.0\",\"urls\":[\"bzz-raw://27334d8fd3f14913eaaac1defaf3920971f62741fb0587ece5ee5e68473feb5e\",\"dweb:/ipfs/QmZbNWJXu8TH7uE2QKnV5DpESbAnrWys4h19suB3CFNqcR\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: SimPL-2.0\npragma solidity 0.6.12;\n\n/// Token服务合约\ninterface IProxy {\n\n    // 铸币\n\n\n    // 赎回\n\n\n    // 查看列表\n\n\n}\n\n",
+  "sourcePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/IProxy.sol",
+  "ast": {
+    "absolutePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/IProxy.sol",
+    "exportedSymbols": {
+      "IProxy": [
+        1729
+      ]
+    },
+    "id": 1730,
+    "license": "SimPL-2.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1727,
+        "literals": [
+          "solidity",
+          "0.6",
+          ".12"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "38:23:2"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 1728,
+          "nodeType": "StructuredDocumentation",
+          "src": "63:22:2",
+          "text": "Token服务合约"
+        },
+        "fullyImplemented": true,
+        "id": 1729,
+        "linearizedBaseContracts": [
+          1729
+        ],
+        "name": "IProxy",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 1730,
+        "src": "85:75:2"
+      }
+    ],
+    "src": "38:124:2"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/IProxy.sol",
+    "exportedSymbols": {
+      "IProxy": [
+        1729
+      ]
+    },
+    "id": 1730,
+    "license": "SimPL-2.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1727,
+        "literals": [
+          "solidity",
+          "0.6",
+          ".12"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "38:23:2"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 1728,
+          "nodeType": "StructuredDocumentation",
+          "src": "63:22:2",
+          "text": "Token服务合约"
+        },
+        "fullyImplemented": true,
+        "id": 1729,
+        "linearizedBaseContracts": [
+          1729
+        ],
+        "name": "IProxy",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 1730,
+        "src": "85:75:2"
+      }
+    ],
+    "src": "38:124:2"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.12+commit.27d51765.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.2",
+  "updatedAt": "2020-11-14T07:15:27.477Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "notice": "Token服务合约",
+    "version": 1
+  }
+}

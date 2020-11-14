@@ -3,30 +3,21 @@ pragma solidity 0.6.12;
 pragma experimental ABIEncoderV2;
 
 // External
-// import { IPlatformIntegration } from "../interfaces/IPlatformIntegration.sol";
 import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 // Internal
-// import { InitializablePausableModule } from "../shared/InitializablePausableModule.sol";
-import { IBasketManager } from "./interfaces/IBasketManager.sol";
-// import { Initializable } from "@openzeppelin/upgrades/contracts/Initializable.sol";
+import { IDataManager } from "./IDataManager.sol";
 
 // Libs
 import { CommonHelpers } from "./shared/CommonHelpers.sol";
 import { StableMath } from "./shared/StableMath.sol";
 import { SafeERC20 } from "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
 import { SafeMath } from "@openzeppelin/contracts/math/SafeMath.sol";
-// import { InitializableReentrancyGuard } from "../shared/InitializableReentrancyGuard.sol";
 
 /**
- * BasketManager
- * Manages the Basket composition for a particular mAsset. Feeds all required
- *          basket data to the mAsset and is responsible for keeping accurate records.
- *          BasketManager can also optimise lending pool integrations and perform
- *          re-collateralisation on failed bAssets.
- * VERSION: 1.0
+ * DataManager
  */
-contract BasketManager is IBasketManager {
+contract DataManager is IDataManager {
     using SafeMath for uint256;
     using StableMath for uint256;
     using SafeERC20 for IERC20;
