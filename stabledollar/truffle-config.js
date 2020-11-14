@@ -6,6 +6,7 @@ const infuraKey = process.env.infuraKey;
 const privatekey = process.env.privatekey;
 
 const BSC_RPC = "https://data-seed-prebsc-1-s1.binance.org:8545/"
+// https://testnet.binance.org/faucet-smart bsc水龙头
 
 module.exports = {
   networks: {
