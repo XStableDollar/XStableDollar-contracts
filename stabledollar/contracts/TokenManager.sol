@@ -11,6 +11,7 @@ import { TokenStructs } from "./TokenStructs.sol";
 import { CustomToken } from "./CustomToken.sol";
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import { SafeERC20 }  from "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
 
 import { StableMath } from "./shared/StableMath.sol";
 import { MassetHelpers } from "./shared/MassetHelpers.sol";
@@ -18,6 +19,7 @@ import { MassetHelpers } from "./shared/MassetHelpers.sol";
 contract TokenManager is ITokenManager, ERC20 {
 
     using StableMath for uint256;
+    using SafeERC20 for IERC20;
 
     address[] public customAssets;
     uint256 public totalAssets;
@@ -116,8 +118,114 @@ contract TokenManager is ITokenManager, ERC20 {
         token2ratio[erc20Addr] = _bassetAmount;
         token2symbol[erc20Addr] = _preToken;
 
-        CustomToken(erc20Addr).mint(msg.sender, 1);
-        return 1;
+        CustomToken(erc20Addr).mint(msg.sender, 1e18);
+        return 1e18;
+    }
+
+        // 合成
+    function mintMulti1(
+        address erc20Addr,
+        address[] calldata _preToken,
+        uint256[] calldata _bassetAmount
+        // bool[] calldata _isTransferFee
+    )
+        external
+        returns (uint256 massetMinted)
+    {
+        // require(_preToken.length > 0, "_preToken lenght must not be 0");
+        // require(_preToken.length == _bassetAmount.length, "lenght must be equal");
+
+        // TODO 检测合成数量是否正确
+
+        CustomAsset memory customAsset = ercAddrToCustomToken[erc20Addr];
+        // require(customAsset.status != 0);
+
+        uint256 len = _preToken.length;
+        // 将资产划转到合约
+        for(uint256 i = 0; i < len; i++) {
+            address tokenAddr = _preToken[i];
+            uint256 amount = _bassetAmount[i];
+            // bool isTransferFee = _isTransferFee[i];
+            bool isTransferFee = false;
+            uint256 quantityTransferred = MassetHelpers.transferTokens(msg.sender, address(this), tokenAddr, isTransferFee, amount);
+        }
+
+        token2ratio[erc20Addr] = _bassetAmount;
+        token2symbol[erc20Addr] = _preToken;
+
+        CustomToken(erc20Addr).mint(msg.sender, 1e18);
+        return 1e18;
+    }
+
+    // 合成
+    function mintMulti2(
+        address erc20Addr,
+        address[] calldata _preToken,
+        uint256[] calldata _bassetAmount
+        // bool[] calldata _isTransferFee
+    )
+        external
+        returns (uint256 massetMinted)
+    {
+        // require(_preToken.length > 0, "_preToken lenght must not be 0");
+        // require(_preToken.length == _bassetAmount.length, "lenght must be equal");
+
+        // TODO 检测合成数量是否正确
+
+        CustomAsset memory customAsset = ercAddrToCustomToken[erc20Addr];
+        // require(customAsset.status != 0);
+
+        uint256 len = _preToken.length;
+        // 将资产划转到合约
+        for(uint256 i = 0; i < len; i++) {
+            address tokenAddr = _preToken[i];
+            uint256 amount = _bassetAmount[i];
+            // bool isTransferFee = _isTransferFee[i];
+            bool isTransferFee = false;
+            // uint256 quantityTransferred = MassetHelpers.transferTokens(msg.sender, address(this), tokenAddr, isTransferFee, amount);
+        }
+
+        token2ratio[erc20Addr] = _bassetAmount;
+        token2symbol[erc20Addr] = _preToken;
+
+        CustomToken(erc20Addr).mint(msg.sender, 1e18);
+        return 1e18;
+    }
+
+    // 合成
+    function mintMulti3(
+        address erc20Addr,
+        address[] calldata _preToken,
+        uint256[] calldata _bassetAmount
+        // bool[] calldata _isTransferFee
+    )
+        external
+        returns (uint256 massetMinted)
+    {
+        // require(_preToken.length > 0, "_preToken lenght must not be 0");
+        // require(_preToken.length == _bassetAmount.length, "lenght must be equal");
+
+        // TODO 检测合成数量是否正确
+
+        CustomAsset memory customAsset = ercAddrToCustomToken[erc20Addr];
+        // require(customAsset.status != 0);
+
+        uint256 len = _preToken.length;
+        // 将资产划转到合约
+        for(uint256 i = 0; i < len; i++) {
+            address tokenAddr = _preToken[i];
+            uint256 amount = _bassetAmount[i];
+            // bool isTransferFee = _isTransferFee[i];
+            bool isTransferFee = false;
+            // uint256 quantityTransferred = MassetHelpers.transferTokens(msg.sender, address(this), tokenAddr, isTransferFee, amount);
+            IERC20(tokenAddr).safeTransferFrom(msg.sender, address(this), amount);
+        }
+
+        token2ratio[erc20Addr] = _bassetAmount;
+        token2symbol[erc20Addr] = _preToken;
+
+        CustomToken(erc20Addr).mint(msg.sender, 1e18);
+        return 1e18;
     }
 
     // 赎回

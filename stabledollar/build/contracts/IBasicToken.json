@@ -15,34 +15,34 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"decimals\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/shared/IBasicToken.sol\":\"IBasicToken\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/shared/IBasicToken.sol\":{\"keccak256\":\"0x0a605c7e993b6ae01f5513141ddc33ba2fea01f247b1c76decdcaac622726f02\",\"license\":\"SimPL-2.0\",\"urls\":[\"bzz-raw://eac097841383cf818f5d62be7098f96376005b785130f35ce9ab5da07fef81b3\",\"dweb:/ipfs/QmethAih5BPBBAvqcvNswNZBFjrYFMdmFfcWs2Ahkaos3P\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"decimals\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/flora/workspace/eth/stable-coin/taowa/XStableDollar-contracts/stabledollar/contracts/shared/IBasicToken.sol\":\"IBasicToken\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/flora/workspace/eth/stable-coin/taowa/XStableDollar-contracts/stabledollar/contracts/shared/IBasicToken.sol\":{\"keccak256\":\"0x0a605c7e993b6ae01f5513141ddc33ba2fea01f247b1c76decdcaac622726f02\",\"license\":\"SimPL-2.0\",\"urls\":[\"bzz-raw://eac097841383cf818f5d62be7098f96376005b785130f35ce9ab5da07fef81b3\",\"dweb:/ipfs/QmethAih5BPBBAvqcvNswNZBFjrYFMdmFfcWs2Ahkaos3P\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "immutableReferences": {},
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "// SPDX-License-Identifier: SimPL-2.0\npragma solidity 0.6.12;\n\ninterface IBasicToken {\n    function decimals() external view returns (uint8);\n}\n",
-  "sourcePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/shared/IBasicToken.sol",
+  "sourcePath": "/Users/flora/workspace/eth/stable-coin/taowa/XStableDollar-contracts/stabledollar/contracts/shared/IBasicToken.sol",
   "ast": {
-    "absolutePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/shared/IBasicToken.sol",
+    "absolutePath": "/Users/flora/workspace/eth/stable-coin/taowa/XStableDollar-contracts/stabledollar/contracts/shared/IBasicToken.sol",
     "exportedSymbols": {
       "IBasicToken": [
-        9294
+        8818
       ]
     },
-    "id": 9295,
+    "id": 8819,
     "license": "SimPL-2.0",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 9288,
+        "id": 8812,
         "literals": [
           "solidity",
           "0.6",
           ".12"
         ],
         "nodeType": "PragmaDirective",
-        "src": "38:23:14"
+        "src": "38:23:19"
       },
       {
         "abstract": false,
@@ -51,9 +51,9 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 9294,
+        "id": 8818,
         "linearizedBaseContracts": [
-          9294
+          8818
         ],
         "name": "IBasicToken",
         "nodeType": "ContractDefinition",
@@ -62,7 +62,7 @@
             "body": null,
             "documentation": null,
             "functionSelector": "313ce567",
-            "id": 9293,
+            "id": 8817,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -70,24 +70,24 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 9289,
+              "id": 8813,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "108:2:14"
+              "src": "108:2:19"
             },
             "returnParameters": {
-              "id": 9292,
+              "id": 8816,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 9291,
+                  "id": 8815,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 9293,
-                  "src": "134:5:14",
+                  "scope": 8817,
+                  "src": "134:5:19",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -95,10 +95,10 @@
                     "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 9290,
+                    "id": 8814,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
-                    "src": "134:5:14",
+                    "src": "134:5:19",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint8",
                       "typeString": "uint8"
@@ -108,41 +108,41 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "133:7:14"
+              "src": "133:7:19"
             },
-            "scope": 9294,
-            "src": "91:50:14",
+            "scope": 8818,
+            "src": "91:50:19",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 9295,
-        "src": "63:80:14"
+        "scope": 8819,
+        "src": "63:80:19"
       }
     ],
-    "src": "38:106:14"
+    "src": "38:106:19"
   },
   "legacyAST": {
-    "absolutePath": "/Users/zhangxuesong/mysoft/defi/XStableDollar-contracts/stabledollar/contracts/shared/IBasicToken.sol",
+    "absolutePath": "/Users/flora/workspace/eth/stable-coin/taowa/XStableDollar-contracts/stabledollar/contracts/shared/IBasicToken.sol",
     "exportedSymbols": {
       "IBasicToken": [
-        9294
+        8818
       ]
     },
-    "id": 9295,
+    "id": 8819,
     "license": "SimPL-2.0",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 9288,
+        "id": 8812,
         "literals": [
           "solidity",
           "0.6",
           ".12"
         ],
         "nodeType": "PragmaDirective",
-        "src": "38:23:14"
+        "src": "38:23:19"
       },
       {
         "abstract": false,
@@ -151,9 +151,9 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 9294,
+        "id": 8818,
         "linearizedBaseContracts": [
-          9294
+          8818
         ],
         "name": "IBasicToken",
         "nodeType": "ContractDefinition",
@@ -162,7 +162,7 @@
             "body": null,
             "documentation": null,
             "functionSelector": "313ce567",
-            "id": 9293,
+            "id": 8817,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -170,24 +170,24 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 9289,
+              "id": 8813,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "108:2:14"
+              "src": "108:2:19"
             },
             "returnParameters": {
-              "id": 9292,
+              "id": 8816,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 9291,
+                  "id": 8815,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 9293,
-                  "src": "134:5:14",
+                  "scope": 8817,
+                  "src": "134:5:19",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -195,10 +195,10 @@
                     "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 9290,
+                    "id": 8814,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
-                    "src": "134:5:14",
+                    "src": "134:5:19",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint8",
                       "typeString": "uint8"
@@ -208,20 +208,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "133:7:14"
+              "src": "133:7:19"
             },
-            "scope": 9294,
-            "src": "91:50:14",
+            "scope": 8818,
+            "src": "91:50:19",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 9295,
-        "src": "63:80:14"
+        "scope": 8819,
+        "src": "63:80:19"
       }
     ],
-    "src": "38:106:14"
+    "src": "38:106:19"
   },
   "compiler": {
     "name": "solc",
@@ -229,7 +229,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.2",
-  "updatedAt": "2020-11-13T02:47:26.103Z",
+  "updatedAt": "2020-11-14T16:57:58.096Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},
